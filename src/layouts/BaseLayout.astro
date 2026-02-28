@@ -1,14 +1,25 @@
 ---
 import "@styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ko" class="h-full antialiased">
-  <head> </head>
-
-  <body class="mx-1 flex min-h-full transition-all duration-150 sm:mx-4">
-    <div class="mx-auto my-1 w-full max-w-4xl sm:my-8">
-      <slot />
-    </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-bg text-text min-h-full">
+    <slot />
   </body>
 </html>

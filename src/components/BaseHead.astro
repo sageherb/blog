@@ -1,0 +1,114 @@
+---
+import { SITE_FAVICON, SITE_TITLE } from "../config";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Root-relative path (e.g. "/og/post.png") or absolute URL */
+  image?: string;
+  /** Image dimensions — used for og:image:width/height (Korean platform preview rendering) */
+  imageWidth?: number;
+  imageHeight?: number;
+  /**
+   * Page kind — maps to OG Protocol type internally.
+   *   "post"      → og:type="article" + article:published/modified_time
+   *   "portfolio" → og:type="website"
+   *   "page"      → og:type="website" (default)
+   */
+  kind?: "page" | "post" | "portfolio";
+  /** Blog post publish date (post only) */
+  pubDate?: Date;
+  /** Blog post last updated date (post only) */
+  updatedDate?: Date;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageWidth,
+  imageHeight,
+  kind = "page",
+  pubDate,
+  updatedDate,
+} = Astro.props;
+
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : Astro.url;
+
+// OG Protocol type — "article" for posts, "website" for everything else
+const ogType = kind === "post" ? "article" : "website";
+
+// Resolve image to absolute URL, or undefined if not provided
+const ogImage = image
+  ? image.startsWith("http")
+    ? image
+    : Astro.site
+      ? new URL(image, Astro.site).toString()
+      : undefined
+  : undefined;
+
+// Encode SVG properly to avoid HTML-escaping issues in href attribute
+const faviconSvg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${SITE_FAVICON}</text></svg>`;
+const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Favicon -->
+<link rel="icon" href={faviconHref} />
+
+<!-- Canonical & discovery -->
+<link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href="/rss.xml"
+/>
+
+<!-- Primary meta -->
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- Open Graph — 카카오, 네이버, 밴드, Facebook 공통 사용 -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={SITE_TITLE} />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+{
+  ogImage && imageWidth && (
+    <meta property="og:image:width" content={String(imageWidth)} />
+  )
+}
+{
+  ogImage && imageHeight && (
+    <meta property="og:image:height" content={String(imageHeight)} />
+  )
+}
+{
+  kind === "post" && pubDate && (
+    <meta property="article:published_time" content={pubDate.toISOString()} />
+  )
+}
+{
+  kind === "post" && updatedDate && (
+    <meta
+      property="article:modified_time"
+      content={updatedDate.toISOString()}
+    />
+  )
+}
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}

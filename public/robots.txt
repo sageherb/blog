@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sageherb.dev/sitemap-index.xml
