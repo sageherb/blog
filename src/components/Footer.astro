@@ -1,0 +1,17 @@
+---
+import { LICENSE, NAME, SOURCE_LINK } from "../config";
+---
+
+<footer
+  class="border-border text-muted mt-16 flex items-center justify-between border-t py-6 text-xs"
+>
+  <p>© {new Date().getFullYear()} {NAME}. {LICENSE}</p>
+  <a
+    href={SOURCE_LINK}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hover:text-text transition-colors"
+  >
+    Source
+  </a>
+</footer>

@@ -1,25 +1,53 @@
 ---
 import "@styles/global.css";
+import BaseHead from "@components/BaseHead.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
 
 interface Props {
   title: string;
   description: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  kind?: "page" | "post" | "portfolio";
+  pubDate?: Date;
+  updatedDate?: Date;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  imageWidth,
+  imageHeight,
+  kind,
+  pubDate,
+  updatedDate,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ko" class="h-full antialiased">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      imageWidth={imageWidth}
+      imageHeight={imageHeight}
+      kind={kind}
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+    />
   </head>
-  <body class="bg-bg text-text min-h-full">
-    <slot />
+  <body class="min-h-full bg-bg text-text">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>

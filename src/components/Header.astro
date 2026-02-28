@@ -1,0 +1,52 @@
+---
+import ThemeToggle from "@components/ThemeToggle.astro";
+import { SITE_TITLE } from "../config";
+
+const path = Astro.url.pathname;
+
+const navItems = [
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/portfolio", label: "Portfolio" },
+] as const;
+
+function isActive(href: string): boolean {
+  if (href === "/about") return path === "/about" || path === "/about/";
+  return path === href || path.startsWith(href + "/");
+}
+---
+
+<header class="border-border flex items-center justify-between border-b py-5">
+  <a
+    href="/"
+    class="text-text hover:text-accent font-mono text-sm font-semibold transition-colors"
+  >
+    {SITE_TITLE}
+  </a>
+
+  <nav aria-label="Main navigation">
+    <ul class="flex items-center gap-1">
+      {
+        navItems.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={isActive(href) ? "page" : undefined}
+              class:list={[
+                "rounded px-3 py-1.5 text-sm transition-colors",
+                isActive(href)
+                  ? "text-accent font-medium"
+                  : "text-muted hover:text-text",
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="ml-1">
+        <ThemeToggle />
+      </li>
+    </ul>
+  </nav>
+</header>
