@@ -10,7 +10,7 @@ const blog = defineCollection({
     updatedDate: z.date().optional(),
     tags: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
-    // draft: true → hidden from the site, only visible in local dev
+    // draft: true → excluded from production builds and public listings
     draft: z.boolean().default(false),
   }),
 });
@@ -21,6 +21,7 @@ const portfolio = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.date(),
+    updatedDate: z.date().optional(),
     tags: z.array(z.string()).default([]),
     coverImage: z.string().optional(),
     links: z

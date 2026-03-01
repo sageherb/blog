@@ -1,37 +1,32 @@
-// Deployment site URL
-// For GitHub Pages: https://<github-username>.github.io/
-export const SITE = "https://sageherb.dev";
+// Canonical site URL — must match Netlify production domain
+export const SITE_URL = "https://sageherb.dev";
 
-// Site base path
-// Root deployment: "/", subdirectory deployment: "/<repo-name>"
-export const BASE = "/";
-
-// Site title (default for meta tags / header)
+// Site display title (used in <title> and header)
 export const SITE_TITLE = "<SageHerb />";
 
-// Site description (for meta description / search results)
-export const SITE_DESCRIPTION = "개발 기록 저장소";
+// Default meta description
+export const SITE_DESCRIPTION = "A personal tech blog by SageHerb";
 
-// Favicon emoji
+// Author name
+export const AUTHOR = "SageHerb";
+
+// Favicon emoji (rendered as SVG data URI in BaseHead)
 export const SITE_FAVICON = "🌿";
 
-// Copyright display name
-export const NAME = "SageHerb";
+// Default OG image (relative to public/)
+export const DEFAULT_OG_IMAGE = "/og-default.png";
 
-// Content license text
+// Copyright display name
+export const COPYRIGHT_NAME = "SageHerb";
+
+// Content license
 export const LICENSE = "All rights reserved.";
 
-// Source repository link
-export const SOURCE_LINK = "https://github.com/sageherb";
-
-// Posts per page
+// Posts per page for blog listing
 export const POSTS_PER_PAGE = 10;
 
-// Social links (leave empty string or omit to hide)
-export const SOCIAL_LINKS: {
-  GITHUB_URL?: string;
-  EMAIL?: string;
-} = {
-  GITHUB_URL: "https://github.com/sageherb",
-  EMAIL: "prestoferoce@gmail.com",
-};
+// Social links — omit or set to empty string to hide
+export const SOCIAL_LINKS = {
+  github: "https://github.com/sageherb",
+  email: "prestoferoce@gmail.com",
+} as const;
