@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ——— Design tokens ——— */
+
 @theme {
   --color-bg: #f8f7f4;
   --color-surface: #edeae3;
@@ -11,6 +13,7 @@
   --color-muted: #9aaa90;
 }
 
+/* dark mode token overrides */
 .dark {
   --color-bg: #1c1f1a;
   --color-surface: #252820;
@@ -19,4 +22,37 @@
   --color-accent: #8fa882;
   --color-accent-hover: #6b7d62;
   --color-muted: #5a7050;
+}
+
+/* ——— Base styles ——— */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* accessible focus ring using accent color */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+}
+
+/* ——— Shiki dual-theme: class-based dark mode ——— */
+/* ref: https://docs.astro.build/en/guides/syntax-highlighting/#setting-light-and-dark-mode-themes */
+
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
