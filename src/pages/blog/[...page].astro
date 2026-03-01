@@ -4,8 +4,8 @@ import type { CollectionEntry } from "astro:content";
 import Pagination from "@components/Pagination.astro";
 import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "../../config";
-import { getBlogPosts } from "../../utils/content";
+import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "@config";
+import { getBlogPosts } from "@utils/content";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getBlogPosts();
