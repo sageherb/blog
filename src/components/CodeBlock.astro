@@ -1,0 +1,33 @@
+---
+/**
+ * MDX 파일에서 파일명과 함께 코드 블록을 표시할 때 사용.
+ * 일반 마크다운 펜스(```) 코드 블록은 Shiki가 자동 처리함.
+ *
+ * 사용 예:
+ *   import CodeBlock from "@components/CodeBlock.astro"
+ *   <CodeBlock code={`const x = 1;`} lang="ts" filename="example.ts" />
+ */
+import { Code } from "astro:components";
+import type { ComponentProps } from "astro/types";
+
+type CodeLang = ComponentProps<typeof Code>["lang"];
+
+interface Props {
+  code: string;
+  lang?: CodeLang;
+  filename?: string;
+}
+
+const { code, lang = "text", filename } = Astro.props;
+---
+
+<div class="code-block">
+  {
+    filename && (
+      <div class="code-filename bg-surface border-border text-muted rounded-t-md border border-b-0 px-4 py-2 font-mono text-xs">
+        {filename}
+      </div>
+    )
+  }
+  <Code {code} {lang} />
+</div>

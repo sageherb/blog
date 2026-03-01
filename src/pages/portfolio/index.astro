@@ -1,0 +1,27 @@
+---
+import PortfolioCard from "@components/PortfolioCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { SITE_TITLE } from "@config";
+import { getPortfolioPosts } from "@utils/content";
+
+const entries = await getPortfolioPosts();
+const pageTitle = `Portfolio — ${SITE_TITLE}`;
+---
+
+<BaseLayout title={pageTitle} description="프로젝트 모음">
+  <section class="py-12">
+    {
+      entries.length === 0 ? (
+        <p class="text-muted py-8 text-sm">아직 등록된 프로젝트가 없습니다.</p>
+      ) : (
+        <ul class="flex flex-col gap-5">
+          {entries.map((entry) => (
+            <li>
+              <PortfolioCard entry={entry} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

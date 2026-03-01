@@ -1,0 +1,111 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import TagBadge from "@components/TagBadge.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  tags = [],
+  ogImage,
+} = Astro.props;
+
+const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  kind="post"
+  pubDate={pubDate}
+  updatedDate={updatedDate}
+  image={ogImage}
+>
+  <article class="py-12">
+    <a href="/blog" class="text-muted hover:text-text text-sm transition-colors"
+      >← 블로그로</a
+    >
+
+    <header class="mt-6 mb-10 space-y-3">
+      <h1 class="text-text text-2xl font-bold tracking-tight sm:text-3xl">
+        {title}
+      </h1>
+      <div
+        class="text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
+      >
+        <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
+        {
+          updatedDate && (
+            <span>
+              · 수정:{" "}
+              <time datetime={updatedDate.toISOString()}>
+                {formattedUpdatedDate}
+              </time>
+            </span>
+          )
+        }
+        {
+          tags.length > 0 && (
+            <>
+              <span aria-hidden="true">·</span>
+              {tags.map((tag) => (
+                <TagBadge tag={tag} />
+              ))}
+            </>
+          )
+        }
+      </div>
+    </header>
+
+    <div
+      class="prose prose-a:text-accent hover:prose-a:text-accent-hover prose-blockquote:border-border prose-blockquote:text-muted prose-hr:border-border dark:prose-invert max-w-none"
+    >
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  // 코드 블록에 복사 버튼 삽입
+  document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.textContent = "Copy";
+    btn.setAttribute("aria-label", "코드 복사");
+
+    btn.addEventListener("click", async () => {
+      const code = pre.querySelector("code")?.textContent ?? "";
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = "Copied!";
+      } catch {
+        btn.textContent = "Error";
+      } finally {
+        setTimeout(() => {
+          btn.textContent = "Copy";
+        }, 2000);
+      }
+    });
+
+    pre.appendChild(btn);
+  });
+</script>

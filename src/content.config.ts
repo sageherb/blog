@@ -17,21 +17,22 @@ const blog = defineCollection({
 
 const portfolio = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/portfolio" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.date(),
-    updatedDate: z.date().optional(),
-    tags: z.array(z.string()).default([]),
-    coverImage: z.string().optional(),
-    links: z
-      .object({
-        github: z.string().url().optional(),
-        live: z.string().url().optional(),
-      })
-      .optional(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      pubDate: z.date(),
+      updatedDate: z.date().optional(),
+      tags: z.array(z.string()).default([]),
+      coverImage: image().optional(),
+      links: z
+        .object({
+          github: z.string().url().optional(),
+          live: z.string().url().optional(),
+        })
+        .optional(),
+      draft: z.boolean().default(false),
+    }),
 });
 
 export const collections = { blog, portfolio };

@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import TagBadge from "@components/TagBadge.astro";
+
+interface Props {
+  entry: CollectionEntry<"portfolio">;
+}
+
+const { entry } = Astro.props;
+const { title, description, tags, links, coverImage } = entry.data;
+---
+
+<article class="flex flex-col overflow-hidden">
+  <!-- cover image -->
+  {
+    coverImage && (
+      <a
+        href={`/portfolio/${entry.id}`}
+        class="block aspect-video overflow-hidden"
+      >
+        <Image
+          src={coverImage}
+          alt={title}
+          width={800}
+          height={450}
+          loading="lazy"
+          class="h-full w-full object-cover"
+        />
+      </a>
+    )
+  }
+
+  <!-- content -->
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <!-- title -->
+    <a href={`/portfolio/${entry.id}`} class="group">
+      <h2
+        class="text-text group-hover:text-accent text-base leading-snug font-semibold transition-colors"
+      >
+        {title}
+      </h2>
+    </a>
+
+    <!-- description -->
+    <p class="text-muted line-clamp-2 text-sm">{description}</p>
+
+    <!-- tags -->
+    {
+      tags.length > 0 && (
+        <div class="flex flex-wrap gap-x-2 gap-y-1">
+          {tags.map((tag) => (
+            <TagBadge tag={tag} />
+          ))}
+        </div>
+      )
+    }
+
+    <!-- links -->
+    {
+      (links?.github || links?.live) && (
+        <div class="mt-auto flex gap-4 pt-1 text-xs">
+          {links.github && (
+            <a
+              href={links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted hover:text-text transition-colors"
+            >
+              GitHub ↗
+            </a>
+          )}
+          {links.live && (
+            <a
+              href={links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted hover:text-text transition-colors"
+            >
+              Live ↗
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+</article>

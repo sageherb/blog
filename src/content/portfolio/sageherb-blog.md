@@ -3,6 +3,7 @@ title: "개인 기술 블로그"
 description: "Astro와 Tailwind CSS v4로 직접 제작한 개인 기술 블로그입니다. 정적 생성, 다크 모드, 전문 검색을 지원합니다."
 pubDate: 2026-02-01
 tags: ["Astro", "Tailwind CSS", "TypeScript"]
+coverImage: "../../assets/portfolio/placeholder-cover.svg"
 links:
   github: "https://github.com/sageherb/blog"
   live: "https://sageherb.dev"

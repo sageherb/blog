@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import TagBadge from "@components/TagBadge.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  links?: { github?: string; live?: string };
+  coverImage?: ImageMetadata;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  tags = [],
+  links,
+  coverImage,
+} = Astro.props;
+
+const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  kind="portfolio"
+  image={coverImage?.src}
+>
+  <article class="py-12">
+    <a
+      href="/portfolio"
+      class="text-muted hover:text-text text-sm transition-colors"
+      >← 포트폴리오로</a
+    >
+
+    <header class="mt-6 mb-10 space-y-4">
+      <h1 class="text-text text-2xl font-bold tracking-tight sm:text-3xl">
+        {title}
+      </h1>
+
+      <!-- cover image -->
+      {
+        coverImage && (
+          <div class="aspect-video overflow-hidden rounded">
+            <Image
+              src={coverImage}
+              alt={title}
+              width={800}
+              height={450}
+              loading="eager"
+              class="h-full w-full object-cover"
+            />
+          </div>
+        )
+      }
+
+      <!-- meta: dates, tags -->
+      <div
+        class="text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
+      >
+        <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
+        {
+          updatedDate && (
+            <span>
+              · 수정:{" "}
+              <time datetime={updatedDate.toISOString()}>
+                {formattedUpdatedDate}
+              </time>
+            </span>
+          )
+        }
+        {
+          tags.length > 0 && (
+            <>
+              <span aria-hidden="true">·</span>
+              {tags.map((tag) => (
+                <TagBadge tag={tag} />
+              ))}
+            </>
+          )
+        }
+      </div>
+
+      {
+        (links?.github || links?.live) && (
+          <div class="flex gap-4 text-sm">
+            {links.github && (
+              <a
+                href={links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-accent hover:text-accent-hover transition-colors"
+              >
+                GitHub ↗
+              </a>
+            )}
+            {links.live && (
+              <a
+                href={links.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-accent hover:text-accent-hover transition-colors"
+              >
+                Live ↗
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    <div
+      class="prose prose-a:text-accent hover:prose-a:text-accent-hover prose-blockquote:border-border prose-blockquote:text-muted prose-hr:border-border dark:prose-invert max-w-none"
+    >
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
