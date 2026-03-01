@@ -16,6 +16,7 @@ const { page } = Astro.props;
     page.url.prev ? (
       <a
         href={page.url.prev}
+        aria-label="이전 페이지"
         class="text-muted hover:text-text transition-colors"
       >
         ← 이전
@@ -24,13 +25,14 @@ const { page } = Astro.props;
       <span />
     )
   }
-  <span class="text-muted text-xs">
+  <span class="text-muted text-xs" aria-current="page">
     {page.currentPage} / {page.lastPage}
   </span>
   {
     page.url.next ? (
       <a
         href={page.url.next}
+        aria-label="다음 페이지"
         class="text-muted hover:text-text transition-colors"
       >
         다음 →

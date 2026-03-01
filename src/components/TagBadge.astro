@@ -7,7 +7,7 @@ const { tag } = Astro.props;
 ---
 
 <a
-  href={`/tags/${tag}`}
+  href={`/tags/${encodeURIComponent(tag)}`}
   class="text-accent hover:text-accent-hover text-xs transition-colors"
 >
   #{tag}
