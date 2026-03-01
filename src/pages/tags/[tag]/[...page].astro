@@ -1,0 +1,61 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import Pagination from "@components/Pagination.astro";
+import PostCard from "@components/PostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { POSTS_PER_PAGE, SITE_TITLE } from "@config";
+import { getBlogPosts } from "@utils/content";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getBlogPosts();
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+
+  return tags.flatMap((tag) => {
+    const filtered = posts.filter((p) => p.data.tags.includes(tag));
+    return paginate(filtered, {
+      params: { tag },
+      pageSize: POSTS_PER_PAGE,
+    });
+  });
+}
+
+interface Props {
+  page: Page<CollectionEntry<"blog">>;
+}
+
+const { page } = Astro.props;
+const { tag } = Astro.params;
+
+const pageTitle =
+  page.currentPage === 1
+    ? `#${tag} — ${SITE_TITLE}`
+    : `#${tag} · ${page.currentPage}페이지 — ${SITE_TITLE}`;
+---
+
+<BaseLayout title={pageTitle} description={`${tag} 태그가 붙은 글 목록`}>
+  <section class="py-12">
+    <header class="mb-8">
+      <h1 class="text-text text-2xl font-bold">
+        <span class="text-accent">#</span>{tag}
+      </h1>
+      <p class="text-muted mt-1 text-sm">{page.total}개의 글</p>
+    </header>
+
+    {
+      page.data.length === 0 ? (
+        <p class="text-muted py-8 text-sm">이 태그에 해당하는 글이 없습니다.</p>
+      ) : (
+        <ul class="divide-border divide-y">
+          {page.data.map((post) => (
+            <li>
+              <PostCard post={post} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {page.lastPage > 1 && <Pagination page={page} />}
+  </section>
+</BaseLayout>
