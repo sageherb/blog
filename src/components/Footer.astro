@@ -1,17 +1,21 @@
 ---
-import { LICENSE, NAME, SOURCE_LINK } from "../config";
+import { COPYRIGHT_NAME, LICENSE, SOCIAL_LINKS } from "../config";
 ---
 
 <footer
   class="border-border text-muted mt-16 flex items-center justify-between border-t py-6 text-xs"
 >
-  <p>© {new Date().getFullYear()} {NAME}. {LICENSE}</p>
-  <a
-    href={SOURCE_LINK}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="hover:text-text transition-colors"
-  >
-    Source
-  </a>
+  <p>© {new Date().getFullYear()} {COPYRIGHT_NAME}. {LICENSE}</p>
+  {
+    SOCIAL_LINKS.github && (
+      <a
+        href={SOCIAL_LINKS.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-text transition-colors"
+      >
+        GitHub
+      </a>
+    )
+  }
 </footer>

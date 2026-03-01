@@ -1,15 +1,32 @@
 ---
-// TODO: dark mode implementation (localStorage + .dark class toggle) — commit #8
+// no server-side logic needed
 ---
 
 <button
   type="button"
   id="theme-toggle"
-  aria-label="Toggle dark mode"
+  aria-label="Switch to dark mode"
   class="text-muted hover:text-text rounded p-1.5 transition-colors"
 >
-  <!-- Sun icon -->
+  <!-- Moon icon: visible in light mode -->
   <svg
+    class="dark:hidden"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+
+  <!-- Sun icon: visible in dark mode -->
+  <svg
+    class="hidden dark:block"
     width="16"
     height="16"
     viewBox="0 0 24 24"
@@ -26,3 +43,23 @@
     ></path>
   </svg>
 </button>
+
+<script>
+  const toggle = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  function applyTheme(dark: boolean) {
+    root.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+    if (toggle) {
+      toggle.setAttribute(
+        "aria-label",
+        dark ? "Switch to light mode" : "Switch to dark mode",
+      );
+    }
+  }
+
+  toggle?.addEventListener("click", () => {
+    applyTheme(!root.classList.contains("dark"));
+  });
+</script>

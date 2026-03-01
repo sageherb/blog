@@ -1,16 +1,13 @@
 ---
-import { SITE_FAVICON, SITE_TITLE } from "../config";
+import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "../config";
 
 interface Props {
   title: string;
   description: string;
-  /** Root-relative path (e.g. "/og/post.png") or absolute URL */
+  /** Root-relative path (e.g. "/og/post.png") or absolute URL. Falls back to DEFAULT_OG_IMAGE. */
   image?: string;
-  /** Image dimensions — used for og:image:width/height (Korean platform preview rendering) */
-  imageWidth?: number;
-  imageHeight?: number;
   /**
-   * Page kind — maps to OG Protocol type internally.
+   * Page kind — controls og:type and article timestamps.
    *   "post"      → og:type="article" + article:published/modified_time
    *   "portfolio" → og:type="website"
    *   "page"      → og:type="website" (default)
@@ -26,8 +23,6 @@ const {
   title,
   description,
   image,
-  imageWidth,
-  imageHeight,
   kind = "page",
   pubDate,
   updatedDate,
@@ -37,19 +32,16 @@ const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : Astro.url;
 
-// OG Protocol type — "article" for posts, "website" for everything else
 const ogType = kind === "post" ? "article" : "website";
 
-// Resolve image to absolute URL, or undefined if not provided
-const ogImage = image
-  ? image.startsWith("http")
-    ? image
-    : Astro.site
-      ? new URL(image, Astro.site).toString()
-      : undefined
+// resolve OG image to absolute URL — fall back to default if not provided
+const ogImagePath = image ?? DEFAULT_OG_IMAGE;
+const ogImage = Astro.site
+  ? ogImagePath.startsWith("http")
+    ? ogImagePath
+    : new URL(ogImagePath, Astro.site).toString()
   : undefined;
 
-// Encode SVG properly to avoid HTML-escaping issues in href attribute
 const faviconSvg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${SITE_FAVICON}</text></svg>`;
 const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 ---
@@ -58,10 +50,10 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Favicon -->
+<!-- favicon -->
 <link rel="icon" href={faviconHref} />
 
-<!-- Canonical & discovery -->
+<!-- canonical & discovery -->
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
@@ -71,11 +63,11 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
   href="/rss.xml"
 />
 
-<!-- Primary meta -->
+<!-- primary meta -->
 <title>{title}</title>
 <meta name="description" content={description} />
 
-<!-- Open Graph — 카카오, 네이버, 밴드, Facebook 공통 사용 -->
+<!-- Open Graph -->
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:site_name" content={SITE_TITLE} />
@@ -83,16 +75,6 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 {ogImage && <meta property="og:image" content={ogImage} />}
-{
-  ogImage && imageWidth && (
-    <meta property="og:image:width" content={String(imageWidth)} />
-  )
-}
-{
-  ogImage && imageHeight && (
-    <meta property="og:image:height" content={String(imageHeight)} />
-  )
-}
 {
   kind === "post" && pubDate && (
     <meta property="article:published_time" content={pubDate.toISOString()} />
