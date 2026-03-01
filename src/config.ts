@@ -5,7 +5,7 @@ export const SITE_URL = "https://sageherb.dev";
 export const SITE_TITLE = "<SageHerb />";
 
 // Default meta description
-export const SITE_DESCRIPTION = "A personal tech blog by SageHerb";
+export const SITE_DESCRIPTION = "개발 기록 저장소";
 
 // Author name
 export const AUTHOR = "SageHerb";
