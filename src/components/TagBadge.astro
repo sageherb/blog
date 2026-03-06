@@ -8,7 +8,7 @@ const { tag } = Astro.props;
 
 <a
   href={`/tags/${encodeURIComponent(tag)}`}
-  class="text-accent hover:text-accent-hover text-xs transition-colors"
+  class="bg-accent-soft text-link hover:bg-accent-soft-hover hover:text-link-hover inline-flex h-5 items-center justify-center rounded-md px-2 text-xs transition-colors"
 >
-  #{tag}
+  <span class="relative top-px inline-flex items-center leading-none">#{tag}</span>
 </a>

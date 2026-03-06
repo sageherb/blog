@@ -30,7 +30,9 @@ const pageDescription = isFirstPage
   <section class="py-12">
     {
       page.data.length === 0 ? (
-        <p class="text-muted py-8 text-sm">아직 작성된 글이 없습니다.</p>
+        <p class="text-text-muted py-8 text-sm">
+          아직 작성된 글이 없습니다.
+        </p>
       ) : (
         <ul class="divide-border divide-y">
           {page.data.map((post) => (

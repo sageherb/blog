@@ -1,123 +1,528 @@
+@import "@fontsource-variable/inter";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* class-based dark mode: activates dark: utilities when .dark is on <html> */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ——— Design tokens ——— */
+:root,
+.light,
+.light-theme {
+  color-scheme: light;
 
+  /* 원본 custom scale */
+  --custom-1: #fafdfc;
+  --custom-2: #f5faf9;
+  --custom-3: #e7f4f0;
+  --custom-4: #daeee8;
+  --custom-5: #cce6df;
+  --custom-6: #bedcd4;
+  --custom-7: #abcfc5;
+  --custom-8: #8ebbaf;
+  --custom-9: #52796f;
+  --custom-10: #456b62;
+  --custom-11: #476e64;
+  --custom-12: #1d312c;
+
+  --custom-a1: #00996605;
+  --custom-a2: #0080660a;
+  --custom-a3: #008b6018;
+  --custom-a4: #008a6125;
+  --custom-a5: #00825f33;
+  --custom-a6: #00765741;
+  --custom-a7: #006e4f54;
+  --custom-a8: #00664b71;
+  --custom-a9: #003a2bad;
+  --custom-a10: #003428ba;
+  --custom-a11: #003628b8;
+  --custom-a12: #001711e2;
+
+  --custom-contrast: #fff;
+  --custom-surface: #f3f9f8cc;
+  --custom-indicator: #52796f;
+  --custom-track: #52796f;
+
+  /* Accent primitive tokens (custom alias) */
+  --accent-1: var(--custom-1);
+  --accent-2: var(--custom-2);
+  --accent-3: var(--custom-3);
+  --accent-4: var(--custom-4);
+  --accent-5: var(--custom-5);
+  --accent-6: var(--custom-6);
+  --accent-7: var(--custom-7);
+  --accent-8: var(--custom-8);
+  --accent-9: var(--custom-9);
+  --accent-10: var(--custom-10);
+  --accent-11: var(--custom-11);
+  --accent-12: var(--custom-12);
+
+  --accent-a1: var(--custom-a1);
+  --accent-a2: var(--custom-a2);
+  --accent-a3: var(--custom-a3);
+  --accent-a4: var(--custom-a4);
+  --accent-a5: var(--custom-a5);
+  --accent-a6: var(--custom-a6);
+  --accent-a7: var(--custom-a7);
+  --accent-a8: var(--custom-a8);
+  --accent-a9: var(--custom-a9);
+  --accent-a10: var(--custom-a10);
+  --accent-a11: var(--custom-a11);
+  --accent-a12: var(--custom-a12);
+
+  --accent-contrast: var(--custom-contrast);
+  --accent-surface: var(--custom-surface);
+  --accent-indicator: var(--custom-indicator);
+  --accent-track: var(--custom-track);
+
+  /* Neutral primitive tokens (Tailwind zinc based) */
+  --gray-1: #fafafa;
+  --gray-2: #f4f4f5;
+  --gray-3: #e4e4e7;
+  --gray-4: #d4d4d8;
+  --gray-5: #a1a1aa;
+  --gray-6: #71717a;
+  --gray-7: #52525b;
+  --gray-8: #3f3f46;
+  --gray-9: #27272a;
+  --gray-10: #18181b;
+  --gray-11: #111113;
+  --gray-12: #09090b;
+
+  /* Semantic tokens */
+  --background: var(--gray-1);
+  --foreground: var(--gray-12);
+  --panel: #fff;
+  --panel-solid: var(--gray-2);
+  --surface: var(--gray-2);
+  --surface-hover: var(--gray-3);
+  --border: var(--gray-4);
+  --border-strong: var(--gray-6);
+  --text: var(--gray-10);
+  --text-muted: var(--gray-7);
+  --text-subtle: var(--gray-6);
+  --accent-text: var(--accent-11);
+  --accent-solid: var(--accent-9);
+  --accent-solid-hover: var(--accent-10);
+  --accent-soft: var(--accent-a3);
+  --accent-soft-hover: var(--accent-a4);
+  --focus-ring: var(--accent-8);
+  --selection: var(--accent-a8);
+  --link: var(--accent-11);
+  --link-hover: var(--accent-12);
+  --code-bg: var(--gray-2);
+  --code-border: var(--gray-4);
+  --blockquote-border: var(--accent-8);
+  --blockquote-bg: var(--accent-a2);
+  --badge-neutral-bg: var(--gray-2);
+  --badge-neutral-text: var(--gray-8);
+  --badge-neutral-border: var(--gray-4);
+  --badge-accent-bg: var(--accent-a3);
+  --badge-accent-text: var(--accent-11);
+  --badge-accent-border: var(--accent-a6);
+}
+
+.dark,
+.dark-theme {
+  color-scheme: dark;
+
+  /* 원본 custom scale */
+  --custom-1: #0d1211;
+  --custom-2: #131a18;
+  --custom-3: #192723;
+  --custom-4: #1b312c;
+  --custom-5: #223b35;
+  --custom-6: #2b4740;
+  --custom-7: #37574f;
+  --custom-8: #486f65;
+  --custom-9: #52796f;
+  --custom-10: #456b62;
+  --custom-11: #98c1b6;
+  --custom-12: #d8f2eb;
+
+  --custom-a1: #00911102;
+  --custom-a2: #45f7c40a;
+  --custom-a3: #66fbd118;
+  --custom-a4: #5afbd623;
+  --custom-a5: #72ffdd2d;
+  --custom-a6: #84ffe03a;
+  --custom-a7: #93ffe44b;
+  --custom-a8: #9cffe665;
+  --custom-a9: #a5fde770;
+  --custom-a10: #99fde661;
+  --custom-a11: #c8fff0bd;
+  --custom-a12: #e3fef7f2;
+
+  --custom-contrast: #fff;
+  --custom-surface: #15231f80;
+  --custom-indicator: #52796f;
+  --custom-track: #52796f;
+
+  /* Accent primitive tokens (custom alias) */
+  --accent-1: var(--custom-1);
+  --accent-2: var(--custom-2);
+  --accent-3: var(--custom-3);
+  --accent-4: var(--custom-4);
+  --accent-5: var(--custom-5);
+  --accent-6: var(--custom-6);
+  --accent-7: var(--custom-7);
+  --accent-8: var(--custom-8);
+  --accent-9: var(--custom-9);
+  --accent-10: var(--custom-10);
+  --accent-11: var(--custom-11);
+  --accent-12: var(--custom-12);
+
+  --accent-a1: var(--custom-a1);
+  --accent-a2: var(--custom-a2);
+  --accent-a3: var(--custom-a3);
+  --accent-a4: var(--custom-a4);
+  --accent-a5: var(--custom-a5);
+  --accent-a6: var(--custom-a6);
+  --accent-a7: var(--custom-a7);
+  --accent-a8: var(--custom-a8);
+  --accent-a9: var(--custom-a9);
+  --accent-a10: var(--custom-a10);
+  --accent-a11: var(--custom-a11);
+  --accent-a12: var(--custom-a12);
+
+  --accent-contrast: var(--custom-contrast);
+  --accent-surface: var(--custom-surface);
+  --accent-indicator: var(--custom-indicator);
+  --accent-track: var(--custom-track);
+
+  /* Neutral primitive tokens (Tailwind zinc based) */
+  --gray-1: #09090b;
+  --gray-2: #111113;
+  --gray-3: #18181b;
+  --gray-4: #27272a;
+  --gray-5: #3f3f46;
+  --gray-6: #52525b;
+  --gray-7: #71717a;
+  --gray-8: #a1a1aa;
+  --gray-9: #d4d4d8;
+  --gray-10: #e4e4e7;
+  --gray-11: #f4f4f5;
+  --gray-12: #fafafa;
+
+  /* Semantic tokens */
+  --background: var(--gray-1);
+  --foreground: var(--gray-12);
+  --panel: var(--gray-2);
+  --panel-solid: var(--gray-3);
+  --surface: var(--gray-3);
+  --surface-hover: var(--gray-4);
+  --border: var(--gray-5);
+  --border-strong: var(--gray-6);
+  --text: var(--gray-11);
+  --text-muted: var(--gray-8);
+  --text-subtle: var(--gray-7);
+  --accent-text: var(--accent-11);
+  --accent-solid: var(--accent-9);
+  --accent-solid-hover: var(--accent-8);
+  --accent-soft: var(--accent-a3);
+  --accent-soft-hover: var(--accent-a4);
+  --focus-ring: var(--accent-8);
+  --selection: var(--accent-a8);
+  --link: var(--accent-11);
+  --link-hover: var(--accent-12);
+  --code-bg: var(--gray-2);
+  --code-border: var(--gray-5);
+  --blockquote-border: var(--accent-8);
+  --blockquote-bg: var(--accent-a2);
+  --badge-neutral-bg: var(--gray-3);
+  --badge-neutral-text: var(--gray-10);
+  --badge-neutral-border: var(--gray-5);
+  --badge-accent-bg: var(--accent-a3);
+  --badge-accent-text: var(--accent-12);
+  --badge-accent-border: var(--accent-a6);
+}
+
+/* Legacy compatibility aliases */
+:root {
+  --color-bg-base: var(--background);
+  --color-bg-surface: var(--surface);
+  --color-text-title: var(--text);
+  --color-text-body: var(--text);
+  --color-text-secondary: var(--text-muted);
+  --color-text-accent: var(--accent-text);
+  --color-border-default: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-solid: var(--accent-solid);
+  --color-on-solid: var(--accent-contrast);
+}
+
+/* Tailwind semantic color utilities */
 @theme {
-  --color-bg: #f8f7f4;
-  --color-surface: #edeae3;
-  --color-border: #e0dbd1;
-  --color-text: #2c2c2a;
-  --color-accent: #6b7d62;
-  --color-accent-hover: #8fa882;
-  --color-muted: #9aaa90;
-}
+  --font-sans:
+    "Inter", "InterVariable", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Pretendard", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
 
-/* dark mode token overrides */
-.dark {
-  --color-bg: #1c1f1a;
-  --color-surface: #252820;
-  --color-border: #2e3329;
-  --color-text: #d4cfc4;
-  --color-accent: #8fa882;
-  --color-accent-hover: #6b7d62;
-  --color-muted: #5a7050;
-}
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-panel: var(--panel);
+  --color-panel-solid: var(--panel-solid);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-accent-text: var(--accent-text);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-solid-hover: var(--accent-solid-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-hover: var(--accent-soft-hover);
+  --color-focus-ring: var(--focus-ring);
+  --color-selection: var(--selection);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-code-bg: var(--code-bg);
+  --color-code-border: var(--code-border);
+  --color-blockquote-border: var(--blockquote-border);
+  --color-blockquote-bg: var(--blockquote-bg);
+  --color-badge-neutral-bg: var(--badge-neutral-bg);
+  --color-badge-neutral-text: var(--badge-neutral-text);
+  --color-badge-neutral-border: var(--badge-neutral-border);
+  --color-badge-accent-bg: var(--badge-accent-bg);
+  --color-badge-accent-text: var(--badge-accent-text);
+  --color-badge-accent-border: var(--badge-accent-border);
 
-/* ——— Base styles ——— */
+  /* 기존 클래스 호환 */
+  --color-bg-base: var(--background);
+  --color-bg-surface: var(--surface);
+  --color-text-title: var(--text);
+  --color-text-body: var(--text);
+  --color-text-secondary: var(--text-muted);
+  --color-text-accent: var(--accent-text);
+  --color-border-default: var(--border);
+  --color-solid: var(--accent-solid);
+  --color-on-solid: var(--accent-contrast);
+}
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    font-family: var(--font-sans);
+    letter-spacing: -0.15px;
   }
 
-  /* accessible focus ring using accent color */
+  *,
+  *::before,
+  *::after {
+    letter-spacing: inherit;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: inherit;
+  }
+
+  :where(input, textarea, select, button) {
+    font: inherit;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 0.35rem;
   }
 
   ::selection {
-    background-color: var(--color-accent);
-    color: #fff;
+    background-color: var(--selection);
+    color: var(--accent-contrast);
+  }
+
+  a {
+    color: var(--link);
+  }
+
+  a:hover {
+    color: var(--link-hover);
+  }
+
+  hr {
+    border-color: var(--border);
+  }
+
+  :where(input, textarea, select) {
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+
+  :where(input, textarea, select)::placeholder {
+    color: var(--text-subtle);
+  }
+
+  :where(input, textarea, select):hover {
+    background-color: var(--surface-hover);
+  }
+
+  :where(input, textarea, select):focus-visible {
+    border-color: var(--focus-ring);
+    box-shadow: 0 0 0 3px
+      color-mix(in oklab, var(--focus-ring) 30%, transparent);
+    outline: none;
   }
 }
 
-/* ——— Prose: code block & copy button ——— */
+@layer components {
+  .nav-item-label::after {
+    content: attr(data-text);
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    font-weight: 500;
+    pointer-events: none;
+  }
 
-.prose pre {
-  position: relative;
+  .prose {
+    --tw-prose-body: var(--text);
+    --tw-prose-headings: var(--text);
+    --tw-prose-lead: var(--text-muted);
+    --tw-prose-links: var(--accent-text);
+    --tw-prose-bold: var(--text);
+    --tw-prose-counters: var(--text-muted);
+    --tw-prose-bullets: var(--border-strong);
+    --tw-prose-hr: var(--border);
+    --tw-prose-quotes: var(--text);
+    --tw-prose-quote-borders: var(--blockquote-border);
+    --tw-prose-captions: var(--text-subtle);
+    --tw-prose-code: var(--text);
+    --tw-prose-pre-code: var(--text);
+    --tw-prose-pre-bg: var(--panel-solid);
+    --tw-prose-th-borders: var(--border-strong);
+    --tw-prose-td-borders: var(--border);
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: var(--text);
+    letter-spacing: inherit;
+  }
+
+  .prose a {
+    color: var(--accent-text);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.15em;
+  }
+
+  .prose a:hover {
+    color: var(--accent-12);
+  }
+
+  .prose :not(pre) > code::before,
+  .prose :not(pre) > code::after {
+    content: none;
+  }
+
+  .prose :not(pre) > code {
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 0.375rem;
+    padding: 0.15em 0.4em;
+    font-size: 0.875em;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .prose pre {
+    position: relative;
+    border: 1px solid var(--code-border);
+    border-radius: 0.5rem;
+    background-color: var(--panel-solid);
+  }
+
+  .prose .code-block {
+    margin: 1.25rem 0;
+  }
+
+  .prose .code-block pre {
+    margin: 0;
+  }
+
+  .prose .code-block .code-filename + pre {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+
+  .prose blockquote {
+    border-left: 3px solid var(--blockquote-border);
+    background-color: var(--blockquote-bg);
+    color: var(--text-muted);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0.9rem 1rem;
+  }
+
+  .prose hr {
+    border-color: var(--border);
+  }
+
+  .prose ul > li::marker,
+  .prose ol > li::marker {
+    color: var(--text-subtle);
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: var(--border);
+  }
+
+  .prose thead th {
+    color: var(--text);
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  .prose tbody td {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prose caption,
+  .prose figcaption {
+    color: var(--text-subtle);
+  }
+
+  .prose pre .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    font-family: inherit;
+    background: var(--badge-neutral-bg);
+    color: var(--badge-neutral-text);
+    border: 1px solid var(--badge-neutral-border);
+    border-radius: 0.375rem;
+    cursor: pointer;
+    opacity: 0;
+    transition:
+      opacity 0.15s,
+      background-color 0.15s,
+      color 0.15s,
+      border-color 0.15s;
+  }
+
+  .prose pre:hover .copy-btn,
+  .prose pre .copy-btn:focus-visible {
+    opacity: 1;
+  }
+
+  .prose pre .copy-btn:hover {
+    background: var(--accent-solid);
+    color: var(--accent-contrast);
+    border-color: var(--accent-solid);
+  }
 }
 
-/* CodeBlock.astro wrapper (filename + pre pair) */
-.prose .code-block {
-  margin: 1.25rem 0;
-}
-
-.prose .code-block pre {
-  margin: 0;
-}
-
-.prose .code-block .code-filename + pre {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: none;
-}
-
-/* Inline code: remove backtick pseudo-elements, add border + background */
-.prose :not(pre) > code::before,
-.prose :not(pre) > code::after {
-  content: none;
-}
-
-.prose :not(pre) > code {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 0.25rem;
-  padding: 0.15em 0.4em;
-  font-size: 0.875em;
-  font-weight: inherit;
-  color: var(--color-text);
-}
-
-/* Copy button injected by PostLayout script */
-.prose pre .copy-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.7rem;
-  line-height: 1.5;
-  font-family: inherit;
-  background: var(--color-border);
-  color: var(--color-muted);
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  opacity: 0;
-  transition:
-    opacity 0.15s,
-    background 0.15s,
-    color 0.15s;
-}
-
-.prose pre:hover .copy-btn,
-.prose pre .copy-btn:focus-visible {
-  opacity: 1;
-}
-
-.prose pre .copy-btn:hover {
-  background: var(--color-accent);
-  color: var(--color-bg);
-}
-
-/* ——— Shiki dual-theme: class-based dark mode ——— */
-/* ref: https://docs.astro.build/en/guides/syntax-highlighting/#setting-light-and-dark-mode-themes */
-
+/* Shiki dual-theme: class-based dark mode */
 .dark .astro-code,
 .dark .astro-code span {
   color: var(--shiki-dark) !important;

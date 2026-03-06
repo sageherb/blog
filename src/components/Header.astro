@@ -1,6 +1,8 @@
 ---
+import SearchButton from "@components/SearchButton.astro";
+import SearchDialog from "@components/SearchDialog.astro";
 import ThemeToggle from "@components/ThemeToggle.astro";
-import { SITE_TITLE } from "@config";
+import { SITE_FAVICON, SITE_TITLE } from "@config";
 
 const path = Astro.url.pathname;
 
@@ -16,37 +18,46 @@ function isActive(href: string): boolean {
 }
 ---
 
-<header class="border-border flex items-center justify-between border-b py-5">
+<header class="border-border flex items-center justify-between border-b pt-12 pb-4">
   <a
     href="/"
-    class="text-text hover:text-accent font-mono text-sm font-semibold transition-colors"
+    aria-label={SITE_TITLE}
+    class="text-text hover:text-link inline-flex h-9 w-9 items-center justify-center text-[24px] leading-none font-semibold transition-colors md:w-auto md:justify-start md:gap-2"
   >
-    {SITE_TITLE}
+    <span class="inline-flex items-center leading-none">{SITE_FAVICON}</span>
+    <span class="hidden md:inline-block leading-none">{SITE_TITLE}</span>
   </a>
 
   <nav aria-label="Main navigation">
-    <ul class="flex items-center gap-1">
+    <ul class="flex h-9 items-center gap-1">
       {
         navItems.map(({ href, label }) => (
-          <li>
+          <li class="flex items-center">
             <a
               href={href}
               aria-current={isActive(href) ? "page" : undefined}
               class:list={[
-                "rounded px-3 py-1.5 text-sm transition-colors",
+                "inline-flex h-9 items-center rounded px-3 text-sm leading-none transition-colors",
                 isActive(href)
-                  ? "text-accent font-medium"
-                  : "text-muted hover:text-text",
+                  ? "text-link font-medium"
+                  : "text-text-muted hover:text-text",
               ]}
             >
-              {label}
+              <span class="nav-item-label relative top-px" data-text={label}>
+                {label}
+              </span>
             </a>
           </li>
         ))
       }
-      <li class="ml-1">
+      <li class="ml-1 flex items-center">
         <ThemeToggle />
+      </li>
+      <li class="flex items-center">
+        <SearchButton />
       </li>
     </ul>
   </nav>
 </header>
+
+<SearchDialog />

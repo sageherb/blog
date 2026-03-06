@@ -1,6 +1,6 @@
 export const SITE_URL = "https://sageherb.dev";
 
-export const SITE_TITLE = "🌿 <SageHerb />";
+export const SITE_TITLE = "<SageHerb />";
 
 export const SITE_DESCRIPTION = "개발 기록 저장소";
 
@@ -8,6 +8,7 @@ export const AUTHOR = "SageHerb";
 
 export const SITE_FAVICON = "🌿";
 
+// TODO: OG 디폴트 이미지 추가
 export const DEFAULT_OG_IMAGE = "/og-default.png";
 
 export const COPYRIGHT_NAME = "SageHerb";

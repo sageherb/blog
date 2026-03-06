@@ -37,14 +37,14 @@ const pageTitle =
   <section class="py-12">
     <header class="mb-8">
       <h1 class="text-text text-2xl font-bold">
-        <span class="text-accent">#</span>{tag}
+        <span class="text-link">#</span>{tag}
       </h1>
-      <p class="text-muted mt-1 text-sm">{page.total}개의 글</p>
+      <p class="text-text-muted mt-1 text-sm">{page.total}개의 글</p>
     </header>
 
     {
       page.data.length === 0 ? (
-        <p class="text-muted py-8 text-sm">이 태그에 해당하는 글이 없습니다.</p>
+        <p class="text-text-muted py-8 text-sm">이 태그에 해당하는 글이 없습니다.</p>
       ) : (
         <ul class="divide-border divide-y">
           {page.data.map((post) => (

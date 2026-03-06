@@ -41,16 +41,16 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
   image={ogImage}
 >
   <article class="py-12">
-    <a href="/blog" class="text-muted hover:text-text text-sm transition-colors"
+    <a href="/blog" class="text-link hover:text-link-hover text-sm transition-colors"
       >← 블로그로</a
     >
 
     <header class="mt-6 mb-10 space-y-3">
-      <h1 class="text-text text-2xl font-bold tracking-tight sm:text-3xl">
+      <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
       <div
-        class="text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
+        class="text-text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
       >
         <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
         {
@@ -77,7 +77,8 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
     </header>
 
     <div
-      class="prose prose-a:text-accent hover:prose-a:text-accent-hover prose-blockquote:border-border prose-blockquote:text-muted prose-hr:border-border dark:prose-invert max-w-none"
+      data-pagefind-body
+      class="prose max-w-none"
     >
       <slot />
     </div>
