@@ -52,12 +52,14 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
       <div
         class="text-text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
       >
-        <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
+        <time datetime={pubDate.toISOString()} class="text-text-subtle">
+          {formattedPubDate}
+        </time>
         {
           updatedDate && (
-            <span>
+            <span class="text-text-subtle">
               · 수정:{" "}
-              <time datetime={updatedDate.toISOString()}>
+              <time datetime={updatedDate.toISOString()} class="text-text-subtle">
                 {formattedUpdatedDate}
               </time>
             </span>
