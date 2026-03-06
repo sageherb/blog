@@ -10,7 +10,6 @@ const blog = defineCollection({
     updatedDate: z.date().optional(),
     tags: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
-    // draft: true → excluded from production builds and public listings
     draft: z.boolean().default(false),
   }),
 });
