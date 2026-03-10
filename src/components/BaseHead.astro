@@ -8,15 +8,13 @@ interface Props {
   image?: string;
   /**
    * Page kind — controls og:type and article timestamps.
-   *   "post"      → og:type="article" + article:published/modified_time
+   *   "post"      → og:type="article" + article:published_time
    *   "portfolio" → og:type="website"
    *   "page"      → og:type="website" (default)
    */
   kind?: "page" | "post" | "portfolio";
   /** Blog post publish date (post only) */
   pubDate?: Date;
-  /** Blog post last updated date (post only) */
-  updatedDate?: Date;
 }
 
 const {
@@ -25,7 +23,6 @@ const {
   image,
   kind = "page",
   pubDate,
-  updatedDate,
 } = Astro.props;
 
 const canonicalURL = Astro.site
@@ -80,15 +77,6 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
     <meta property="article:published_time" content={pubDate.toISOString()} />
   )
 }
-{
-  kind === "post" && updatedDate && (
-    <meta
-      property="article:modified_time"
-      content={updatedDate.toISOString()}
-    />
-  )
-}
-
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />

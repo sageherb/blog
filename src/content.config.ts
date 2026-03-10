@@ -8,7 +8,6 @@ const blog = defineCollection({
       title: z.string(),
       description: z.string(),
       pubDate: z.date(),
-      updatedDate: z.date().optional(),
       tags: z.array(z.string()).default([]),
       ogImage: image().optional(),
       draft: z.boolean().default(false),
@@ -22,7 +21,6 @@ const portfolio = defineCollection({
       title: z.string(),
       description: z.string(),
       pubDate: z.date(),
-      updatedDate: z.date().optional(),
       tags: z.array(z.string()).default([]),
       coverImage: image().optional(),
       links: z
