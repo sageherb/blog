@@ -10,7 +10,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, description, tags, links, coverImage } = entry.data;
-const cover = coverImage ?? placeholderCover;
+const cover = typeof coverImage === "string" ? placeholderCover : (coverImage ?? placeholderCover);
 ---
 
 <article class="flex flex-col overflow-hidden">
