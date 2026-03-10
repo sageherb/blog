@@ -42,28 +42,24 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
   kind="portfolio"
   image={coverImage?.src}
 >
-  <article class="py-12">
-    <a
-      href="/portfolio"
-      class="text-link hover:text-link-hover text-sm transition-colors"
-      >← 포트폴리오로</a
-    >
-
-    <header class="mt-6 mb-10 space-y-3">
+  <article class="py-4 sm:py-8">
+    <header class="mb-8 space-y-3 sm:mb-10">
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
 
       <!-- meta: dates, tags, links -->
       <div
-        class="text-text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
+        class="text-text-muted flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm"
       >
-        <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
+        <time datetime={pubDate.toISOString()} class="text-sm">
+          {formattedPubDate}
+        </time>
         {
           updatedDate && (
             <span>
               수정:{" "}
-              <time datetime={updatedDate.toISOString()}>
+              <time datetime={updatedDate.toISOString()} class="text-sm">
                 {formattedUpdatedDate}
               </time>
             </span>
@@ -73,7 +69,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
           tags.length > 0 && (
             <>
               {tags.map((name) => (
-                <TechBadge name={name} />
+                <TechBadge name={name} size="sm" />
               ))}
             </>
           )
@@ -82,13 +78,13 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
 
       {
         (links?.github || links?.live) && (
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap items-center gap-4 pt-1">
             {links.github && (
               <a
                 href={links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-subtle hover:text-text inline-flex h-7 items-end gap-1.5 pb-0.5 text-sm leading-none underline-offset-4 transition-colors hover:underline"
+                class="text-text-subtle hover:text-text inline-flex items-center gap-1.5 text-sm leading-none underline-offset-4 transition-colors hover:underline"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +103,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
                 href={links.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-text-subtle hover:text-text inline-flex h-7 items-end gap-1 pb-0.5 text-sm leading-none underline-offset-4 transition-colors hover:underline"
+                class="text-text-subtle hover:text-text inline-flex items-center gap-1 text-sm leading-none underline-offset-4 transition-colors hover:underline"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -132,9 +128,10 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
           </div>
         )
       }
+
     </header>
 
-    <div data-pagefind-body class="prose max-w-none">
+    <div data-pagefind-body class="prose prose-article max-w-none">
       <slot />
     </div>
   </article>

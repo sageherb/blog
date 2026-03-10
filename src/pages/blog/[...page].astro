@@ -25,7 +25,7 @@ const pageDescription = isFirstPage
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="flex flex-1 flex-col py-8">
+  <section class="flex flex-1 flex-col py-4 sm:py-8">
     {
       page.data.length === 0 ? (
         <p class="text-text-muted flex flex-1 items-center justify-center text-sm">
@@ -41,6 +41,6 @@ const pageDescription = isFirstPage
         </ul>
       )
     }
-    {page.lastPage > 1 && <Pagination page={page} />}
   </section>
+  {page.lastPage > 1 && <Pagination page={page} />}
 </BaseLayout>

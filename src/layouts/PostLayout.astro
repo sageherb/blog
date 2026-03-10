@@ -40,30 +40,24 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
   updatedDate={updatedDate}
   image={ogImage}
 >
-  <article class="py-12">
-    <a
-      href="/blog"
-      class="text-link hover:text-link-hover text-sm transition-colors"
-      >← 블로그 글 목록으로</a
-    >
-
-    <header class="mt-6 mb-10 space-y-3">
+  <article class="py-4">
+    <header class="mb-8 space-y-3 sm:mb-10">
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
       <div
-        class="text-text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
+        class="text-text-muted flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm"
       >
-        <time datetime={pubDate.toISOString()} class="text-text-subtle">
+        <time datetime={pubDate.toISOString()} class="text-text-subtle text-sm">
           {formattedPubDate}
         </time>
         {
           updatedDate && (
-            <span class="text-text-subtle">
+            <span class="text-text-subtle text-sm">
               수정:{" "}
               <time
                 datetime={updatedDate.toISOString()}
-                class="text-text-subtle"
+                class="text-text-subtle text-sm"
               >
                 {formattedUpdatedDate}
               </time>
@@ -74,7 +68,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
           tags.length > 0 && (
             <>
               {tags.map((tag) => (
-                <TagBadge tag={tag} />
+                <TagBadge tag={tag} size="sm" />
               ))}
             </>
           )
@@ -82,7 +76,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
       </div>
     </header>
 
-    <div data-pagefind-body class="prose max-w-none">
+    <div data-pagefind-body class="prose prose-article max-w-none">
       <slot />
     </div>
   </article>

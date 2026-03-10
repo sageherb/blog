@@ -580,6 +580,30 @@
     color: var(--accent-contrast);
     border-color: var(--accent-solid);
   }
+
+  @media (max-width: 639px) {
+    .prose-article
+      :where(p, ul, ol, pre, blockquote, figure, table, hr):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .prose-article
+      :where(h2, h3, h4):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .prose-article
+      :where(li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
+    }
+  }
 }
 
 /* Shiki dual-theme: class-based dark mode */
