@@ -54,23 +54,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
         {title}
       </h1>
 
-      <!-- cover image -->
-      {
-        coverImage && (
-          <div class="aspect-video overflow-hidden rounded">
-            <Image
-              src={coverImage}
-              alt={title}
-              width={800}
-              height={450}
-              loading="eager"
-              class="h-full w-full object-cover"
-            />
-          </div>
-        )
-      }
-
-      <!-- meta: dates, tags -->
+      <!-- meta: dates, tags, links -->
       <div
         class="text-text-muted flex flex-wrap items-center gap-x-3 gap-y-1 text-xs"
       >
@@ -98,7 +82,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
 
       {
         (links?.github || links?.live) && (
-          <div class="mt-0.5 flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-3">
             {links.github && (
               <a
                 href={links.github}
