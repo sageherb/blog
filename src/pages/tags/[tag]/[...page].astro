@@ -27,14 +27,11 @@ interface Props {
 const { page } = Astro.props;
 const { tag } = Astro.params;
 
-const pageTitle =
-  page.currentPage === 1
-    ? `#${tag} — ${SITE_TITLE}`
-    : `#${tag} · ${page.currentPage}페이지 — ${SITE_TITLE}`;
+const pageTitle = SITE_TITLE;
 ---
 
 <BaseLayout title={pageTitle} description={`${tag} 태그가 붙은 글 목록`}>
-  <section class="py-12">
+  <section class="py-8">
     <header class="mb-8">
       <h1 class="text-text text-2xl font-bold">
         <span class="text-link">#</span>{tag}
@@ -44,9 +41,11 @@ const pageTitle =
 
     {
       page.data.length === 0 ? (
-        <p class="text-text-muted py-8 text-sm">이 태그에 해당하는 글이 없습니다.</p>
+        <p class="text-text-muted py-8 text-sm">
+          이 태그에 해당하는 글이 없습니다.
+        </p>
       ) : (
-        <ul class="divide-border divide-y">
+        <ul class="flex flex-col gap-8">
           {page.data.map((post) => (
             <li>
               <PostCard post={post} />

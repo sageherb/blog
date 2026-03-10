@@ -403,11 +403,17 @@
     --tw-prose-td-borders: var(--border);
   }
 
-  .prose :where(p, li, dd, td):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  .prose
+    :where(p, li, dd, td):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
     color: var(--text-muted) !important;
   }
 
-  .prose :where(h1, h2, h3, h4, strong, th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  .prose
+    :where(h1, h2, h3, h4, strong, th):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
     color: var(--text) !important;
   }
 
@@ -443,13 +449,17 @@
 
   .dark
     .prose
-    :where(p, li, dd, td):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    :where(p, li, dd, td):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
     color: var(--text-muted) !important;
   }
 
   .dark
     .prose
-    :where(h1, h2, h3, h4, strong, th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    :where(h1, h2, h3, h4, strong, th):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
     color: var(--text) !important;
   }
 
@@ -576,7 +586,6 @@
 .dark .astro-code span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }

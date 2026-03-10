@@ -18,23 +18,21 @@ interface Props {
 
 const { page } = Astro.props;
 const isFirstPage = page.currentPage === 1;
-const pageTitle = isFirstPage
-  ? `Blog — ${SITE_TITLE}`
-  : `Blog · ${page.currentPage}페이지 — ${SITE_TITLE}`;
+const pageTitle = SITE_TITLE;
 const pageDescription = isFirstPage
   ? SITE_DESCRIPTION
   : `블로그 ${page.currentPage}페이지`;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="py-12">
+  <section class="flex flex-1 flex-col py-8">
     {
       page.data.length === 0 ? (
-        <p class="text-text-muted py-8 text-sm">
+        <p class="text-text-muted flex flex-1 items-center justify-center text-sm">
           아직 작성된 글이 없습니다.
         </p>
       ) : (
-        <ul class="divide-border divide-y">
+        <ul class="flex flex-col gap-8">
           {page.data.map((post) => (
             <li>
               <PostCard post={post} />

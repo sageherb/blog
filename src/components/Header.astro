@@ -18,14 +18,14 @@ function isActive(href: string): boolean {
 }
 ---
 
-<header class="border-border flex items-center justify-between border-b pt-12 pb-4">
+<header class="flex items-center justify-between pt-4 pb-8 sm:pt-12">
   <a
     href="/"
     aria-label={SITE_TITLE}
     class="text-text hover:text-link inline-flex h-9 w-9 items-center justify-center text-[24px] leading-none font-semibold transition-colors md:w-auto md:justify-start md:gap-2"
   >
     <span class="inline-flex items-center leading-none">{SITE_FAVICON}</span>
-    <span class="hidden md:inline-block leading-none">{SITE_TITLE}</span>
+    <span class="hidden leading-none md:inline-block">{SITE_TITLE}</span>
   </a>
 
   <nav aria-label="Main navigation">

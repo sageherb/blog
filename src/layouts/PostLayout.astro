@@ -41,8 +41,10 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
   image={ogImage}
 >
   <article class="py-12">
-    <a href="/blog" class="text-link hover:text-link-hover text-sm transition-colors"
-      >← 블로그로</a
+    <a
+      href="/blog"
+      class="text-link hover:text-link-hover text-sm transition-colors"
+      >← 블로그 글 목록으로</a
     >
 
     <header class="mt-6 mb-10 space-y-3">
@@ -58,8 +60,11 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
         {
           updatedDate && (
             <span class="text-text-subtle">
-              · 수정:{" "}
-              <time datetime={updatedDate.toISOString()} class="text-text-subtle">
+              수정:{" "}
+              <time
+                datetime={updatedDate.toISOString()}
+                class="text-text-subtle"
+              >
                 {formattedUpdatedDate}
               </time>
             </span>
@@ -68,7 +73,6 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
         {
           tags.length > 0 && (
             <>
-              <span aria-hidden="true">·</span>
               {tags.map((tag) => (
                 <TagBadge tag={tag} />
               ))}
@@ -78,10 +82,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("ko-KR", {
       </div>
     </header>
 
-    <div
-      data-pagefind-body
-      class="prose max-w-none"
-    >
+    <div data-pagefind-body class="prose max-w-none">
       <slot />
     </div>
   </article>

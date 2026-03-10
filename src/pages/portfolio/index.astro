@@ -5,16 +5,18 @@ import { SITE_TITLE } from "@config";
 import { getPortfolioPosts } from "@utils/content";
 
 const entries = await getPortfolioPosts();
-const pageTitle = `Portfolio — ${SITE_TITLE}`;
+const pageTitle = SITE_TITLE;
 ---
 
 <BaseLayout title={pageTitle} description="프로젝트 모음">
-  <section class="py-12">
+  <section class="flex flex-1 flex-col py-8">
     {
       entries.length === 0 ? (
-        <p class="text-text-muted py-8 text-sm">아직 등록된 프로젝트가 없습니다.</p>
+        <p class="text-text-muted flex flex-1 items-center justify-center text-sm">
+          아직 등록된 프로젝트가 없습니다.
+        </p>
       ) : (
-        <ul class="flex flex-col gap-5">
+        <ul class="flex flex-col gap-8">
           {entries.map((entry) => (
             <li>
               <PortfolioCard entry={entry} />

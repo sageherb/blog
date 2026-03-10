@@ -1,3 +1,48 @@
 ---
-return Astro.redirect("/blog", 301);
+import type { Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import Pagination from "@components/Pagination.astro";
+import PostCard from "@components/PostCard.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "@config";
+import { getBlogPosts } from "@utils/content";
+
+const posts = await getBlogPosts();
+const page: Page<CollectionEntry<"blog">> = {
+  data: posts.slice(0, POSTS_PER_PAGE),
+  start: 0,
+  end: Math.min(POSTS_PER_PAGE, posts.length) - 1,
+  total: posts.length,
+  currentPage: 1,
+  lastPage: Math.ceil(posts.length / POSTS_PER_PAGE),
+  size: POSTS_PER_PAGE,
+  url: {
+    current: "/",
+    prev: undefined,
+    next: posts.length > POSTS_PER_PAGE ? "/blog/2" : undefined,
+    first: undefined,
+    last: undefined,
+  },
+};
 ---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="flex flex-1 flex-col py-8">
+    {
+      page.data.length === 0 ? (
+        <p class="text-text-muted flex flex-1 items-center justify-center text-sm">
+          아직 작성된 글이 없습니다.
+        </p>
+      ) : (
+        <ul class="flex flex-col gap-8">
+          {page.data.map((post) => (
+            <li>
+              <PostCard post={post} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    {page.lastPage > 1 && <Pagination page={page} />}
+  </section>
+</BaseLayout>
