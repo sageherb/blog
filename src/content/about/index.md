@@ -1,4 +1,9 @@
-# 🌿 Sage
+---
+title: About
+description: SageHerb 소개
+---
+
+## 🌿 Sage
 
 ```js
 console.log("Hello, world!");
