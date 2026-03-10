@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import TagBadge from "@components/TagBadge.astro";
+import TechBadge from "@components/TechBadge.astro";
+import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
 
 interface Props {
   entry: CollectionEntry<"portfolio">;
@@ -9,27 +10,24 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, description, tags, links, coverImage } = entry.data;
+const cover = coverImage ?? placeholderCover;
 ---
 
 <article class="flex flex-col overflow-hidden">
   <!-- cover image -->
-  {
-    coverImage && (
-      <a
-        href={`/portfolio/${entry.id}`}
-        class="block aspect-video overflow-hidden"
-      >
-        <Image
-          src={coverImage}
-          alt={title}
-          width={800}
-          height={450}
-          loading="lazy"
-          class="h-full w-full object-cover"
-        />
-      </a>
-    )
-  }
+  <a
+    href={`/portfolio/${entry.id}`}
+    class="block aspect-video overflow-hidden"
+  >
+    <Image
+      src={cover}
+      alt={title}
+      width={800}
+      height={450}
+      loading="lazy"
+      class="h-full w-full object-cover"
+    />
+  </a>
 
   <!-- content -->
   <div class="flex flex-1 flex-col gap-1.5 px-1.5 py-4">
@@ -49,8 +47,8 @@ const { title, description, tags, links, coverImage } = entry.data;
     {
       tags.length > 0 && (
         <div class="flex flex-wrap gap-x-1 gap-y-0.5">
-          {tags.map((tag) => (
-            <TagBadge tag={tag} />
+          {tags.map((name) => (
+            <TechBadge name={name} />
           ))}
         </div>
       )

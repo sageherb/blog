@@ -34,7 +34,7 @@ const page: Page<CollectionEntry<"blog">> = {
           아직 작성된 글이 없습니다.
         </p>
       ) : (
-        <ul class="flex flex-col gap-8">
+        <ul class="flex flex-col gap-10">
           {page.data.map((post) => (
             <li>
               <PostCard post={post} />

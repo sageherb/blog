@@ -304,6 +304,7 @@
     -webkit-text-size-adjust: 100%;
     font-family: var(--font-sans);
     letter-spacing: -0.15px;
+    scrollbar-gutter: stable;
   }
 
   *,

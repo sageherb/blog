@@ -1,0 +1,19 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { SITE_TITLE } from "@config";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("about", "index");
+if (!entry) throw new Error("About content not found");
+
+const { Content } = await render(entry);
+const { description } = entry.data;
+---
+
+<BaseLayout title={SITE_TITLE} description={description}>
+  <section class="py-8">
+    <article class="prose max-w-none">
+      <Content />
+    </article>
+  </section>
+</BaseLayout>
