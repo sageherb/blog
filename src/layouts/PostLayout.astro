@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CodeCopyIsland from "@components/islands/CodeCopyIsland";
 import TagBadge from "@components/TagBadge.astro";
 import type { ImageMetadata } from "astro";
 
@@ -11,13 +12,7 @@ interface Props {
   ogImage?: ImageMetadata;
 }
 
-const {
-  title,
-  description,
-  pubDate,
-  tags = [],
-  ogImage,
-} = Astro.props;
+const { title, description, pubDate, tags = [], ogImage } = Astro.props;
 
 const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
   year: "numeric",
@@ -59,31 +54,6 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
     <div data-pagefind-body class="prose prose-article max-w-none">
       <slot />
     </div>
+    <CodeCopyIsland client:load />
   </article>
 </BaseLayout>
-
-<script>
-  // 코드 블록에 복사 버튼 삽입
-  document.querySelectorAll<HTMLPreElement>(".prose pre").forEach((pre) => {
-    const btn = document.createElement("button");
-    btn.className = "copy-btn";
-    btn.textContent = "Copy";
-    btn.setAttribute("aria-label", "코드 복사");
-
-    btn.addEventListener("click", async () => {
-      const code = pre.querySelector("code")?.textContent ?? "";
-      try {
-        await navigator.clipboard.writeText(code);
-        btn.textContent = "Copied!";
-      } catch {
-        btn.textContent = "Error";
-      } finally {
-        setTimeout(() => {
-          btn.textContent = "Copy";
-        }, 2000);
-      }
-    });
-
-    pre.appendChild(btn);
-  });
-</script>

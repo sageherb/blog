@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
+    "@astrojs/preact": "^4.1.0",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "@fontsource-variable/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.2.0",
     "astro": "^5.17.1",
+    "preact": "^10.28.4",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.0"
   },
