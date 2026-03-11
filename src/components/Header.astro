@@ -1,7 +1,7 @@
 ---
-import SearchButton from "@components/SearchButton.astro";
-import SearchDialogIsland from "@components/islands/SearchDialogIsland";
-import ThemeToggleIsland from "@components/islands/ThemeToggleIsland";
+import SearchButton from "@components/SearchButton";
+import SearchDialog from "@components/SearchDialog";
+import ThemeToggle from "@components/ThemeToggle";
 import { SITE_FAVICON, SITE_TITLE } from "@config";
 
 const path = Astro.url.pathname;
@@ -54,13 +54,13 @@ function isActive(href: string): boolean {
         ))
       }
       <li class="ml-1 flex items-center">
-        <ThemeToggleIsland client:load />
+        <ThemeToggle client:load />
       </li>
       <li class="flex items-center">
-        <SearchButton />
+        <SearchButton client:load />
       </li>
     </ul>
   </nav>
 </header>
 
-<SearchDialogIsland client:idle />
+<SearchDialog client:idle />
