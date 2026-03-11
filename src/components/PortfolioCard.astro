@@ -10,15 +10,15 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, description, tags, links, coverImage } = entry.data;
-const cover = typeof coverImage === "string" ? placeholderCover : (coverImage ?? placeholderCover);
+const cover =
+  typeof coverImage === "string"
+    ? placeholderCover
+    : (coverImage ?? placeholderCover);
 ---
 
 <article class="flex flex-col overflow-hidden">
   <!-- cover image -->
-  <a
-    href={`/portfolio/${entry.id}`}
-    class="block aspect-video overflow-hidden"
-  >
+  <a href={`/portfolio/${entry.id}`} class="block aspect-video overflow-hidden">
     <Image
       src={cover}
       alt={title}
@@ -34,14 +34,16 @@ const cover = typeof coverImage === "string" ? placeholderCover : (coverImage ??
     <!-- title -->
     <a href={`/portfolio/${entry.id}`} class="group">
       <h2
-        class="text-text group-hover:text-link text-xl leading-snug font-semibold transition-colors"
+        class="text-text group-hover:text-link text-lg leading-snug font-semibold transition-colors sm:text-xl"
       >
         {title}
       </h2>
     </a>
 
     <!-- description -->
-    <p class="text-text-muted line-clamp-2 text-sm">{description}</p>
+    <p class="text-text-muted line-clamp-2 text-sm sm:text-base">
+      {description}
+    </p>
 
     <!-- tags -->
     {

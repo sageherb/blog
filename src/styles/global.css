@@ -235,21 +235,6 @@
   --badge-accent-border: var(--accent-a6);
 }
 
-/* Legacy compatibility aliases */
-:root {
-  --color-bg-base: var(--background);
-  --color-bg-surface: var(--surface);
-  --color-text-title: var(--text);
-  --color-text-body: var(--text);
-  --color-text-secondary: var(--text-muted);
-  --color-text-accent: var(--accent-text);
-  --color-border-default: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-solid: var(--accent-solid);
-  --color-on-solid: var(--accent-contrast);
-}
-
-/* Tailwind semantic color utilities */
 @theme {
   --font-sans:
     "Inter", "InterVariable", "Apple SD Gothic Neo", "Noto Sans KR",
@@ -286,17 +271,6 @@
   --color-badge-accent-bg: var(--badge-accent-bg);
   --color-badge-accent-text: var(--badge-accent-text);
   --color-badge-accent-border: var(--badge-accent-border);
-
-  /* 기존 클래스 호환 */
-  --color-bg-base: var(--background);
-  --color-bg-surface: var(--surface);
-  --color-text-title: var(--text);
-  --color-text-body: var(--text);
-  --color-text-secondary: var(--text-muted);
-  --color-text-accent: var(--accent-text);
-  --color-border-default: var(--border);
-  --color-solid: var(--accent-solid);
-  --color-on-solid: var(--accent-contrast);
 }
 
 @layer base {
@@ -317,10 +291,6 @@
     background-color: var(--background);
     color: var(--text);
     font-family: inherit;
-  }
-
-  .dark body {
-    color: var(--gray-12);
   }
 
   :where(input, textarea, select, button) {
@@ -373,6 +343,41 @@
   }
 }
 
+@utility prose-article {
+  --tw-prose-body: var(--text-muted);
+  --tw-prose-headings: var(--text);
+  --tw-prose-lead: var(--text-muted);
+  --tw-prose-links: var(--link);
+  --tw-prose-bold: var(--text);
+  --tw-prose-counters: var(--text-muted);
+  --tw-prose-bullets: var(--text-subtle);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--text);
+  --tw-prose-quote-borders: var(--blockquote-border);
+  --tw-prose-captions: var(--text-subtle);
+  --tw-prose-code: var(--link);
+  --tw-prose-pre-code: var(--text);
+  --tw-prose-pre-bg: var(--panel-solid);
+  --tw-prose-th-borders: var(--border-strong);
+  --tw-prose-td-borders: var(--border);
+  --tw-prose-invert-body: var(--text-muted);
+  --tw-prose-invert-headings: var(--text);
+  --tw-prose-invert-lead: var(--text-muted);
+  --tw-prose-invert-links: var(--link);
+  --tw-prose-invert-bold: var(--text);
+  --tw-prose-invert-counters: var(--text-muted);
+  --tw-prose-invert-bullets: var(--text-subtle);
+  --tw-prose-invert-hr: var(--border);
+  --tw-prose-invert-quotes: var(--text);
+  --tw-prose-invert-quote-borders: var(--blockquote-border);
+  --tw-prose-invert-captions: var(--text-subtle);
+  --tw-prose-invert-code: var(--link);
+  --tw-prose-invert-pre-code: var(--text);
+  --tw-prose-invert-pre-bg: var(--panel-solid);
+  --tw-prose-invert-th-borders: var(--border-strong);
+  --tw-prose-invert-td-borders: var(--border);
+}
+
 @layer components {
   .nav-item-label::after {
     content: attr(data-text);
@@ -384,169 +389,28 @@
     pointer-events: none;
   }
 
-  .prose {
-    color: var(--text-muted);
-    --tw-prose-body: var(--text-muted);
-    --tw-prose-headings: var(--text);
-    --tw-prose-lead: var(--text-muted);
-    --tw-prose-links: var(--link);
-    --tw-prose-bold: var(--text);
-    --tw-prose-counters: var(--text-muted);
-    --tw-prose-bullets: var(--border-strong);
-    --tw-prose-hr: var(--border);
-    --tw-prose-quotes: var(--text);
-    --tw-prose-quote-borders: var(--blockquote-border);
-    --tw-prose-captions: var(--text-subtle);
-    --tw-prose-code: var(--link);
-    --tw-prose-pre-code: var(--text);
-    --tw-prose-pre-bg: var(--panel-solid);
-    --tw-prose-th-borders: var(--border-strong);
-    --tw-prose-td-borders: var(--border);
-  }
-
-  .prose
-    :where(p, li, dd, td):not(
-      :where([class~="not-prose"], [class~="not-prose"] *)
-    ) {
-    color: var(--text-muted) !important;
-  }
-
-  .prose
-    :where(h1, h2, h3, h4, strong, th):not(
-      :where([class~="not-prose"], [class~="not-prose"] *)
-    ) {
-    color: var(--text) !important;
-  }
-
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    color: var(--text);
-    letter-spacing: inherit;
-  }
-
-  .prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    color: var(--link) !important;
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.15em;
-  }
-
-  .prose
-    :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
-    color: var(--link-hover) !important;
-  }
-
-  .dark .prose {
-    color: var(--text-muted);
-    --tw-prose-body: var(--text-muted);
-    --tw-prose-headings: var(--text);
-    --tw-prose-links: var(--link);
-    --tw-prose-code: var(--link);
-    --tw-prose-bold: var(--text);
-    --tw-prose-counters: var(--text-muted);
-    --tw-prose-bullets: var(--text-subtle);
-  }
-
-  .dark
-    .prose
-    :where(p, li, dd, td):not(
-      :where([class~="not-prose"], [class~="not-prose"] *)
-    ) {
-    color: var(--text-muted) !important;
-  }
-
-  .dark
-    .prose
-    :where(h1, h2, h3, h4, strong, th):not(
-      :where([class~="not-prose"], [class~="not-prose"] *)
-    ) {
-    color: var(--text) !important;
-  }
-
-  .dark
-    .prose
-    :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    color: var(--link) !important;
-  }
-
-  .dark
-    .prose
-    :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
-    color: var(--link-hover) !important;
-  }
-
   .prose :where(:not(pre) > code)::before,
   .prose :where(:not(pre) > code)::after {
     content: "" !important;
   }
 
   .prose :not(pre) > code {
-    background-color: var(--surface-hover);
+    background-color: var(--surface);
     border: none;
     border-radius: 0.375rem;
-    padding: 0.15em 0.4em;
+    padding: 4px 6px;
     font-size: 0.875em;
-    font-weight: 500;
-    color: var(--link) !important;
+    font-weight: 600;
   }
 
   .prose pre {
     position: relative;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: var(--panel-solid);
-  }
-
-  .prose .code-block {
-    margin: 1.25rem 0;
-  }
-
-  .prose .code-block pre {
-    margin: 0;
   }
 
   .prose .code-block .code-filename + pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-top: none;
-  }
-
-  .prose blockquote {
-    border-left: 3px solid var(--blockquote-border);
-    background-color: var(--blockquote-bg);
-    color: var(--text-muted);
-    border-radius: 0 0.5rem 0.5rem 0;
-    padding: 0.9rem 1rem;
-  }
-
-  .prose hr {
-    border-color: var(--border);
-  }
-
-  .prose ul > li::marker,
-  .prose ol > li::marker {
-    color: var(--text-subtle);
-  }
-
-  .prose table {
-    width: 100%;
-    border-collapse: collapse;
-    border-color: var(--border);
-  }
-
-  .prose thead th {
-    color: var(--text);
-    border-bottom: 1px solid var(--border-strong);
-  }
-
-  .prose tbody td {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .prose caption,
-  .prose figcaption {
-    color: var(--text-subtle);
   }
 
   .prose pre .copy-btn {
@@ -580,33 +444,8 @@
     color: var(--accent-contrast);
     border-color: var(--accent-solid);
   }
-
-  @media (max-width: 639px) {
-    .prose-article
-      :where(p, ul, ol, pre, blockquote, figure, table, hr):not(
-        :where([class~="not-prose"], [class~="not-prose"] *)
-      ) {
-      margin-top: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .prose-article
-      :where(h2, h3, h4):not(
-        :where([class~="not-prose"], [class~="not-prose"] *)
-      ) {
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .prose-article
-      :where(li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-      margin-top: 0.25rem;
-      margin-bottom: 0.25rem;
-    }
-  }
 }
 
-/* Shiki dual-theme: class-based dark mode */
 .dark .astro-code,
 .dark .astro-code span {
   color: var(--shiki-dark) !important;

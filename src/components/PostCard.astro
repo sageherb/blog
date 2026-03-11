@@ -16,17 +16,20 @@ const formattedDate = pubDate.toLocaleDateString("ko-KR", {
 });
 ---
 
-<article>
-  <a href={`/blog/${post.id}`} class="group block space-y-2">
+<article class="flex flex-col gap-2">
+  <a href={`/blog/${post.id}`} class="group block">
     <h2
-      class="text-text group-hover:text-link text-xl font-semibold transition-colors"
+      class="text-text group-hover:text-link text-lg font-semibold transition-colors sm:text-xl"
     >
       {title}
     </h2>
-    <p class="text-text-muted line-clamp-2 text-sm">{description}</p>
   </a>
-  <div class="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1">
-    <time datetime={pubDate.toISOString()} class="text-text-subtle text-sm">
+  <p class="text-text-muted line-clamp-2 text-sm sm:text-base">{description}</p>
+  <div class="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+    <time
+      datetime={pubDate.toISOString()}
+      class="text-text-subtle text-sm sm:text-base"
+    >
       {formattedDate}
     </time>
     {

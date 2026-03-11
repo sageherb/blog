@@ -33,7 +33,7 @@ const pageTitle = SITE_TITLE;
 <BaseLayout title={pageTitle} description={`${tag} 태그가 붙은 글 목록`}>
   <section class="py-4 sm:py-8">
     <header class="mb-8">
-      <h1 class="text-text text-2xl font-bold">
+      <h1 class="text-text text-xl font-bold sm:text-2xl">
         <span class="text-link">#</span>{tag}
       </h1>
       <p class="text-text-muted mt-1 text-sm">{page.total}개의 글</p>
@@ -54,7 +54,6 @@ const pageTitle = SITE_TITLE;
         </ul>
       )
     }
-
   </section>
   {page.lastPage > 1 && <Pagination page={page} />}
 </BaseLayout>

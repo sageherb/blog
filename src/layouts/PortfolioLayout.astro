@@ -114,7 +114,10 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
       }
     </header>
 
-    <div data-pagefind-body class="prose prose-article max-w-none">
+    <div
+      data-pagefind-body
+      class="prose prose-sm md:prose-base prose-article max-w-none"
+    >
       <slot />
     </div>
   </article>
