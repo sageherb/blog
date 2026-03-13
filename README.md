@@ -4,9 +4,9 @@ Astro 기반으로 제작한 개인 블로그이자 포트폴리오 프로젝트
 
 ## 기술 스택
 
-- Astro 5
+- Astro 6
 - Tailwind CSS 4
-- Preact (섬 아키텍처 인터랙션)
+- Preact (아일랜드 아키텍처 인터랙션)
 - Pagefind (클라이언트 검색)
 - Shiki (코드 하이라이트)
 

@@ -40,21 +40,23 @@ const cover =
 
   <!-- content -->
   <div class="flex flex-1 flex-col gap-1.5 px-1.5 py-4">
-    <!-- title -->
-    <a href={`/portfolio/${entry.id}`} class="group">
-      <h2
-        class="text-text group-hover:text-link text-lg leading-snug font-semibold transition-colors sm:text-xl"
-      >
-        {title}
-      </h2>
-    </a>
-
-    <!-- period -->
-    {
-      periodText && (
-        <span class="text-text-secondary text-xs sm:text-sm">{periodText}</span>
-      )
-    }
+    <!-- title + period -->
+    <div class="flex flex-wrap items-baseline gap-3">
+      <a href={`/portfolio/${entry.id}`} class="group">
+        <h2
+          class="text-text group-hover:text-link text-lg leading-snug font-semibold transition-colors sm:text-xl"
+        >
+          {title}
+        </h2>
+      </a>
+      {
+        periodText && (
+          <span class="text-text-subtle text-xs md:text-sm">
+            {periodText}
+          </span>
+        )
+      }
+    </div>
 
     <!-- description -->
     <p class="text-text-muted line-clamp-2 text-sm sm:text-base">

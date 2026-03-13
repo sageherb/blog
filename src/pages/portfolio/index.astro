@@ -9,10 +9,13 @@ const pageTitle = SITE_TITLE;
 ---
 
 <BaseLayout title={pageTitle} description="프로젝트 모음">
-  <section class="flex flex-1 flex-col py-4">
+  <section class="bg-background flex flex-1 flex-col py-4">
     {
       entries.length === 0 ? (
-        <p data-pagefind-ignore class="text-text-muted flex flex-1 items-center justify-center text-sm">
+        <p
+          data-pagefind-ignore
+          class="text-text-muted flex flex-1 items-center justify-center text-sm"
+        >
           아직 등록된 프로젝트가 없습니다.
         </p>
       ) : (

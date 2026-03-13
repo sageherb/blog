@@ -25,10 +25,13 @@ const pageDescription = isFirstPage
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="flex flex-1 flex-col py-4 sm:py-8">
+  <section class="bg-background flex flex-1 flex-col py-4 sm:py-8">
     {
       page.data.length === 0 ? (
-        <p data-pagefind-ignore class="text-text-muted flex flex-1 items-center justify-center text-sm">
+        <p
+          data-pagefind-ignore
+          class="text-text-muted flex flex-1 items-center justify-center text-sm"
+        >
           아직 작성된 글이 없습니다.
         </p>
       ) : (

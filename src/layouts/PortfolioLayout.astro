@@ -37,6 +37,8 @@ const periodText = startDate
       month: "long",
       day: "numeric",
     });
+
+const cover = coverImage ?? placeholderCover;
 ---
 
 <BaseLayout
@@ -52,23 +54,31 @@ const periodText = startDate
         {title}
       </h1>
 
-      <!-- meta: dates, techStack, links -->
-      <div
-        class="text-text-muted flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm"
-      >
-        <span class="text-sm">
-          {periodText}
-        </span>
-        {
-          techStack.length > 0 && (
-            <>
-              {techStack.map((name) => (
-                <TechBadge name={name} size="sm" />
-              ))}
-            </>
-          )
-        }
+      <div>
+        <Image
+          src={cover}
+          alt={title}
+          width={1200}
+          height={675}
+          class="h-auto w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
       </div>
+
+      <p class="text-text-muted text-xs md:text-sm">
+        {periodText}
+      </p>
+
+      {
+        techStack.length > 0 && (
+          <div class="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+            {techStack.map((name) => (
+              <TechBadge name={name} size="sm" />
+            ))}
+          </div>
+        )
+      }
 
       {
         (links?.github || links?.live) && (
