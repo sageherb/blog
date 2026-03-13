@@ -6,6 +6,7 @@ Astro 기반으로 제작한 개인 블로그이자 포트폴리오 프로젝트
 
 - Astro 5
 - Tailwind CSS 4
+- Preact (섬 아키텍처 인터랙션)
 - Pagefind (클라이언트 검색)
 - Shiki (코드 하이라이트)
 
@@ -13,7 +14,8 @@ Astro 기반으로 제작한 개인 블로그이자 포트폴리오 프로젝트
 
 - 블로그, 포트폴리오, 소개 페이지를 하나의 콘텐츠 구조 안에서 일관되게 관리
 - Astro Content Collections 기반 스키마 검증으로 콘텐츠 작성 안정성 확보
-- Pagefind를 이용한 정적 검색 지원
+- Preact 아일랜드 아키텍처로 검색, 테마 토글, 코드 복사 등 인터랙션 처리
+- Pagefind를 이용한 정적 검색 지원 (검색 결과에 요약 표시)
 - Shiki 기반 코드 하이라이팅 적용
 - 사이트 설정, 콘텐츠 스키마, UI 레이어를 분리해 유지보수성과 확장성 강화
 
@@ -73,13 +75,19 @@ draft: boolean (default: false)
 title: string
 description: string
 pubDate: date
-tags: string[]
+startDate: date (optional)
+endDate: date (optional)
+techStack: string[]
 coverImage: image (optional)
 links:
   github: url (optional)
   live: url (optional)
 draft: boolean (default: false)
 ```
+
+- `startDate`가 있으면 프로젝트 기간을 "2026년 3월 — 2026년 3월" 형태로 표시합니다.
+- `endDate`를 생략하면 "진행 중"으로 표시됩니다.
+- 포트폴리오 목록은 `startDate` 기준 최신순으로 정렬됩니다 (`startDate` 없으면 `pubDate` 사용).
 
 ### About (`src/content/about/index.md`)
 

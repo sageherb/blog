@@ -13,7 +13,9 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 export async function getPortfolioPosts(): Promise<PortfolioEntry[]> {
   const entries = await getCollection("portfolio", ({ data }) => !data.draft);
   return entries.sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    (a, b) =>
+      (b.data.startDate ?? b.data.pubDate).valueOf() -
+      (a.data.startDate ?? a.data.pubDate).valueOf(),
   );
 }
 

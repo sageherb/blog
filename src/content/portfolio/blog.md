@@ -2,6 +2,8 @@
 title: Blog
 description: Astro를 이용해 직접 만든 블로그
 pubDate: 2026-03-10
+startDate: 2026-03-01
+endDate: 2026-03-10
 techStack:
   - Astro v5
   - Tailwind CSS v4

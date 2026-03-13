@@ -9,7 +9,16 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, description, techStack, links, coverImage } = entry.data;
+const { title, description, startDate, endDate, techStack, links, coverImage } =
+  entry.data;
+
+const formatYearMonth = (date: Date) =>
+  date.toLocaleDateString("ko-KR", { year: "numeric", month: "long" });
+
+const periodText = startDate
+  ? `${formatYearMonth(startDate)} — ${endDate ? formatYearMonth(endDate) : "진행 중"}`
+  : null;
+
 const cover =
   typeof coverImage === "string"
     ? placeholderCover
@@ -39,6 +48,13 @@ const cover =
         {title}
       </h2>
     </a>
+
+    <!-- period -->
+    {
+      periodText && (
+        <span class="text-text-secondary text-xs sm:text-sm">{periodText}</span>
+      )
+    }
 
     <!-- description -->
     <p class="text-text-muted line-clamp-2 text-sm sm:text-base">

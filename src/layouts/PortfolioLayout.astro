@@ -9,6 +9,8 @@ interface Props {
   title: string;
   description: string;
   pubDate: Date;
+  startDate?: Date;
+  endDate?: Date;
   techStack?: string[];
   links?: { github?: string; live?: string };
   coverImage?: ImageMetadata;
@@ -18,16 +20,23 @@ const {
   title,
   description,
   pubDate,
+  startDate,
+  endDate,
   techStack = [],
   links,
   coverImage,
 } = Astro.props;
 
-const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const formatYearMonth = (date: Date) =>
+  date.toLocaleDateString("ko-KR", { year: "numeric", month: "long" });
+
+const periodText = startDate
+  ? `${formatYearMonth(startDate)} — ${endDate ? formatYearMonth(endDate) : "진행 중"}`
+  : pubDate.toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 ---
 
 <BaseLayout
@@ -47,9 +56,9 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
       <div
         class="text-text-muted flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm"
       >
-        <time datetime={pubDate.toISOString()} class="text-sm">
-          {formattedPubDate}
-        </time>
+        <span class="text-sm">
+          {periodText}
+        </span>
         {
           techStack.length > 0 && (
             <>
