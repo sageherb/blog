@@ -28,8 +28,9 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
   pubDate={pubDate}
   image={ogImage?.src}
 >
-  <article class="py-4">
-    <header class="mb-8 space-y-3 sm:mb-10">
+  <article class="py-4" data-pagefind-body>
+    <meta data-pagefind-meta={`desc:${description}`} />
+    <header class="mb-8 space-y-3 sm:mb-10" data-pagefind-ignore>
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
@@ -52,7 +53,6 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
     </header>
 
     <div
-      data-pagefind-body
       class="prose prose-sm md:prose-base prose-article max-w-none"
     >
       <slot />

@@ -1,15 +1,23 @@
+/* =========================================================
+   1. Imports
+   ========================================================= */
 @import "@fontsource-variable/inter";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* =========================================================
+   2. Color Scales — Light / Dark
+   두 테마의 primitive 토큰 정의.
+   custom(accent) 12-step scale + gray(zinc) scale + semantic tokens.
+   ========================================================= */
 :root,
 .light,
 .light-theme {
   color-scheme: light;
 
-  /* 원본 custom scale */
+  /* Accent scale (custom) */
   --custom-1: #fafdfc;
   --custom-2: #f5faf9;
   --custom-3: #e7f4f0;
@@ -41,7 +49,7 @@
   --custom-indicator: #52796f;
   --custom-track: #52796f;
 
-  /* Accent primitive tokens (custom alias) */
+  /* Accent aliases */
   --accent-1: var(--custom-1);
   --accent-2: var(--custom-2);
   --accent-3: var(--custom-3);
@@ -73,7 +81,7 @@
   --accent-indicator: var(--custom-indicator);
   --accent-track: var(--custom-track);
 
-  /* Neutral primitive tokens (Tailwind zinc based) */
+  /* Gray scale (zinc) */
   --gray-1: #fafafa;
   --gray-2: #f4f4f5;
   --gray-3: #e4e4e7;
@@ -124,7 +132,7 @@
 .dark-theme {
   color-scheme: dark;
 
-  /* 원본 custom scale */
+  /* Accent scale (custom) */
   --custom-1: #0d1211;
   --custom-2: #131a18;
   --custom-3: #192723;
@@ -156,7 +164,7 @@
   --custom-indicator: #52796f;
   --custom-track: #52796f;
 
-  /* Accent primitive tokens (custom alias) */
+  /* Accent aliases */
   --accent-1: var(--custom-1);
   --accent-2: var(--custom-2);
   --accent-3: var(--custom-3);
@@ -188,7 +196,7 @@
   --accent-indicator: var(--custom-indicator);
   --accent-track: var(--custom-track);
 
-  /* Neutral primitive tokens (Tailwind zinc based) */
+  /* Gray scale (zinc) */
   --gray-1: #09090b;
   --gray-2: #111113;
   --gray-3: #18181b;
@@ -235,6 +243,10 @@
   --badge-accent-border: var(--accent-a6);
 }
 
+/* =========================================================
+   3. Tailwind Theme — semantic color → utility class 매핑
+   `bg-panel`, `text-text-muted`, `border-border` 등으로 사용
+   ========================================================= */
 @theme {
   --font-sans:
     "Inter", "InterVariable", "Apple SD Gothic Neo", "Noto Sans KR",
@@ -273,6 +285,9 @@
   --color-badge-accent-border: var(--badge-accent-border);
 }
 
+/* =========================================================
+   4. Base — 전역 리셋 및 기본 요소 스타일
+   ========================================================= */
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -343,6 +358,9 @@
   }
 }
 
+/* =========================================================
+   5. Utility — prose-article (typography plugin 토큰 오버라이드)
+   ========================================================= */
 @utility prose-article {
   --tw-prose-body: var(--text-muted);
   --tw-prose-headings: var(--text);
@@ -378,7 +396,11 @@
   --tw-prose-invert-td-borders: var(--border);
 }
 
+/* =========================================================
+   6. Components — 프로젝트 컴포넌트 스타일
+   ========================================================= */
 @layer components {
+  /* --- Navigation: active 상태 width 점프 방지 --- */
   .nav-item-label::after {
     content: attr(data-text);
     display: block;
@@ -389,6 +411,7 @@
     pointer-events: none;
   }
 
+  /* --- Prose: inline code --- */
   .prose :where(:not(pre) > code)::before,
   .prose :where(:not(pre) > code)::after {
     content: "" !important;
@@ -403,6 +426,7 @@
     font-weight: 600;
   }
 
+  /* --- Prose: code block + copy button --- */
   .prose pre {
     position: relative;
   }
@@ -446,6 +470,102 @@
   }
 }
 
+/* =========================================================
+   7. Third-party Overrides (unlayered)
+   Pagefind UI와 Shiki는 런타임에 unlayered CSS를 주입하므로,
+   오버라이드도 unlayered로 유지해야 우선순위를 가짐.
+   ========================================================= */
+
+/* --- Search dialog --- */
+#search-dialog {
+  outline: none;
+  margin: 5rem auto auto;
+  width: calc(100% - 2rem);
+  max-width: 32rem;
+  max-height: calc(100vh - 7rem);
+}
+
+#search-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.35);
+  backdrop-filter: blur(4px);
+}
+
+/* --- Pagefind UI --- */
+#search-pagefind {
+  --pagefind-ui-scale: 0.75;
+  --pagefind-ui-primary: var(--link);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--panel);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-tag: var(--surface);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: inherit;
+}
+
+#search-pagefind .pagefind-ui__form {
+  padding: 0.375rem 0.75rem;
+}
+
+#search-pagefind .pagefind-ui__form::before {
+  top: calc(0.375rem + 0.625rem);
+  left: calc(20px * var(--pagefind-ui-scale) + 0.5rem);
+  width: 14px;
+  height: 14px;
+}
+
+#search-pagefind .pagefind-ui__search-input {
+  height: 2.25rem !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: 0.875rem !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#search-pagefind .pagefind-ui__search-input:focus,
+#search-pagefind .pagefind-ui__search-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#search-pagefind .pagefind-ui__search-clear {
+  top: 0.375rem;
+  right: calc(3px * var(--pagefind-ui-scale) + 0.5rem);
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+
+#search-pagefind .pagefind-ui__search-clear::before {
+  content: "✕";
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+#search-pagefind
+  .pagefind-ui__drawer:has(.pagefind-ui__result, .pagefind-ui__message) {
+  padding: 0 0.75rem 0.75rem;
+  border-top: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.search-desc {
+  display: block;
+  color: var(--text-muted);
+  font-size: inherit;
+  line-height: 1.4;
+  margin: 0 0 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Shiki: dark mode color swap --- */
 .dark .astro-code,
 .dark .astro-code span {
   color: var(--shiki-dark) !important;

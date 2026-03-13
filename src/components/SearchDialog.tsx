@@ -44,6 +44,16 @@ export default function SearchDialogIsland() {
           placeholder: "검색어를 입력하세요",
           zero_results: "검색 결과가 없습니다.",
         },
+        processResult: (result: Record<string, unknown>) => {
+          const meta = result.meta as Record<string, string> | undefined;
+          const desc = meta?.desc;
+          if (desc && meta) {
+            delete meta.desc;
+            const excerpt = (result.excerpt as string) ?? "";
+            result.excerpt = `<span class="search-desc">${desc}</span>${excerpt}`;
+          }
+          return result;
+        },
       });
     }
 
@@ -80,94 +90,13 @@ export default function SearchDialogIsland() {
   }, []);
 
   return (
-    <>
-      <dialog
-        ref={dialogRef}
-        id="search-dialog"
-        aria-label="사이트 검색"
-        class="bg-panel border-border w-full rounded-xl border p-0 shadow-2xl"
-      >
-        <div id="search-pagefind"></div>
-      </dialog>
-      <style>
-        {`
-        #search-dialog {
-          outline: none;
-          margin: 5rem auto auto;
-          width: calc(100% - 2rem);
-          max-width: 32rem;
-          max-height: calc(100vh - 7rem);
-        }
-
-        #search-dialog::backdrop {
-          background-color: rgb(0 0 0 / 0.35);
-          backdrop-filter: blur(4px);
-        }
-
-        #search-pagefind {
-          --pagefind-ui-scale: 0.75;
-          --pagefind-ui-primary: var(--link);
-          --pagefind-ui-text: var(--text);
-          --pagefind-ui-background: var(--panel);
-          --pagefind-ui-border: var(--border);
-          --pagefind-ui-tag: var(--surface);
-          --pagefind-ui-border-width: 1px;
-          --pagefind-ui-border-radius: 6px;
-          --pagefind-ui-font: inherit;
-        }
-
-        #search-pagefind .pagefind-ui__form {
-          padding: 0.375rem 0.75rem;
-        }
-
-        #search-pagefind .pagefind-ui__form::before {
-          top: calc(0.375rem + 0.625rem);
-          left: calc(20px * var(--pagefind-ui-scale) + 0.5rem);
-          width: 14px;
-          height: 14px;
-        }
-
-        #search-pagefind .pagefind-ui__search-input {
-          height: 2.25rem !important;
-          padding-top: 0 !important;
-          padding-bottom: 0 !important;
-          font-size: 0.875rem !important;
-          border: none !important;
-          box-shadow: none !important;
-        }
-
-        #search-pagefind .pagefind-ui__search-input:focus,
-        #search-pagefind .pagefind-ui__search-input:focus-visible {
-          outline: none !important;
-          box-shadow: none !important;
-        }
-
-        #search-pagefind .pagefind-ui__search-clear {
-          top: 0.375rem;
-          right: calc(3px * var(--pagefind-ui-scale) + 0.5rem);
-          height: 2.25rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0;
-        }
-
-        #search-pagefind .pagefind-ui__search-clear::before {
-          content: "✕";
-          font-size: 0.875rem;
-          line-height: 1;
-          color: var(--text-muted);
-        }
-
-        #search-pagefind
-          .pagefind-ui__drawer:has(.pagefind-ui__result, .pagefind-ui__message) {
-          padding: 0 0.75rem 0.75rem;
-          border-top: 1px solid var(--border);
-          overflow-y: auto;
-          max-height: 60vh;
-        }
-        `}
-      </style>
-    </>
+    <dialog
+      ref={dialogRef}
+      id="search-dialog"
+      aria-label="사이트 검색"
+      class="bg-panel border-border w-full rounded-xl border p-0 shadow-2xl"
+    >
+      <div id="search-pagefind"></div>
+    </dialog>
   );
 }

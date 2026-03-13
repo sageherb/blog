@@ -9,7 +9,7 @@ interface Props {
   title: string;
   description: string;
   pubDate: Date;
-  tags?: string[];
+  techStack?: string[];
   links?: { github?: string; live?: string };
   coverImage?: ImageMetadata;
 }
@@ -18,7 +18,7 @@ const {
   title,
   description,
   pubDate,
-  tags = [],
+  techStack = [],
   links,
   coverImage,
 } = Astro.props;
@@ -36,13 +36,14 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
   kind="portfolio"
   image={(coverImage ?? placeholderCover).src}
 >
-  <article class="py-4 sm:py-8">
-    <header class="mb-8 space-y-3 sm:mb-10">
+  <article class="py-4 sm:py-8" data-pagefind-body>
+    <meta data-pagefind-meta={`desc:${description}`} />
+    <header class="mb-8 space-y-3 sm:mb-10" data-pagefind-ignore>
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
 
-      <!-- meta: dates, tags, links -->
+      <!-- meta: dates, techStack, links -->
       <div
         class="text-text-muted flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm"
       >
@@ -50,9 +51,9 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
           {formattedPubDate}
         </time>
         {
-          tags.length > 0 && (
+          techStack.length > 0 && (
             <>
-              {tags.map((name) => (
+              {techStack.map((name) => (
                 <TechBadge name={name} size="sm" />
               ))}
             </>
@@ -115,7 +116,6 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
     </header>
 
     <div
-      data-pagefind-body
       class="prose prose-sm md:prose-base prose-article max-w-none"
     >
       <slot />

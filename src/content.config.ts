@@ -21,7 +21,7 @@ const portfolio = defineCollection({
       title: z.string(),
       description: z.string(),
       pubDate: z.date(),
-      tags: z.array(z.string()).default([]),
+      techStack: z.array(z.string()).default([]),
       coverImage: image().optional(),
       links: z
         .object({

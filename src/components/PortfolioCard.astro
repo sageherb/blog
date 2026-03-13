@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, description, tags, links, coverImage } = entry.data;
+const { title, description, techStack, links, coverImage } = entry.data;
 const cover =
   typeof coverImage === "string"
     ? placeholderCover
@@ -45,11 +45,11 @@ const cover =
       {description}
     </p>
 
-    <!-- tags -->
+    <!-- techStack -->
     {
-      tags.length > 0 && (
+      techStack.length > 0 && (
         <div class="flex flex-wrap gap-x-1.5 gap-y-0.5">
-          {tags.map((name) => (
+          {techStack.map((name) => (
             <TechBadge name={name} size="sm" />
           ))}
         </div>
