@@ -8,7 +8,7 @@ const blog = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      pubDate: z.date(),
+      pubDate: z.coerce.date(),
       tags: z.array(z.string()).default([]),
       ogImage: image().optional(),
       draft: z.boolean().default(false),
@@ -21,15 +21,15 @@ const portfolio = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      pubDate: z.date(),
-      startDate: z.date().optional(),
-      endDate: z.date().optional(),
+      pubDate: z.coerce.date(),
+      startDate: z.coerce.date().optional(),
+      endDate: z.coerce.date().optional(),
       techStack: z.array(z.string()).default([]),
       coverImage: image().optional(),
       links: z
         .object({
-          github: z.string().url().optional(),
-          live: z.string().url().optional(),
+          github: z.url().optional(),
+          live: z.url().optional(),
         })
         .optional(),
       draft: z.boolean().default(false),
