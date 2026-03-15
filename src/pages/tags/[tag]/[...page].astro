@@ -1,6 +1,8 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
+import ContentSection from "@components/ContentSection.astro";
+import EmptyState from "@components/EmptyState.astro";
 import Pagination from "@components/Pagination.astro";
 import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -31,7 +33,7 @@ const pageTitle = SITE_TITLE;
 ---
 
 <BaseLayout title={pageTitle} description={`${tag} 태그가 붙은 글 목록`}>
-  <section class="bg-background py-4 sm:py-8">
+  <ContentSection>
     <header class="mb-8">
       <h1 class="text-text text-xl font-bold sm:text-2xl">
         <span class="text-link">#</span>{tag}
@@ -41,9 +43,7 @@ const pageTitle = SITE_TITLE;
 
     {
       page.data.length === 0 ? (
-        <p data-pagefind-ignore class="text-text-muted py-8 text-sm">
-          이 태그에 해당하는 글이 없습니다.
-        </p>
+        <EmptyState type="tag" />
       ) : (
         <ul class="flex flex-col gap-10">
           {page.data.map((post) => (
@@ -54,6 +54,6 @@ const pageTitle = SITE_TITLE;
         </ul>
       )
     }
-  </section>
+  </ContentSection>
   {page.lastPage > 1 && <Pagination page={page} />}
 </BaseLayout>

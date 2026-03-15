@@ -1,6 +1,8 @@
 ---
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
+import ContentSection from "@components/ContentSection.astro";
+import EmptyState from "@components/EmptyState.astro";
 import Pagination from "@components/Pagination.astro";
 import PostCard from "@components/PostCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -27,15 +29,10 @@ const page: Page<CollectionEntry<"blog">> = {
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <section class="bg-background flex flex-1 flex-col py-4 sm:py-8">
+  <ContentSection>
     {
       page.data.length === 0 ? (
-        <p
-          data-pagefind-ignore
-          class="text-text-muted flex flex-1 items-center justify-center text-sm"
-        >
-          아직 작성된 글이 없습니다.
-        </p>
+        <EmptyState type="blog" />
       ) : (
         <ul class="flex flex-col gap-10">
           {page.data.map((post) => (
@@ -46,6 +43,6 @@ const page: Page<CollectionEntry<"blog">> = {
         </ul>
       )
     }
-  </section>
+  </ContentSection>
   {page.lastPage > 1 && <Pagination page={page} />}
 </BaseLayout>

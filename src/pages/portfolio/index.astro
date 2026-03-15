@@ -1,4 +1,6 @@
 ---
+import ContentSection from "@components/ContentSection.astro";
+import EmptyState from "@components/EmptyState.astro";
 import PortfolioCard from "@components/PortfolioCard.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { SITE_TITLE } from "@config";
@@ -9,15 +11,10 @@ const pageTitle = SITE_TITLE;
 ---
 
 <BaseLayout title={pageTitle} description="프로젝트 모음">
-  <section class="bg-background flex flex-1 flex-col py-4">
+  <ContentSection>
     {
       entries.length === 0 ? (
-        <p
-          data-pagefind-ignore
-          class="text-text-muted flex flex-1 items-center justify-center text-sm"
-        >
-          아직 등록된 프로젝트가 없습니다.
-        </p>
+        <EmptyState type="portfolio" />
       ) : (
         <ul class="flex flex-col gap-8">
           {entries.map((entry) => (
@@ -28,5 +25,5 @@ const pageTitle = SITE_TITLE;
         </ul>
       )
     }
-  </section>
+  </ContentSection>
 </BaseLayout>
