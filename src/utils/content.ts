@@ -22,5 +22,5 @@ export async function getPortfolioPosts(): Promise<PortfolioEntry[]> {
 export async function getAllTags(): Promise<string[]> {
   const posts = await getBlogPosts();
   const tags = new Set(posts.flatMap((p) => p.data.tags));
-  return [...tags].sort();
+  return [...tags];
 }
