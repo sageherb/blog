@@ -6,6 +6,7 @@ tags:
   - Blog
   - Astro
   - Islands Architecture
+  - Pagefind
 draft: false
 ---
 
