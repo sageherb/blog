@@ -1,84 +1,44 @@
-/* =========================================================
-   1. Imports
-   ========================================================= */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* =========================================================
-   2. Color Scales — Light / Dark
-   두 테마의 primitive 토큰 정의.
-   custom(accent) 12-step scale + gray(zinc) scale + semantic tokens.
+   1. Color Scales — Light / Dark
    ========================================================= */
 :root,
 .light,
 .light-theme {
   color-scheme: light;
 
-  /* Accent scale (custom) */
-  --custom-1: #fafdfc;
-  --custom-2: #f5faf9;
-  --custom-3: #e7f4f0;
-  --custom-4: #daeee8;
-  --custom-5: #cce6df;
-  --custom-6: #bedcd4;
-  --custom-7: #abcfc5;
-  --custom-8: #8ebbaf;
-  --custom-9: #52796f;
-  --custom-10: #456b62;
-  --custom-11: #476e64;
-  --custom-12: #1d312c;
+  /* Accent scale */
+  --accent-1: #fafdfc;
+  --accent-2: #f5faf9;
+  --accent-3: #e7f4f0;
+  --accent-4: #daeee8;
+  --accent-5: #cce6df;
+  --accent-6: #bedcd4;
+  --accent-7: #abcfc5;
+  --accent-8: #8ebbaf;
+  --accent-9: #52796f;
+  --accent-10: #456b62;
+  --accent-11: #476e64;
+  --accent-12: #1d312c;
 
-  --custom-a1: #00996605;
-  --custom-a2: #0080660a;
-  --custom-a3: #008b6018;
-  --custom-a4: #008a6125;
-  --custom-a5: #00825f33;
-  --custom-a6: #00765741;
-  --custom-a7: #006e4f54;
-  --custom-a8: #00664b71;
-  --custom-a9: #003a2bad;
-  --custom-a10: #003428ba;
-  --custom-a11: #003628b8;
-  --custom-a12: #001711e2;
+  --accent-a1: #00996605;
+  --accent-a2: #0080660a;
+  --accent-a3: #008b6018;
+  --accent-a4: #008a6125;
+  --accent-a5: #00825f33;
+  --accent-a6: #00765741;
+  --accent-a7: #006e4f54;
+  --accent-a8: #00664b71;
+  --accent-a9: #003a2bad;
+  --accent-a10: #003428ba;
+  --accent-a11: #003628b8;
+  --accent-a12: #001711e2;
 
-  --custom-contrast: #fff;
-  --custom-surface: #f3f9f8cc;
-  --custom-indicator: #52796f;
-  --custom-track: #52796f;
-
-  /* Accent aliases */
-  --accent-1: var(--custom-1);
-  --accent-2: var(--custom-2);
-  --accent-3: var(--custom-3);
-  --accent-4: var(--custom-4);
-  --accent-5: var(--custom-5);
-  --accent-6: var(--custom-6);
-  --accent-7: var(--custom-7);
-  --accent-8: var(--custom-8);
-  --accent-9: var(--custom-9);
-  --accent-10: var(--custom-10);
-  --accent-11: var(--custom-11);
-  --accent-12: var(--custom-12);
-
-  --accent-a1: var(--custom-a1);
-  --accent-a2: var(--custom-a2);
-  --accent-a3: var(--custom-a3);
-  --accent-a4: var(--custom-a4);
-  --accent-a5: var(--custom-a5);
-  --accent-a6: var(--custom-a6);
-  --accent-a7: var(--custom-a7);
-  --accent-a8: var(--custom-a8);
-  --accent-a9: var(--custom-a9);
-  --accent-a10: var(--custom-a10);
-  --accent-a11: var(--custom-a11);
-  --accent-a12: var(--custom-a12);
-
-  --accent-contrast: var(--custom-contrast);
-  --accent-surface: var(--custom-surface);
-  --accent-indicator: var(--custom-indicator);
-  --accent-track: var(--custom-track);
+  --accent-contrast: #fff;
 
   /* Gray scale (zinc) */
   --gray-1: #fafafa;
@@ -131,69 +91,34 @@
 .dark-theme {
   color-scheme: dark;
 
-  /* Accent scale (custom) */
-  --custom-1: #0d1211;
-  --custom-2: #131a18;
-  --custom-3: #192723;
-  --custom-4: #1b312c;
-  --custom-5: #223b35;
-  --custom-6: #2b4740;
-  --custom-7: #37574f;
-  --custom-8: #486f65;
-  --custom-9: #52796f;
-  --custom-10: #456b62;
-  --custom-11: #98c1b6;
-  --custom-12: #d8f2eb;
+  /* Accent scale */
+  --accent-1: #0d1211;
+  --accent-2: #131a18;
+  --accent-3: #192723;
+  --accent-4: #1b312c;
+  --accent-5: #223b35;
+  --accent-6: #2b4740;
+  --accent-7: #37574f;
+  --accent-8: #486f65;
+  --accent-9: #52796f;
+  --accent-10: #456b62;
+  --accent-11: #98c1b6;
+  --accent-12: #d8f2eb;
 
-  --custom-a1: #00911102;
-  --custom-a2: #45f7c40a;
-  --custom-a3: #66fbd118;
-  --custom-a4: #5afbd623;
-  --custom-a5: #72ffdd2d;
-  --custom-a6: #84ffe03a;
-  --custom-a7: #93ffe44b;
-  --custom-a8: #9cffe665;
-  --custom-a9: #a5fde770;
-  --custom-a10: #99fde661;
-  --custom-a11: #c8fff0bd;
-  --custom-a12: #e3fef7f2;
+  --accent-a1: #00911102;
+  --accent-a2: #45f7c40a;
+  --accent-a3: #66fbd118;
+  --accent-a4: #5afbd623;
+  --accent-a5: #72ffdd2d;
+  --accent-a6: #84ffe03a;
+  --accent-a7: #93ffe44b;
+  --accent-a8: #9cffe665;
+  --accent-a9: #a5fde770;
+  --accent-a10: #99fde661;
+  --accent-a11: #c8fff0bd;
+  --accent-a12: #e3fef7f2;
 
-  --custom-contrast: #fff;
-  --custom-surface: #15231f80;
-  --custom-indicator: #52796f;
-  --custom-track: #52796f;
-
-  /* Accent aliases */
-  --accent-1: var(--custom-1);
-  --accent-2: var(--custom-2);
-  --accent-3: var(--custom-3);
-  --accent-4: var(--custom-4);
-  --accent-5: var(--custom-5);
-  --accent-6: var(--custom-6);
-  --accent-7: var(--custom-7);
-  --accent-8: var(--custom-8);
-  --accent-9: var(--custom-9);
-  --accent-10: var(--custom-10);
-  --accent-11: var(--custom-11);
-  --accent-12: var(--custom-12);
-
-  --accent-a1: var(--custom-a1);
-  --accent-a2: var(--custom-a2);
-  --accent-a3: var(--custom-a3);
-  --accent-a4: var(--custom-a4);
-  --accent-a5: var(--custom-a5);
-  --accent-a6: var(--custom-a6);
-  --accent-a7: var(--custom-a7);
-  --accent-a8: var(--custom-a8);
-  --accent-a9: var(--custom-a9);
-  --accent-a10: var(--custom-a10);
-  --accent-a11: var(--custom-a11);
-  --accent-a12: var(--custom-a12);
-
-  --accent-contrast: var(--custom-contrast);
-  --accent-surface: var(--custom-surface);
-  --accent-indicator: var(--custom-indicator);
-  --accent-track: var(--custom-track);
+  --accent-contrast: #fff;
 
   /* Gray scale (zinc) */
   --gray-1: #09090b;
@@ -243,11 +168,12 @@
 }
 
 /* =========================================================
-   3. Tailwind Theme — semantic color → utility class 매핑
-   `bg-panel`, `text-text-muted`, `border-border` 등으로 사용
+   2. Tailwind Theme
+   `@theme inline`: 폰트는 런타임 CSS 변수 불필요 → 유틸리티에 직접 인라인
+   `@theme`: 색상은 다크모드 런타임 교체를 위해 CSS 변수 유지
    ========================================================= */
 @theme inline {
-  --font-sans: var(--font-pretendard);
+  --font-sans: "Pretendard Variable", system-ui, sans-serif;
 }
 
 @theme {
@@ -284,26 +210,33 @@
 }
 
 /* =========================================================
-   4. Base — 전역 리셋 및 기본 요소 스타일
+   3. Global font (unlayered)
+   Astro v6 <Font> 컴포넌트가 생성하는 :root CSS도 unlayered이므로
+   같은 레벨에서 폰트 및 자간 설정을 적용해야 윈도우에서도 동작함.
+   ========================================================= */
+html {
+  font-family: var(--font-sans);
+  letter-spacing: -0.15px;
+}
+
+*,
+*::before,
+*::after {
+  letter-spacing: inherit;
+}
+
+/* =========================================================
+   4. Base
    ========================================================= */
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    font-family: var(--font-sans);
-    letter-spacing: -0.15px;
     scrollbar-gutter: stable;
-  }
-
-  *,
-  *::before,
-  *::after {
-    letter-spacing: inherit;
   }
 
   body {
     background-color: var(--background);
     color: var(--text);
-    font-family: inherit;
   }
 
   :where(input, textarea, select, button) {
@@ -357,7 +290,7 @@
 }
 
 /* =========================================================
-   5. Utility — prose-article (typography plugin 토큰 오버라이드)
+   5. Utility
    ========================================================= */
 @utility prose-article {
   --tw-prose-body: var(--text-muted);
@@ -376,29 +309,13 @@
   --tw-prose-pre-bg: var(--panel-solid);
   --tw-prose-th-borders: var(--border-strong);
   --tw-prose-td-borders: var(--border);
-  --tw-prose-invert-body: var(--text-muted);
-  --tw-prose-invert-headings: var(--text);
-  --tw-prose-invert-lead: var(--text-muted);
-  --tw-prose-invert-links: var(--link);
-  --tw-prose-invert-bold: var(--text);
-  --tw-prose-invert-counters: var(--text-muted);
-  --tw-prose-invert-bullets: var(--text-subtle);
-  --tw-prose-invert-hr: var(--border);
-  --tw-prose-invert-quotes: var(--text);
-  --tw-prose-invert-quote-borders: var(--blockquote-border);
-  --tw-prose-invert-captions: var(--text-subtle);
-  --tw-prose-invert-code: var(--link);
-  --tw-prose-invert-pre-code: var(--text);
-  --tw-prose-invert-pre-bg: var(--panel-solid);
-  --tw-prose-invert-th-borders: var(--border-strong);
-  --tw-prose-invert-td-borders: var(--border);
 }
 
 /* =========================================================
-   6. Components — 프로젝트 컴포넌트 스타일
+   6. Components
    ========================================================= */
 @layer components {
-  /* --- Navigation: active 상태 width 점프 방지 --- */
+  /* Navigation: active 상태 width 점프 방지 */
   .nav-item-label::after {
     content: attr(data-text);
     display: block;
@@ -409,7 +326,7 @@
     pointer-events: none;
   }
 
-  /* --- Prose: inline code --- */
+  /* Prose: inline code */
   .prose :where(:not(pre) > code)::before,
   .prose :where(:not(pre) > code)::after {
     content: "" !important;
@@ -424,7 +341,7 @@
     font-weight: 600;
   }
 
-  /* --- Prose: code block + copy button --- */
+  /* Prose: code block + copy button */
   .prose pre {
     position: relative;
   }
@@ -469,12 +386,12 @@
 }
 
 /* =========================================================
-   7. Third-party Overrides (unlayered)
-   Pagefind UI와 Shiki는 런타임에 unlayered CSS를 주입하므로,
-   오버라이드도 unlayered로 유지해야 우선순위를 가짐.
+   7. Third-party Overrides (no @layer)
+   Pagefind UI와 Shiki는 런타임에 layer 없이 CSS를 주입하므로
+   오버라이드도 @layer 없이 유지해야 우선순위를 가짐.
    ========================================================= */
 
-/* --- Search dialog --- */
+/* Search dialog */
 #search-dialog {
   outline: none;
   margin: 5rem auto auto;
@@ -488,7 +405,7 @@
   backdrop-filter: blur(4px);
 }
 
-/* --- Pagefind UI --- */
+/* Pagefind UI */
 #search-pagefind {
   --pagefind-ui-scale: 0.75;
   --pagefind-ui-primary: var(--link);
@@ -563,7 +480,7 @@
   white-space: nowrap;
 }
 
-/* --- Shiki: dark mode color swap --- */
+/* Shiki: dark mode color swap */
 .dark .astro-code,
 .dark .astro-code span {
   color: var(--shiki-dark) !important;

@@ -1,5 +1,4 @@
 ---
-import { Font } from "astro:assets";
 import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "@config";
 
 interface Props {
@@ -48,8 +47,13 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- font -->
-<Font cssVariable="--font-pretendard" preload />
+<!-- font: Pretendard Variable (dynamic subset via CDN) -->
+<link
+  rel="stylesheet"
+  as="style"
+  crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+/>
 
 <!-- favicon -->
 <link rel="icon" href={faviconHref} />
