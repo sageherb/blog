@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "@config";
 
 interface Props {
@@ -46,6 +47,9 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+
+<!-- font -->
+<Font cssVariable="--font-pretendard" preload />
 
 <!-- favicon -->
 <link rel="icon" href={faviconHref} />

@@ -13,7 +13,6 @@
     "@astrojs/preact": "^5.0.0",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
-    "@fontsource-variable/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.2.0",
     "astro": "^6.0.4",
     "preact": "^10.28.4",

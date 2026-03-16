@@ -1,7 +1,6 @@
 /* =========================================================
    1. Imports
    ========================================================= */
-@import "@fontsource-variable/inter";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -247,12 +246,11 @@
    3. Tailwind Theme — semantic color → utility class 매핑
    `bg-panel`, `text-text-muted`, `border-border` 등으로 사용
    ========================================================= */
-@theme {
-  --font-sans:
-    "Inter", "InterVariable", "Apple SD Gothic Neo", "Noto Sans KR",
-    "Pretendard", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    sans-serif;
+@theme inline {
+  --font-sans: var(--font-pretendard);
+}
 
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-panel: var(--panel);

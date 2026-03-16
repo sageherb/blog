@@ -2,6 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { SITE_TITLE } from "@config";
 import { getEntry, render } from "astro:content";
+import ContentSection from "@components/ContentSection.astro";
 
 const entry = await getEntry("about", "index");
 if (!entry) throw new Error("About content not found");
@@ -11,9 +12,9 @@ const { description } = entry.data;
 ---
 
 <BaseLayout title={SITE_TITLE} description={description}>
-  <section class="bg-background flex flex-1 flex-col py-4 sm:py-8" data-pagefind-ignore>
+  <ContentSection>
     <article class="prose prose-sm md:prose-base prose-article max-w-none">
       <Content />
     </article>
-  </section>
+  </ContentSection>
 </BaseLayout>
