@@ -25,7 +25,8 @@ const { Content } = await render(post);
   description={post.data.description}
   pubDate={post.data.pubDate}
   tags={post.data.tags}
-  ogImage={post.data.ogImage}
+  coverImage={post.data.coverImage}
+  ogImagePath={`/og/${post.id}.png`}
 >
   <Content />
 </PostLayout>

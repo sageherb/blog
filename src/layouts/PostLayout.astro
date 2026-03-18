@@ -3,21 +3,36 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import CodeCopy from "@components/CodeCopy";
 import TagBadge from "@components/TagBadge.astro";
 import type { ImageMetadata } from "astro";
+import { selectOgImage } from "@utils/og-image";
 
 interface Props {
   title: string;
   description: string;
   pubDate: Date;
   tags?: string[];
-  ogImage?: ImageMetadata;
+  coverImage?: ImageMetadata;
+  /** 자동 생성된 OG 이미지 경로 (e.g. "/og/my-post.png") */
+  ogImagePath?: string;
 }
 
-const { title, description, pubDate, tags = [], ogImage } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  tags = [],
+  coverImage,
+  ogImagePath,
+} = Astro.props;
 
 const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
   year: "numeric",
   month: "long",
   day: "numeric",
+});
+
+const selectedOgImage = selectOgImage({
+  coverImage,
+  fallbackPath: ogImagePath,
 });
 ---
 
@@ -26,7 +41,7 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
   description={description}
   kind="post"
   pubDate={pubDate}
-  image={ogImage?.src}
+  image={selectedOgImage}
 >
   <article class="py-4 sm:py-8" data-pagefind-body>
     <meta data-pagefind-meta={`desc:${description}`} />
@@ -52,9 +67,7 @@ const formattedPubDate = pubDate.toLocaleDateString("ko-KR", {
       </div>
     </header>
 
-    <div
-      class="prose prose-sm md:prose-base prose-article max-w-none"
-    >
+    <div class="prose prose-sm md:prose-base prose-article max-w-none">
       <slot />
     </div>
     <CodeCopy client:load />

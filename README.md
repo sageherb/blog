@@ -65,7 +65,7 @@ title: string
 description: string
 pubDate: date
 tags: string[]
-ogImage: image (optional)
+coverImage: image (optional)
 draft: boolean (default: false)
 ```
 

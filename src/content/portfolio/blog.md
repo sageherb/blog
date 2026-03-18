@@ -31,4 +31,4 @@ draft: false
 
 ## 후기
 
-[블로그 완성](https://sageherb.dev/blog/first)
+[블로그 완성](https://sageherb.dev/blog/building-my-blog-with-astro)

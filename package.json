@@ -13,9 +13,11 @@
     "@astrojs/preact": "^5.0.0",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.2.0",
     "astro": "^6.0.4",
     "preact": "^10.28.4",
+    "satori": "^0.25.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.0"
   },
