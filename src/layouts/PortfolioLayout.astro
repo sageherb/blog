@@ -5,8 +5,8 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import CardLinks from "@components/portfolio/CardLinks.astro";
 import TechBadge from "@components/TechBadge.astro";
 import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
+import { resolveOgImageUrl } from "@lib/og/image";
 import { formatDate, formatPeriod } from "@utils/date";
-import { selectOgImage } from "@utils/og-image";
 
 interface Props {
   title: string;
@@ -34,9 +34,9 @@ const {
 
 const periodText = formatPeriod(startDate, endDate) ?? formatDate(pubDate);
 const cover = coverImage ?? placeholderCover;
-const selectedOgImage = selectOgImage({
-  coverImage,
-  fallbackPath: ogImagePath,
+const selectedOgImage = resolveOgImageUrl({
+  overrideUrl: coverImage?.src,
+  autoUrl: ogImagePath,
 });
 ---
 
