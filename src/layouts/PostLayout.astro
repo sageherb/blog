@@ -84,6 +84,8 @@ const jsonLd = [
     <div class="prose prose-sm md:prose-base prose-article max-w-none">
       <slot />
     </div>
-    <CodeCopy client:load />
+    {/* Code blocks live within the article body; defer hydration until
+        the first one scrolls into view rather than blocking initial paint. */}
+    <CodeCopy client:visible />
   </article>
 </BaseLayout>
