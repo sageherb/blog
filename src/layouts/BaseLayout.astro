@@ -44,5 +44,21 @@ const { title, description, image, kind, pubDate } = Astro.props;
       </main>
       <Footer />
     </div>
+    {
+      /*
+        Pagefind 1.5 Component UI runtime (bundled).
+        Defined custom elements (<pagefind-modal-trigger>, <pagefind-modal>,
+        <pagefind-config>) hydrate themselves once this module loads.
+        Skipped in dev because the asset only exists after `pagefind --site dist`.
+      */
+    }
+    {
+      import.meta.env.PROD && (
+        <script
+          type="module"
+          src="/pagefind/pagefind-component-ui.js"
+        />
+      )
+    }
   </body>
 </html>

@@ -1,0 +1,19 @@
+---
+/**
+ * Pagefind 1.5 Component UI wrapper.
+ *
+ * Search lifecycle (loading, query, results, modal open/close, kbd shortcut)
+ * is owned by the Pagefind web components — this component only mounts them.
+ *
+ * Bundled assets at /pagefind/pagefind-component-ui.{css,js} are loaded
+ * by BaseHead/BaseLayout. They are emitted by `pagefind --site dist`
+ * during the build step, so they only exist after `astro build`.
+ */
+---
+
+<pagefind-config lang="ko"></pagefind-config>
+<pagefind-modal-trigger
+  placeholder="검색"
+  shortcut="mod+k"
+></pagefind-modal-trigger>
+<pagefind-modal reset-on-close></pagefind-modal>

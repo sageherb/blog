@@ -58,6 +58,17 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <!-- favicon -->
 <link rel="icon" href={faviconHref} />
 
+<!--
+  Pagefind 1.5 Component UI stylesheet (bundled).
+  Asset is emitted by `pagefind --site dist` during build, so it only
+  exists in production builds. Skipped in dev to avoid 404 noise.
+-->
+{
+  import.meta.env.PROD && (
+    <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
+  )
+}
+
 <!-- canonical & discovery -->
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
