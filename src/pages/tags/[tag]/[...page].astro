@@ -1,10 +1,7 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import ContentSection from "@components/ContentSection.astro";
-import EmptyState from "@components/EmptyState.astro";
-import Pagination from "@components/Pagination.astro";
-import PostCard from "@components/PostCard.astro";
+import BlogIndexSection from "@components/BlogIndexSection.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { POSTS_PER_PAGE, SITE_TITLE } from "@config";
 import { getBlogPosts } from "@utils/content";
@@ -28,32 +25,15 @@ interface Props {
 
 const { page } = Astro.props;
 const { tag } = Astro.params;
-
-const pageTitle = SITE_TITLE;
 ---
 
-<BaseLayout title={pageTitle} description={`${tag} 태그가 붙은 글 목록`}>
-  <ContentSection>
-    <header class="mb-8">
+<BaseLayout title={SITE_TITLE} description={`${tag} 태그가 붙은 글 목록`}>
+  <BlogIndexSection page={page} emptyType="tag">
+    <header slot="header" class="mb-8">
       <h1 class="text-text text-xl font-bold sm:text-2xl">
         <span class="text-link">#</span>{tag}
       </h1>
       <p class="text-text-muted mt-1 text-sm">{page.total}개의 글</p>
     </header>
-
-    {
-      page.data.length === 0 ? (
-        <EmptyState type="tag" />
-      ) : (
-        <ul class="flex flex-col gap-10">
-          {page.data.map((post) => (
-            <li>
-              <PostCard post={post} />
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </ContentSection>
-  {page.lastPage > 1 && <Pagination page={page} />}
+  </BlogIndexSection>
 </BaseLayout>

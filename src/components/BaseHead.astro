@@ -15,6 +15,12 @@ interface Props {
   kind?: "page" | "post" | "portfolio";
   /** Blog post publish date (post only) */
   pubDate?: Date;
+  /**
+   * Override the canonical URL. Accepts a path (resolved against Astro.site)
+   * or an absolute URL. Used when a route shares content with another
+   * canonical route (e.g. `/blog` → `/`).
+   */
+  canonical?: string | URL;
 }
 
 const {
@@ -23,11 +29,18 @@ const {
   image,
   kind = "page",
   pubDate,
+  canonical,
 } = Astro.props;
 
-const canonicalURL = Astro.site
-  ? new URL(Astro.url.pathname, Astro.site)
-  : Astro.url;
+const canonicalURL = canonical
+  ? canonical instanceof URL
+    ? canonical
+    : Astro.site
+      ? new URL(canonical, Astro.site)
+      : new URL(canonical, Astro.url)
+  : Astro.site
+    ? new URL(Astro.url.pathname, Astro.site)
+    : Astro.url;
 
 const ogType = kind === "post" ? "article" : "website";
 

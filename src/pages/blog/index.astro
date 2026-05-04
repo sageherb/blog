@@ -5,10 +5,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "@config";
 import { getBlogPosts } from "@utils/content";
 import { buildBlogFirstPage } from "@utils/pagination";
 
+// `/blog` is an alt entry point to blog page 1. The canonical lives at `/`
+// to avoid duplicate-content signals.
 const posts = await getBlogPosts();
 const page = buildBlogFirstPage(posts);
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  canonical="/"
+>
   <BlogIndexSection page={page} />
 </BaseLayout>

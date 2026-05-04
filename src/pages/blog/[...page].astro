@@ -1,17 +1,19 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import ContentSection from "@components/ContentSection.astro";
-import EmptyState from "@components/EmptyState.astro";
-import Pagination from "@components/Pagination.astro";
-import PostCard from "@components/PostCard.astro";
+import BlogIndexSection from "@components/BlogIndexSection.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "@config";
+import { POSTS_PER_PAGE, SITE_TITLE } from "@config";
 import { getBlogPosts } from "@utils/content";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getBlogPosts();
-  return paginate(posts, { pageSize: POSTS_PER_PAGE });
+  // Page 1 is served by `/` (canonical) and `/blog` (alt entry).
+  // Astro's paginate emits page 1 with `params.page === undefined` — drop it
+  // so `/blog/1` is never generated.
+  return paginate(posts, { pageSize: POSTS_PER_PAGE }).filter(
+    (entry) => entry.params.page !== undefined,
+  );
 }
 
 interface Props {
@@ -19,28 +21,9 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const isFirstPage = page.currentPage === 1;
-const pageTitle = SITE_TITLE;
-const pageDescription = isFirstPage
-  ? SITE_DESCRIPTION
-  : `블로그 ${page.currentPage}페이지`;
+const description = `블로그 ${page.currentPage}페이지`;
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <ContentSection>
-    {
-      page.data.length === 0 ? (
-        <EmptyState type="blog" />
-      ) : (
-        <ul class="flex flex-col gap-10">
-          {page.data.map((post) => (
-            <li>
-              <PostCard post={post} />
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </ContentSection>
-  {page.lastPage > 1 && <Pagination page={page} />}
+<BaseLayout title={SITE_TITLE} description={description}>
+  <BlogIndexSection page={page} />
 </BaseLayout>
