@@ -6,6 +6,8 @@ interface Props {
 const { class: className = "" } = Astro.props;
 ---
 
-<section class:list={["bg-background flex flex-1 flex-col py-4 sm:py-8", className]}>
+<section
+  class:list={["bg-background flex flex-1 flex-col py-4 sm:py-8", className]}
+>
   <slot />
 </section>

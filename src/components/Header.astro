@@ -53,9 +53,11 @@ function isActive(href: string): boolean {
         ))
       }
       <li class="ml-1 flex items-center">
-        {/* Hydrate immediately: the inline FOUC script in BaseLayout sets the
+        {
+          /* Hydrate immediately: the inline FOUC script in BaseLayout sets the
             theme class before paint, but the toggle button's icon swap and
-            click handler must be live the moment the user can see/tap it. */}
+            click handler must be live the moment the user can see/tap it. */
+        }
         <ThemeToggle client:load />
       </li>
       <li class="flex items-center">

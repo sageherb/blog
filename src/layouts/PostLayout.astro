@@ -5,10 +5,7 @@ import TagBadge from "@components/TagBadge.astro";
 import type { ImageMetadata } from "astro";
 import { resolveOgImageUrl } from "@lib/og/image";
 import { formatDate } from "@utils/date";
-import {
-  buildBlogPostingJsonLd,
-  buildPersonJsonLd,
-} from "@utils/jsonld";
+import { buildBlogPostingJsonLd, buildPersonJsonLd } from "@utils/jsonld";
 
 interface Props {
   title: string;
@@ -84,8 +81,10 @@ const jsonLd = [
     <div class="prose prose-sm md:prose-base prose-article max-w-none">
       <slot />
     </div>
-    {/* Code blocks live within the article body; defer hydration until
-        the first one scrolls into view rather than blocking initial paint. */}
+    {
+      /* Code blocks live within the article body; defer hydration until
+        the first one scrolls into view rather than blocking initial paint. */
+    }
     <CodeCopy client:visible />
   </article>
 </BaseLayout>

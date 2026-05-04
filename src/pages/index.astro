@@ -11,10 +11,6 @@ const page = buildBlogFirstPage(posts);
 const jsonLd = [buildWebSiteJsonLd(), buildPersonJsonLd()];
 ---
 
-<BaseLayout
-  title={SITE_TITLE}
-  description={SITE_DESCRIPTION}
-  jsonLd={jsonLd}
->
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} jsonLd={jsonLd}>
   <BlogIndexSection page={page} />
 </BaseLayout>

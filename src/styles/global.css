@@ -315,28 +315,6 @@ html {
    6. Components
    ========================================================= */
 @layer components {
-  /* Skip link: hidden until keyboard focus, then anchored top-left. */
-  .skip-link {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    z-index: 50;
-    padding: 0.5rem 0.75rem;
-    background-color: var(--panel);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    text-decoration: none;
-    transform: translateY(-150%);
-    transition: transform 0.15s ease;
-  }
-
-  .skip-link:focus,
-  .skip-link:focus-visible {
-    transform: translateY(0);
-  }
-
   /* Navigation: active 상태 width 점프 방지 */
   .nav-item-label::after {
     content: attr(data-text);
@@ -413,26 +391,65 @@ html {
    오버라이드도 @layer 없이 유지해야 우선순위를 가짐.
    ========================================================= */
 
-/* Pagefind 1.5 Component UI: sage 토큰을 --pf-* 변수에 매핑.
-   라이프사이클·내부 마크업은 web component 책임이라 상세 셀렉터 없음. */
-pagefind-modal,
-pagefind-modal-trigger,
-pagefind-searchbox,
-pagefind-input,
-pagefind-results,
-pagefind-summary,
-pagefind-keyboard-hints {
+/* Pagefind Component UI
+   공식 1.5 Component UI를 그대로 두고, sage 토큰을 --pf-* 변수에
+   매핑해 시각 톤만 맞춘다. lifecycle·마크업은 web component 책임. */
+:root {
+  --pf-font: inherit;
+
   --pf-text: var(--text);
   --pf-text-secondary: var(--text-muted);
   --pf-text-muted: var(--text-subtle);
-  --pf-background: var(--panel);
-  --pf-border: var(--border);
-  --pf-border-focus: var(--focus-ring);
+  --pf-background: var(--surface);
   --pf-hover: var(--surface-hover);
-  --pf-mark: var(--accent-soft);
+  --pf-skeleton: var(--surface-hover);
+  --pf-skeleton-shine: var(--surface);
+
+  --pf-border: transparent;
+  --pf-border-focus: var(--focus-ring);
   --pf-outline-focus: var(--focus-ring);
-  --pf-modal-backdrop: rgb(0 0 0 / 0.35);
-  --pf-font: inherit;
+  --pf-outline-width: 2px;
+  --pf-outline-offset: 2px;
+
+  --pf-shadow-sm: none;
+  --pf-shadow-md: none;
+  --pf-shadow-lg: none;
+
+  --pf-border-radius: 6px;
+  --pf-mark: var(--link);
+
+  --pf-modal-backdrop: rgb(44 44 42 / 0.36);
+  --pf-modal-max-width: 40rem;
+  --pf-modal-top: 12dvh;
+
+  --pf-input-height: 44px;
+  --pf-input-font-size: 16px;
+  --pf-result-title-font-size: 15px;
+  --pf-result-excerpt-font-size: 14px;
+  --pf-results-gap: 0px;
+}
+
+.dark {
+  --pf-modal-backdrop: rgb(0 0 0 / 0.5);
+}
+
+/* Header trigger — quiet icon-style button.
+   `compact` 속성이 visible label span을 제거하고, placeholder가 inner
+   button의 aria-label을 채운다. 시각 톤은 변수만으로 처리해 internal
+   class override 없이 유지한다. focus ring은 Pagefind의 기본 규칙이
+   --pf-outline-focus(=focus-ring)를 그대로 읽으므로 별도 처리 불필요. */
+pagefind-modal-trigger.pagefind-search-trigger {
+  --pf-background: transparent;
+  --pf-border: transparent;
+  --pf-border-focus: transparent;
+  --pf-shadow-sm: none;
+  --pf-input-height: 36px;
+  --pf-text-muted: var(--text-muted);
+  display: inline-flex;
+}
+
+pagefind-modal-trigger.pagefind-search-trigger:hover {
+  --pf-text-muted: var(--text);
 }
 
 /* Shiki: dark mode color swap */

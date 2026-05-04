@@ -43,10 +43,9 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
     />
   </head>
   <body class="bg-background text-text flex min-h-dvh flex-col">
-    <a href="#main-content" class="skip-link">메인 콘텐츠로 건너뛰기</a>
     <div class="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6">
       <Header />
-      <main id="main-content" class="flex flex-1 flex-col">
+      <main class="flex flex-1 flex-col">
         <slot />
       </main>
       <Footer />
