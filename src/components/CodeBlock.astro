@@ -30,4 +30,5 @@ const { code, lang = "text", filename } = Astro.props;
     )
   }
   <Code {code} {lang} />
+  <button type="button" class="copy-btn" aria-label="코드 복사">Copy</button>
 </div>

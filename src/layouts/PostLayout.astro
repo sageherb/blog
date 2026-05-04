@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import CodeCopy from "@components/CodeCopy";
 import TagBadge from "@components/TagBadge.astro";
 import type { ImageMetadata } from "astro";
 import { resolveOgImageUrl } from "@lib/og/image";
@@ -81,10 +80,8 @@ const jsonLd = [
     <div class="prose prose-sm md:prose-base prose-article max-w-none">
       <slot />
     </div>
-    {
-      /* Code blocks live within the article body; defer hydration until
-        the first one scrolls into view rather than blocking initial paint. */
-    }
-    <CodeCopy client:visible />
   </article>
+  <script>
+    import "../scripts/copy-code";
+  </script>
 </BaseLayout>

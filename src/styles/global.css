@@ -341,8 +341,9 @@ html {
     font-weight: 600;
   }
 
-  /* Prose: code block + copy button */
-  .prose pre {
+  /* Prose: code block + copy button. Wrapper from rehype plugin and
+     CodeBlock.astro: <div class="code-block"><pre>…</pre><button class="copy-btn">…</button></div> */
+  .prose .code-block {
     position: relative;
   }
 
@@ -352,7 +353,7 @@ html {
     border-top: none;
   }
 
-  .prose pre .copy-btn {
+  .prose .code-block .copy-btn {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -373,12 +374,12 @@ html {
       border-color 0.15s;
   }
 
-  .prose pre:hover .copy-btn,
-  .prose pre .copy-btn:focus-visible {
+  .prose .code-block:hover .copy-btn,
+  .prose .code-block .copy-btn:focus-visible {
     opacity: 1;
   }
 
-  .prose pre .copy-btn:hover {
+  .prose .code-block .copy-btn:hover {
     background: var(--accent-solid);
     color: var(--accent-contrast);
     border-color: var(--accent-solid);
