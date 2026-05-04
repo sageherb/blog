@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
+
+interface Props {
+  image?: ImageMetadata;
+  alt: string;
+  href: string;
+}
+
+const { image, alt, href } = Astro.props;
+const cover = image ?? placeholderCover;
+---
+
+<a href={href} class="block aspect-video overflow-hidden">
+  <Image
+    src={cover}
+    alt={alt}
+    width={800}
+    height={450}
+    loading="lazy"
+    class="h-full w-full object-cover"
+  />
+</a>

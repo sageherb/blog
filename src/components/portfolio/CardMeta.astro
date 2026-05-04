@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+import TechBadge from "@components/TechBadge.astro";
+import { formatPeriod } from "@utils/date";
+
+interface Props {
+  entry: CollectionEntry<"portfolio">;
+  href: string;
+}
+
+const { entry, href } = Astro.props;
+const { title, description, startDate, endDate, techStack } = entry.data;
+const periodText = formatPeriod(startDate, endDate);
+---
+
+<div class="flex flex-wrap items-baseline gap-3">
+  <a href={href} class="group">
+    <h2
+      class="text-text group-hover:text-link text-lg leading-snug font-semibold transition-colors sm:text-xl"
+    >
+      {title}
+    </h2>
+  </a>
+  {
+    periodText && (
+      <span class="text-text-subtle text-xs md:text-sm">{periodText}</span>
+    )
+  }
+</div>
+
+<p class="text-text-muted line-clamp-2 text-sm sm:text-base">
+  {description}
+</p>
+
+{
+  techStack.length > 0 && (
+    <div class="flex flex-wrap gap-x-1.5 gap-y-0.5">
+      {techStack.map((name) => (
+        <TechBadge name={name} size="sm" />
+      ))}
+    </div>
+  )
+}
