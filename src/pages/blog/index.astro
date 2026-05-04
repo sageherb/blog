@@ -3,18 +3,21 @@ import BlogIndexSection from "@components/BlogIndexSection.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@config";
 import { getBlogPosts } from "@utils/content";
+import { buildPersonJsonLd, buildWebSiteJsonLd } from "@utils/jsonld";
 import { buildBlogFirstPage } from "@utils/pagination";
 
 // `/blog` is an alt entry point to blog page 1. The canonical lives at `/`
 // to avoid duplicate-content signals.
 const posts = await getBlogPosts();
 const page = buildBlogFirstPage(posts);
+const jsonLd = [buildWebSiteJsonLd(), buildPersonJsonLd()];
 ---
 
 <BaseLayout
   title={SITE_TITLE}
   description={SITE_DESCRIPTION}
   canonical="/"
+  jsonLd={jsonLd}
 >
   <BlogIndexSection page={page} />
 </BaseLayout>

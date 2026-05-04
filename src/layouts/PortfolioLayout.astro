@@ -7,6 +7,7 @@ import TechBadge from "@components/TechBadge.astro";
 import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
 import { resolveOgImageUrl } from "@lib/og/image";
 import { formatDate, formatPeriod } from "@utils/date";
+import { buildPersonJsonLd } from "@utils/jsonld";
 
 interface Props {
   title: string;
@@ -45,6 +46,7 @@ const selectedOgImage = resolveOgImageUrl({
   description={description}
   kind="portfolio"
   image={selectedOgImage}
+  jsonLd={buildPersonJsonLd()}
 >
   <article class="py-4 sm:py-8" data-pagefind-body>
     <meta data-pagefind-meta={`desc:${description}`} />

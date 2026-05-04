@@ -1,5 +1,6 @@
 ---
 import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "@config";
+import type { JsonLdInput } from "@utils/jsonld";
 
 interface Props {
   title: string;
@@ -21,6 +22,8 @@ interface Props {
    * canonical route (e.g. `/blog` → `/`).
    */
   canonical?: string | URL;
+  /** Structured data — single object or array, emitted as <script type="application/ld+json">. */
+  jsonLd?: JsonLdInput;
 }
 
 const {
@@ -30,7 +33,10 @@ const {
   kind = "page",
   pubDate,
   canonical,
+  jsonLd,
 } = Astro.props;
+
+const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
 const canonicalURL = canonical
   ? canonical instanceof URL
@@ -114,3 +120,14 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+<!-- JSON-LD structured data -->
+{
+  jsonLdItems.map((ld) => (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(ld)}
+    />
+  ))
+}
