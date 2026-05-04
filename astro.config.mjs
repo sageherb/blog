@@ -7,7 +7,12 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://sageherb.dev",
   output: "static",
-  integrations: [mdx(), preact(), sitemap()],
+  integrations: [
+    mdx(),
+    preact(),
+    // OG image endpoints are PNGs served from /og/* — exclude from sitemap.
+    sitemap({ filter: (page) => !page.includes("/og/") }),
+  ],
   markdown: {
     shikiConfig: {
       themes: {
