@@ -396,7 +396,7 @@ html {
    공식 1.5 Component UI를 그대로 두고, sage 토큰을 --pf-* 변수에
    매핑해 시각 톤만 맞춘다. lifecycle·마크업은 web component 책임. */
 :root {
-  --pf-font: inherit;
+  --pf-font: var(--font-sans);
 
   --pf-text: var(--text);
   --pf-text-secondary: var(--text-muted);
