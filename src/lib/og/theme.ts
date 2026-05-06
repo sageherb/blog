@@ -10,7 +10,7 @@ export const OG_THEME = {
   background: "#f8f7f4", // Sand
   text: "#2c2c2a", // Bark
   textMuted: "#9aaa90", // Mist
-  accent: "#476e64", // Sage
+  accent: "#8ebbaf", // Sage
 } as const;
 
 /** Title font size scaled by character count to fit within the canvas. */

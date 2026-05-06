@@ -3,6 +3,7 @@ title: "블로그 완성"
 description: "Astro를 이용해 블로그를 완성했다."
 pubDate: 2026-03-10
 tags:
+  - Reflection
   - Blog
   - Astro
   - Pagefind
