@@ -5,7 +5,7 @@
  * Output shape:
  *   <div class="code-block">
  *     <pre><code>...</code></pre>
- *     <button type="button" class="copy-btn" aria-label="코드 복사">Copy</button>
+ *     <button type="button" class="copy-btn" aria-label="Copy code">Copy</button>
  *   </div>
  *
  * The button stays OUTSIDE the `<pre>` so its label can never bleed into
@@ -64,7 +64,7 @@ function wrapWithCodeBlock(pre) {
         properties: {
           type: "button",
           className: ["copy-btn"],
-          "aria-label": "코드 복사",
+          "aria-label": "Copy code",
         },
         children: [{ type: "text", value: "Copy" }],
       },

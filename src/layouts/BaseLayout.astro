@@ -23,12 +23,16 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
 <html lang="ko" class="h-full antialiased">
   <head>
     <script is:inline>
-      const stored = localStorage.getItem("theme");
-      if (
-        stored === "dark" ||
-        (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
+      try {
+        const stored = localStorage.getItem("theme");
+        if (
+          stored === "dark" ||
+          (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch {
+        /* private mode / SecurityError — fall through to default light */
       }
     </script>
     <BaseHead
