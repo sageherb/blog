@@ -1,16 +1,5 @@
 ---
-import BlogIndexSection from "@components/BlogIndexSection.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "@config";
-import BaseLayout from "@layouts/BaseLayout.astro";
-import { getBlogPosts } from "@utils/content";
-import { buildPersonJsonLd, buildWebSiteJsonLd } from "@utils/jsonld";
-import { buildBlogFirstPage } from "@utils/pagination";
-
-const posts = await getBlogPosts();
-const page = buildBlogFirstPage(posts);
-const jsonLd = [buildWebSiteJsonLd(), buildPersonJsonLd()];
+import BlogIndexPage from "@components/BlogIndexPage.astro";
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} jsonLd={jsonLd}>
-  <BlogIndexSection page={page} />
-</BaseLayout>
+<BlogIndexPage />
