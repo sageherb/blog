@@ -13,6 +13,12 @@ const badgeClass =
       : "bg-accent-soft text-link hover:bg-accent-soft-hover hover:text-link-hover inline-flex h-5 items-center justify-center rounded-md px-2 text-xs transition-colors";
 ---
 
-<a href={`/tags/${encodeURIComponent(tag)}`} class={badgeClass}>
+<a
+  href={`/tags/${encodeURIComponent(tag)}`}
+  class:list={[
+    badgeClass,
+    "focus-visible:ring-link focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+  ]}
+>
   <span class="leading-none">#{tag}</span>
 </a>

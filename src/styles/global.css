@@ -239,6 +239,13 @@ html {
     color: var(--text);
   }
 
+  /* 한글 헤딩 타이포 정책: 단어 중간에서 줄바꿈 방지(word-break: keep-all)
+     + 줄바꿈 균형(text-wrap: balance). 영문에는 영향 없음, 한글에만 효과. */
+  :where(h1, h2, h3, h4, h5, h6) {
+    word-break: keep-all;
+    text-wrap: balance;
+  }
+
   :where(input, textarea, select, button) {
     font: inherit;
   }
@@ -363,7 +370,7 @@ html {
     font-family: inherit;
     background: var(--badge-neutral-bg);
     color: var(--badge-neutral-text);
-    border: none;
+    border: 1px solid transparent;
     border-radius: 0.375rem;
     cursor: pointer;
     opacity: 0;
@@ -383,6 +390,22 @@ html {
     background: var(--accent-solid);
     color: var(--accent-contrast);
     border-color: var(--accent-solid);
+  }
+
+  /* ThemeToggle: 아이콘 표시는 html.dark CSS selector 기반.
+     SSR HTML이 light 가정으로 직렬화되어도 인라인 FOUC 스크립트가 paint 전에
+     html.dark를 토글하므로 다크 사용자 첫 paint flicker 0회 보장. */
+  .theme-toggle [data-icon="sun"] {
+    display: none;
+  }
+  .theme-toggle [data-icon="moon"] {
+    display: block;
+  }
+  html.dark .theme-toggle [data-icon="moon"] {
+    display: none;
+  }
+  html.dark .theme-toggle [data-icon="sun"] {
+    display: block;
   }
 }
 
@@ -460,4 +483,23 @@ pagefind-modal-trigger.pagefind-search-trigger:hover {
   background-color: var(--shiki-dark-bg) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* =========================================================
+   8. Reduced motion (WCAG 2.3.3)
+   사용자가 prefers-reduced-motion: reduce를 설정하면 모든
+   transition / animation / scroll-behavior를 거의 즉시 종료
+   시켜 motion에 민감한 사용자에게 안전한 경험 제공.
+   .copy-btn / .theme-toggle / 카드 hover 등 모든 transition을
+   포함해 global하게 무력화.
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
