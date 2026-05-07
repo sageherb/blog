@@ -13,7 +13,7 @@ const navItems = [
 
 function isActive(href: string): boolean {
   if (href === "/about") return path === "/about" || path === "/about/";
-  return path === href || path.startsWith(href + "/");
+  return path === href || path.startsWith(`${href}/`);
 }
 ---
 

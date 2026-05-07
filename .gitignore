@@ -1,7 +1,11 @@
 # build output
 dist/
+
 # generated types
 .astro/
+
+# ESLint cache
+.eslintcache
 
 # dependencies
 node_modules/

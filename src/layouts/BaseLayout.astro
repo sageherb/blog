@@ -1,9 +1,9 @@
 ---
-import "@styles/global.css";
+import type { JsonLdInput } from "@utils/jsonld";
 import BaseHead from "@components/BaseHead.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
-import type { JsonLdInput } from "@utils/jsonld";
+import "@styles/global.css";
 
 interface Props {
   title: string;
@@ -22,7 +22,6 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
 <!doctype html>
 <html lang="ko" class="h-full antialiased">
   <head>
-    <!-- apply theme before first paint to prevent flash of unstyled content -->
     <script is:inline>
       const stored = localStorage.getItem("theme");
       if (
@@ -50,14 +49,6 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
       </main>
       <Footer />
     </div>
-    {
-      /*
-        Pagefind 1.5 Component UI runtime (bundled).
-        Defined custom elements (<pagefind-modal-trigger>, <pagefind-modal>,
-        <pagefind-config>) hydrate themselves once this module loads.
-        Skipped in dev because the asset only exists after `pagefind --site dist`.
-      */
-    }
     {
       import.meta.env.PROD && (
         <script

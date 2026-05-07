@@ -1,8 +1,8 @@
 import { Resvg } from "@resvg/resvg-js";
 import satori from "satori";
 import { loadOgFonts } from "./fonts";
-import { OG_SIZE } from "./theme";
 import { OgTemplate } from "./template";
+import { OG_SIZE } from "./theme";
 
 interface RenderOgOptions {
   title: string;

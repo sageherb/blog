@@ -10,5 +10,20 @@
     "shiki",
     "Supabase",
     "Velog"
-  ]
+  ],
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "astro",
+    "markdown",
+    "yaml",
+    "json",
+    "jsonc"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

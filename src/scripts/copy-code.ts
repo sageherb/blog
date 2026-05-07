@@ -5,7 +5,7 @@
  */
 const COPY_RESET_DELAY_MS = 2000;
 
-document.addEventListener("click", async (event) => {
+document.addEventListener("click", (event) => {
   const target = event.target;
   if (!(target instanceof Element)) return;
 
@@ -18,14 +18,16 @@ document.addEventListener("click", async (event) => {
 
   const originalLabel = btn.textContent ?? "Copy";
 
-  try {
-    await navigator.clipboard.writeText(code);
-    btn.textContent = "Copied!";
-  } catch {
-    btn.textContent = "Error";
-  }
+  void (async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      btn.textContent = "Copied!";
+    } catch {
+      btn.textContent = "Error";
+    }
 
-  window.setTimeout(() => {
-    btn.textContent = originalLabel;
-  }, COPY_RESET_DELAY_MS);
+    window.setTimeout(() => {
+      btn.textContent = originalLabel;
+    }, COPY_RESET_DELAY_MS);
+  })();
 });

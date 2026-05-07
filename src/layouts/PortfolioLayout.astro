@@ -1,13 +1,13 @@
 ---
-import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
 import CardLinks from "@components/portfolio/CardLinks.astro";
 import TechBadge from "@components/TechBadge.astro";
-import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import { resolveOgImageUrl } from "@lib/og/image";
 import { formatDate, formatPeriod } from "@utils/date";
 import { buildPersonJsonLd } from "@utils/jsonld";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;

@@ -16,12 +16,7 @@ const live = links?.live;
 
 {
   (github || live) && (
-    <div
-      class:list={[
-        "flex flex-wrap items-center gap-4",
-        className,
-      ]}
-    >
+    <div class:list={["flex flex-wrap items-center gap-4", className]}>
       {github && (
         <a
           href={github}

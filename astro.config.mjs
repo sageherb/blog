@@ -11,7 +11,6 @@ export default defineConfig({
   integrations: [
     mdx(),
     preact(),
-    // OG image endpoints are PNGs served from /og/* — exclude from sitemap.
     sitemap({ filter: (page) => !page.includes("/og/") }),
   ],
   markdown: {

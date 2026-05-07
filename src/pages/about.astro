@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE_TITLE } from "@config";
-import { getEntry, render } from "astro:content";
 import ContentSection from "@components/ContentSection.astro";
+import { SITE_TITLE } from "@config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getEntry, render } from "astro:content";
 
 const entry = await getEntry("about", "index");
 if (!entry) throw new Error("About content not found");

@@ -1,4 +1,5 @@
 ---
+import type { ComponentProps } from "astro/types";
 /**
  * MDX 파일에서 파일명과 함께 코드 블록을 표시할 때 사용.
  * 일반 마크다운 펜스(```) 코드 블록은 Shiki가 자동 처리함.
@@ -8,7 +9,6 @@
  *   <CodeBlock code={`const x = 1;`} lang="ts" filename="example.ts" />
  */
 import { Code } from "astro:components";
-import type { ComponentProps } from "astro/types";
 
 type CodeLang = ComponentProps<typeof Code>["lang"];
 

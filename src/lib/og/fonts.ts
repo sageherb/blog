@@ -1,6 +1,7 @@
+import type { Font } from "satori";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import type { Font } from "satori";
+import process from "node:process";
 
 const FONT_PATHS = {
   regular: resolve(process.cwd(), "src/assets/fonts/Pretendard-Regular.otf"),
@@ -15,7 +16,7 @@ let fontCache: Promise<Font[]> | undefined;
  *
  * Satori does not support WOFF2, so OG fonts must stay in OTF/TTF/WOFF.
  */
-export function loadOgFonts(): Promise<Font[]> {
+export async function loadOgFonts(): Promise<Font[]> {
   if (!fontCache) {
     fontCache = Promise.all([
       readFile(FONT_PATHS.regular),

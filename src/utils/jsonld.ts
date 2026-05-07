@@ -72,7 +72,9 @@ export function buildBlogPostingJsonLd(input: BlogPostingInput): JsonLdObject {
     inLanguage: "ko-KR",
     author: { "@type": "Person", name: AUTHOR, url: SITE.toString() },
     ...(input.tags.length > 0 ? { keywords: input.tags.join(", ") } : {}),
-    ...(input.ogImagePath ? { image: absolute(input.ogImagePath) } : {}),
+    ...(input.ogImagePath != null && input.ogImagePath !== ""
+      ? { image: absolute(input.ogImagePath) }
+      : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   };
 }

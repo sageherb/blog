@@ -1,5 +1,5 @@
 /** @jsxImportSource preact */
-import { OG_SIZE, OG_THEME, getTitleFontSize } from "./theme";
+import { getTitleFontSize, OG_SIZE, OG_THEME } from "./theme";
 
 interface OgTemplateProps {
   title: string;

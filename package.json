@@ -1,12 +1,15 @@
 {
   "name": "blog",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:inspect": "eslint --inspect-config"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -22,8 +25,13 @@
     "tailwindcss": "^4.2.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^8.2.0",
     "@astrojs/check": "^0.9.9",
     "@tailwindcss/typography": "^0.5.19",
+    "astro-eslint-parser": "^1.4.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "jiti": "^2.7.0",
     "pagefind": "1.5.2",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",
