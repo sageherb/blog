@@ -78,3 +78,11 @@ export function buildBlogPostingJsonLd(input: BlogPostingInput): JsonLdObject {
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   };
 }
+
+/** Escape HTML-sensitive characters in a JSON string for safe `<script>` embedding. */
+export function escapeJsonForHtml(json: string): string {
+  return json
+    .replaceAll("<", "\\u003c")
+    .replaceAll(">", "\\u003e")
+    .replaceAll("&", "\\u0026");
+}

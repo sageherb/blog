@@ -18,7 +18,7 @@ interface Props {
   filename?: string;
 }
 
-const { code, lang = "text", filename } = Astro.props;
+const { code, lang = "plaintext", filename } = Astro.props;
 ---
 
 <div class="code-block">
@@ -30,5 +30,5 @@ const { code, lang = "text", filename } = Astro.props;
     )
   }
   <Code {code} {lang} />
-  <button type="button" class="copy-btn" aria-label="코드 복사">Copy</button>
+  <button type="button" class="copy-btn" aria-label="Copy code">Copy</button>
 </div>

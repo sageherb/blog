@@ -4,7 +4,6 @@ import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
 import CardLinks from "@components/portfolio/CardLinks.astro";
 import TechBadge from "@components/TechBadge.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { resolveOgImageUrl } from "@lib/og/image";
 import { formatDate, formatPeriod } from "@utils/date";
 import { buildPersonJsonLd } from "@utils/jsonld";
 import { Image } from "astro:assets";
@@ -35,10 +34,7 @@ const {
 
 const periodText = formatPeriod(startDate, endDate) ?? formatDate(pubDate);
 const cover = coverImage ?? placeholderCover;
-const selectedOgImage = resolveOgImageUrl({
-  overrideUrl: coverImage?.src,
-  autoUrl: ogImagePath,
-});
+const selectedOgImage = coverImage?.src ?? ogImagePath;
 ---
 
 <BaseLayout
@@ -48,8 +44,7 @@ const selectedOgImage = resolveOgImageUrl({
   image={selectedOgImage}
   jsonLd={buildPersonJsonLd()}
 >
-  <article class="py-4 sm:py-8" data-pagefind-body>
-    <meta data-pagefind-meta={`desc:${description}`} />
+  <article class="py-4 sm:py-8" data-pagefind-body data-pagefind-meta={`desc:${description}`}>
     <header class="mb-8 space-y-3 sm:mb-10" data-pagefind-ignore>
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}

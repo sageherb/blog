@@ -2,7 +2,6 @@
 import type { ImageMetadata } from "astro";
 import TagBadge from "@components/TagBadge.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { resolveOgImageUrl } from "@lib/og/image";
 import { formatDate } from "@utils/date";
 import { buildBlogPostingJsonLd, buildPersonJsonLd } from "@utils/jsonld";
 
@@ -26,10 +25,7 @@ const {
 
 const formattedPubDate = formatDate(pubDate);
 
-const selectedOgImage = resolveOgImageUrl({
-  overrideUrl: coverImage?.src,
-  autoUrl: ogImagePath,
-});
+const selectedOgImage = coverImage?.src ?? ogImagePath;
 
 const jsonLd = [
   buildBlogPostingJsonLd({
@@ -52,8 +48,7 @@ const jsonLd = [
   image={selectedOgImage}
   jsonLd={jsonLd}
 >
-  <article class="py-4 sm:py-8" data-pagefind-body>
-    <meta data-pagefind-meta={`desc:${description}`} />
+  <article class="py-4 sm:py-8" data-pagefind-body data-pagefind-meta={`desc:${description}`}>
     <header class="mb-8 space-y-3 sm:mb-10" data-pagefind-ignore>
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
@@ -81,6 +76,6 @@ const jsonLd = [
     </div>
   </article>
   <script>
-    import "../scripts/copy-code";
+    import "@scripts/copy-code";
   </script>
 </BaseLayout>

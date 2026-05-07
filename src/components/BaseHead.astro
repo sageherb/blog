@@ -1,5 +1,5 @@
 ---
-import type { JsonLdInput } from "@utils/jsonld";
+import { escapeJsonForHtml, type JsonLdInput } from "@utils/jsonld";
 import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "@config";
 
 interface Props {
@@ -69,7 +69,6 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <!-- font: Pretendard Variable (dynamic subset via CDN) -->
 <link
   rel="stylesheet"
-  as="style"
   crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
 />
@@ -127,7 +126,7 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
     <script
       is:inline
       type="application/ld+json"
-      set:html={JSON.stringify(ld)}
+      set:html={escapeJsonForHtml(JSON.stringify(ld))}
     />
   ))
 }
