@@ -24,7 +24,7 @@ export function buildBlogFirstPage<T>(items: T[]): Page<T> {
       prev: undefined,
       next: lastPage > 1 ? "/blog/2" : undefined,
       first: undefined,
-      last: undefined,
+      last: lastPage > 1 ? `/blog/${lastPage}` : undefined,
     },
   };
 }

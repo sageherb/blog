@@ -11,11 +11,17 @@ const yearMonth = new Intl.DateTimeFormat(KO_LOCALE, {
   month: "long",
 });
 
+function isValidDate(date: Date): boolean {
+  return !Number.isNaN(date.getTime());
+}
+
 export function formatDate(date: Date): string {
+  if (!isValidDate(date)) return "";
   return yearMonthDay.format(date);
 }
 
 export function formatYearMonth(date: Date): string {
+  if (!isValidDate(date)) return "";
   return yearMonth.format(date);
 }
 
@@ -23,6 +29,8 @@ export function formatPeriod(
   start: Date | undefined,
   end: Date | undefined,
 ): string | null {
-  if (!start) return null;
-  return `${formatYearMonth(start)} — ${end ? formatYearMonth(end) : "진행 중"}`;
+  if (!start || !isValidDate(start)) return null;
+  const startText = formatYearMonth(start);
+  const endText = end && isValidDate(end) ? formatYearMonth(end) : "진행 중";
+  return `${startText} — ${endText}`;
 }

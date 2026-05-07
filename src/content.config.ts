@@ -41,6 +41,7 @@ const about = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    draft: z.boolean().default(false),
   }),
 });
 
