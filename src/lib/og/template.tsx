@@ -95,8 +95,10 @@ export function OgTemplate({ title, date, tags = [] }: OgTemplateProps) {
       >
         <div style={{ display: "flex" }}>{date ?? ""}</div>
         <div style={{ display: "flex", gap: 16 }}>
-          {visibleTags.map((tag) => (
-            <span style={{ display: "flex" }}>#{tag}</span>
+          {visibleTags.map((tag, i) => (
+            <span key={`${tag}:${i}`} style={{ display: "flex" }}>
+              #{tag}
+            </span>
           ))}
         </div>
       </div>
