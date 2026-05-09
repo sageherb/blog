@@ -11,7 +11,8 @@
       "@assets/*": ["./src/assets/*"],
       "@content/*": ["./src/content/*"],
       "@utils/*": ["./src/utils/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@scripts/*": ["./src/scripts/*"]
     },
     "verbatimModuleSyntax": true
   },
