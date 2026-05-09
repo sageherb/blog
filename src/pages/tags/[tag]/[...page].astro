@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import BlogIndexSection from "@components/BlogIndexSection.astro";
+import PostList from "@components/blog/PostList.astro";
 import { POSTS_PER_PAGE, SITE_TITLE } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getBlogPosts } from "@utils/content";
@@ -28,12 +28,12 @@ const { tag } = Astro.params;
 ---
 
 <BaseLayout title={SITE_TITLE} description={`${tag} 태그가 붙은 글 목록`}>
-  <BlogIndexSection page={page} emptyType="tag">
+  <PostList page={page} emptyType="tag">
     <header slot="header" class="mb-8">
       <h1 class="text-text text-xl font-bold sm:text-2xl">
         <span class="text-link">#</span>{tag}
       </h1>
       <p class="text-text-muted mt-1 text-sm">{page.total}개의 글</p>
     </header>
-  </BlogIndexSection>
+  </PostList>
 </BaseLayout>

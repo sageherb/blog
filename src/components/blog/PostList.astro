@@ -1,10 +1,10 @@
 ---
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import ContentSection from "@components/ContentSection.astro";
-import EmptyState from "@components/EmptyState.astro";
-import Pagination from "@components/Pagination.astro";
-import PostCard from "@components/PostCard.astro";
+import PostCard from "@components/blog/PostCard.astro";
+import EmptyState from "@components/ui/EmptyState.astro";
+import PageSection from "@components/ui/PageSection.astro";
+import Pagination from "@components/ui/Pagination.astro";
 
 interface Props {
   page: Page<CollectionEntry<"blog">>;
@@ -15,7 +15,7 @@ interface Props {
 const { page, emptyType = "blog" } = Astro.props;
 ---
 
-<ContentSection>
+<PageSection>
   <slot name="header" />
   {
     page.data.length === 0 ? (
@@ -30,5 +30,5 @@ const { page, emptyType = "blog" } = Astro.props;
       </ul>
     )
   }
-</ContentSection>
+</PageSection>
 {page.lastPage > 1 && <Pagination page={page} />}

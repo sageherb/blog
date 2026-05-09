@@ -1,5 +1,5 @@
 ---
-import ContentSection from "@components/ContentSection.astro";
+import PageSection from "@components/ui/PageSection.astro";
 import { SITE_TITLE } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getEntry, render } from "astro:content";
@@ -12,9 +12,9 @@ const { description } = entry.data;
 ---
 
 <BaseLayout title={SITE_TITLE} description={description}>
-  <ContentSection>
+  <PageSection>
     <article class="prose prose-sm md:prose-base prose-article max-w-none">
       <Content />
     </article>
-  </ContentSection>
+  </PageSection>
 </BaseLayout>
