@@ -1,6 +1,6 @@
 ---
 import PagefindSearch from "@components/PagefindSearch.astro";
-import ThemeToggle from "@components/ThemeToggle";
+import ThemeToggle from "@components/ThemeToggle.astro";
 import { SITE_FAVICON, SITE_TITLE } from "@config";
 
 const path = Astro.url.pathname;
@@ -53,12 +53,7 @@ function isActive(href: string): boolean {
         ))
       }
       <li class="ml-1 flex items-center">
-        {
-          /* Hydrate immediately: the inline FOUC script in BaseLayout sets the
-            theme class before paint, but the toggle button's icon swap and
-            click handler must be live the moment the user can see/tap it. */
-        }
-        <ThemeToggle client:load />
+        <ThemeToggle />
       </li>
       <li class="flex items-center">
         <PagefindSearch />
