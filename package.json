@@ -15,13 +15,13 @@
     "lint:inspect": "eslint --inspect-config"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.4",
-    "@astrojs/preact": "^5.1.2",
+    "@astrojs/mdx": "^5.0.5",
+    "@astrojs/preact": "^5.1.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.2.0",
-    "astro": "^6.1.10",
+    "astro": "^6.3.2",
     "preact": "^10.28.4",
     "satori": "^0.25.0",
     "sharp": "^0.34.5",
