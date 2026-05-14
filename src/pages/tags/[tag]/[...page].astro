@@ -1,12 +1,12 @@
 ---
-import type { GetStaticPathsOptions, Page } from "astro";
+import type { GetStaticPaths, GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 import PostList from "@components/blog/PostList.astro";
 import { POSTS_PER_PAGE, SITE_TITLE } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getBlogPosts } from "@utils/content";
 
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
   const posts = await getBlogPosts();
   const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
 
@@ -14,17 +14,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const filtered = posts.filter((p) => p.data.tags.includes(tag));
     return paginate(filtered, {
       params: { tag },
+      props: { tag },
       pageSize: POSTS_PER_PAGE,
     });
   });
-}
+}) satisfies GetStaticPaths;
 
 interface Props {
   page: Page<CollectionEntry<"blog">>;
+  tag: string;
 }
 
-const { page } = Astro.props;
-const { tag } = Astro.params;
+const { page, tag } = Astro.props;
 ---
 
 <BaseLayout title={SITE_TITLE} description={`${tag} 태그가 붙은 글 목록`}>

@@ -19,7 +19,7 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-export const GET: APIRoute = async ({ props }) => {
-  const { title, date } = props as Props;
+export const GET = (async ({ props }) => {
+  const { title, date } = props;
   return createOgImageResponse({ title, date });
-};
+}) satisfies APIRoute<Props>;
