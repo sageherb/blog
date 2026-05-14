@@ -2,15 +2,13 @@
 import PortfolioCard from "@components/portfolio/Card.astro";
 import EmptyState from "@components/ui/EmptyState.astro";
 import PageSection from "@components/ui/PageSection.astro";
-import { SITE_TITLE } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getPortfolioPosts } from "@utils/content";
 
 const entries = await getPortfolioPosts();
-const pageTitle = SITE_TITLE;
 ---
 
-<BaseLayout title={pageTitle} description="프로젝트 모음">
+<BaseLayout title="Portfolio" description="프로젝트 모음">
   <PageSection>
     {
       entries.length === 0 ? (

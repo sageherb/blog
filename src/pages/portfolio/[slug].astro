@@ -1,16 +1,17 @@
 ---
+import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import PortfolioLayout from "@layouts/PortfolioLayout.astro";
 import { getPortfolioPosts } from "@utils/content";
 import { render } from "astro:content";
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const entries = await getPortfolioPosts();
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
   }));
-}
+}) satisfies GetStaticPaths;
 
 interface Props {
   entry: CollectionEntry<"portfolio">;

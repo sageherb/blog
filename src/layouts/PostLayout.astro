@@ -57,24 +57,14 @@ const jsonLd = [
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
-      <div
-        class="flex flex-wrap items-center gap-x-2 gap-y-1"
-      >
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
         <time
           datetime={pubDate.toISOString()}
           class="text-text-subtle text-xs sm:text-sm"
         >
           {formattedPubDate}
         </time>
-        {
-          tags.length > 0 && (
-            <>
-              {tags.map((tag) => (
-                <TagBadge tag={tag} size="sm" />
-              ))}
-            </>
-          )
-        }
+        {tags.map((tag) => <TagBadge tag={tag} size="sm" />)}
       </div>
     </header>
 

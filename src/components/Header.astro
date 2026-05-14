@@ -33,24 +33,27 @@ function isActive(href: string): boolean {
   <nav aria-label="Main navigation">
     <ul class="flex h-9 items-center gap-1">
       {
-        navItems.map(({ href, label }) => (
-          <li class="flex items-center">
-            <a
-              href={href}
-              aria-current={isActive(href) ? "page" : undefined}
-              class:list={[
-                "inline-flex h-9 items-center rounded-sm px-3 text-sm leading-none transition-colors",
-                isActive(href)
-                  ? "text-link font-medium"
-                  : "text-text-muted hover:text-text",
-              ]}
-            >
-              <span class="nav-item-label relative top-px" data-text={label}>
-                {label}
-              </span>
-            </a>
-          </li>
-        ))
+        navItems.map(({ href, label }) => {
+          const active = isActive(href);
+          return (
+            <li class="flex items-center">
+              <a
+                href={href}
+                aria-current={active ? "page" : undefined}
+                class:list={[
+                  "inline-flex h-9 items-center rounded-sm px-3 text-sm leading-none transition-colors",
+                  active
+                    ? "text-link font-medium"
+                    : "text-text-muted hover:text-text",
+                ]}
+              >
+                <span class="nav-item-label relative top-px" data-text={label}>
+                  {label}
+                </span>
+              </a>
+            </li>
+          );
+        })
       }
       <li class="ml-1 flex items-center">
         <ThemeToggle />

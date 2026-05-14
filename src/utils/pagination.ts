@@ -1,13 +1,6 @@
 import type { Page } from "astro";
 import { POSTS_PER_PAGE } from "@config";
 
-/**
- * Build a Page<T> for blog page 1.
- *
- * Used by `/` and `/blog` (both render the first page of blog posts).
- * `url.current` is hardcoded to "/blog" so the shared Pagination component
- * generates correct `/blog/2+` links from either entry point.
- */
 export function buildBlogFirstPage<T>(items: T[]): Page<T> {
   const total = items.length;
   const lastPage = Math.max(1, Math.ceil(total / POSTS_PER_PAGE));

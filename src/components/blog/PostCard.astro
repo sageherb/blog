@@ -29,14 +29,6 @@ const formattedDate = formatDate(pubDate);
     >
       {formattedDate}
     </time>
-    {
-      tags.length > 0 && (
-        <>
-          {tags.map((tag) => (
-            <TagBadge tag={tag} size="sm" />
-          ))}
-        </>
-      )
-    }
+    {tags.map((tag) => <TagBadge tag={tag} size="sm" />)}
   </div>
 </article>

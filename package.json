@@ -10,9 +10,11 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:inspect": "eslint --inspect-config"
+    "lint:inspect": "eslint --inspect-config",
+    "verify": "pnpm lint && pnpm prettier --check . && pnpm check && pnpm build"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.5",
