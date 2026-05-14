@@ -8,11 +8,11 @@ import Pagination from "@components/ui/Pagination.astro";
 
 interface Props {
   page: Page<CollectionEntry<"blog">>;
-  /** Empty-state copy variant. Defaults to "blog"; tag pages use "tag". */
   emptyType?: "blog" | "tag";
+  firstPageHref?: string;
 }
 
-const { page, emptyType = "blog" } = Astro.props;
+const { page, emptyType = "blog", firstPageHref } = Astro.props;
 ---
 
 <PageSection>
@@ -31,4 +31,4 @@ const { page, emptyType = "blog" } = Astro.props;
     )
   }
 </PageSection>
-{page.lastPage > 1 && <Pagination page={page} />}
+{page.lastPage > 1 && <Pagination page={page} firstPageHref={firstPageHref} />}

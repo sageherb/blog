@@ -1,11 +1,13 @@
 ---
 import type { Page } from "astro";
+import type { CollectionEntry, CollectionKey } from "astro:content";
 
 interface Props {
-  page: Page<unknown>;
+  page: Page<CollectionEntry<CollectionKey>>;
+  firstPageHref?: string;
 }
 
-const { page } = Astro.props;
+const { page, firstPageHref } = Astro.props;
 
 const baseUrl =
   page.currentPage === 1
@@ -13,10 +15,13 @@ const baseUrl =
     : page.url.current.replace(/\/\d+\/?$/, "");
 
 function getPageUrl(p: number): string {
-  return p === 1 ? baseUrl : `${baseUrl}/${p}`;
+  if (p === 1) return firstPageHref ?? baseUrl;
+  return `${baseUrl}/${p}`;
 }
 
-// ≤7 pages: show all. >7: edges + current ±1 window with ellipsis.
+const prevHref =
+  firstPageHref && page.currentPage === 2 ? firstPageHref : page.url.prev;
+
 function getPageItems(current: number, total: number): (number | "...")[] {
   if (total <= 7) {
     return Array.from({ length: total }, (_, i) => i + 1);
@@ -42,9 +47,9 @@ const items = getPageItems(page.currentPage, page.lastPage);
   class="mt-3 flex items-center justify-center gap-2 pt-3 text-sm sm:mt-6 sm:pt-6"
 >
   {
-    page.url.prev ? (
+    prevHref ? (
       <a
-        href={page.url.prev}
+        href={prevHref}
         aria-label="이전 페이지"
         class="text-text-muted hover:text-text px-1 transition-colors"
       >

@@ -8,9 +8,6 @@ import { getBlogPosts } from "@utils/content";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getBlogPosts();
-  // Page 1 is served by `/` (canonical) and `/blog` (alt entry).
-  // Astro's paginate emits page 1 with `params.page === undefined` — drop it
-  // so `/blog/1` is never generated.
   return paginate(posts, { pageSize: POSTS_PER_PAGE }).filter(
     (entry) => entry.params.page !== undefined,
   );
@@ -25,5 +22,5 @@ const description = `블로그 ${page.currentPage}페이지`;
 ---
 
 <BaseLayout title={SITE_TITLE} description={description}>
-  <PostList page={page} />
+  <PostList page={page} firstPageHref="/" />
 </BaseLayout>

@@ -7,12 +7,13 @@ const path = Astro.url.pathname;
 
 const navItems = [
   { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
+  { href: "/", label: "Blog" },
   { href: "/portfolio", label: "Portfolio" },
 ] as const;
 
 function isActive(href: string): boolean {
   if (href === "/about") return path === "/about" || path === "/about/";
+  if (href === "/") return path === "/" || path.startsWith("/blog/");
   return path === href || path.startsWith(`${href}/`);
 }
 ---

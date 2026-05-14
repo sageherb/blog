@@ -13,7 +13,7 @@ export function buildBlogFirstPage<T>(items: T[]): Page<T> {
     lastPage,
     size: POSTS_PER_PAGE,
     url: {
-      current: "/blog",
+      current: "/",
       prev: undefined,
       next: lastPage > 1 ? "/blog/2" : undefined,
       first: undefined,

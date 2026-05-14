@@ -6,27 +6,11 @@ import { getBlogPosts } from "@utils/content";
 import { buildPersonJsonLd, buildWebSiteJsonLd } from "@utils/jsonld";
 import { buildBlogFirstPage } from "@utils/pagination";
 
-interface Props {
-  /**
-   * Override canonical. `/`(홈) 호출 시 미지정 → BaseHead가 self-canonical 자동 처리.
-   * `/blog/`(중복 라우트) 호출 시 `"/"` 전달 → 정본을 홈으로 위임.
-   * 페이지 진입점에서만 사용 — 다른 곳에서 import 시 동일 본문이 두 번 렌더링됨.
-   */
-  canonical?: string;
-}
-
-const { canonical } = Astro.props;
-
 const posts = await getBlogPosts();
 const page = buildBlogFirstPage(posts);
 const jsonLd = [buildWebSiteJsonLd(), buildPersonJsonLd()];
 ---
 
-<BaseLayout
-  title={SITE_TITLE}
-  description={SITE_DESCRIPTION}
-  canonical={canonical}
-  jsonLd={jsonLd}
->
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} jsonLd={jsonLd}>
   <PostList page={page} />
 </BaseLayout>
