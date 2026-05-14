@@ -44,7 +44,11 @@ const selectedOgImage = coverImage?.src ?? ogImagePath;
   image={selectedOgImage}
   jsonLd={buildPersonJsonLd()}
 >
-  <article class="py-4 sm:py-8" data-pagefind-body data-pagefind-meta={`desc:${description}`}>
+  <article
+    class="py-4 sm:py-8"
+    data-pagefind-body
+    data-pagefind-meta={`desc:${description}`}
+  >
     <header class="mb-8 space-y-3 sm:mb-10" data-pagefind-ignore>
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
@@ -62,7 +66,7 @@ const selectedOgImage = coverImage?.src ?? ogImagePath;
         />
       </div>
 
-      <p class="text-text-muted text-xs md:text-sm">
+      <p class="text-text-subtle text-xs sm:text-sm">
         {periodText}
       </p>
 

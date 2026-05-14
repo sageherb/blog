@@ -51,7 +51,7 @@ const items = getPageItems(page.currentPage, page.lastPage);
         ←
       </a>
     ) : (
-      <span aria-hidden="true" class="text-text-subtle/30 select-none px-1">
+      <span aria-hidden="true" class="text-text-subtle/40 select-none px-1">
         ←
       </span>
     )
@@ -77,7 +77,7 @@ const items = getPageItems(page.currentPage, page.lastPage);
                 "transition-colors",
                 item === page.currentPage
                   ? "text-link decoration-accent-solid font-semibold underline decoration-2 underline-offset-4"
-                  : "text-text-muted hover:text-text",
+                  : "text-text-muted hover:text-text font-normal",
               ]}
             >
               {item}
@@ -98,7 +98,7 @@ const items = getPageItems(page.currentPage, page.lastPage);
         →
       </a>
     ) : (
-      <span aria-hidden="true" class="text-text-subtle/30 select-none px-1">
+      <span aria-hidden="true" class="text-text-subtle/40 select-none px-1">
         →
       </span>
     )

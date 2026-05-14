@@ -48,15 +48,22 @@ const jsonLd = [
   image={selectedOgImage}
   jsonLd={jsonLd}
 >
-  <article class="py-4 sm:py-8" data-pagefind-body data-pagefind-meta={`desc:${description}`}>
+  <article
+    class="py-4 sm:py-8"
+    data-pagefind-body
+    data-pagefind-meta={`desc:${description}`}
+  >
     <header class="mb-8 space-y-3 sm:mb-10" data-pagefind-ignore>
       <h1 class="text-text text-2xl font-bold sm:text-3xl">
         {title}
       </h1>
       <div
-        class="text-text-muted flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm"
+        class="flex flex-wrap items-center gap-x-2 gap-y-1"
       >
-        <time datetime={pubDate.toISOString()} class="text-text-subtle text-sm">
+        <time
+          datetime={pubDate.toISOString()}
+          class="text-text-subtle text-xs sm:text-sm"
+        >
           {formattedPubDate}
         </time>
         {

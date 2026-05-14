@@ -23,7 +23,7 @@ const periodText = formatPeriod(startDate, endDate);
   </a>
   {
     periodText && (
-      <span class="text-text-subtle text-xs md:text-sm">{periodText}</span>
+      <span class="text-text-subtle text-xs sm:text-sm">{periodText}</span>
     )
   }
 </div>
@@ -34,7 +34,7 @@ const periodText = formatPeriod(startDate, endDate);
 
 {
   techStack.length > 0 && (
-    <div class="flex flex-wrap gap-x-1.5 gap-y-0.5">
+    <div class="flex flex-wrap gap-x-1.5 gap-y-1">
       {techStack.map((name) => (
         <TechBadge name={name} size="sm" />
       ))}

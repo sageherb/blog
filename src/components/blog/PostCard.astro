@@ -22,10 +22,10 @@ const formattedDate = formatDate(pubDate);
     </h2>
   </a>
   <p class="text-text-muted line-clamp-2 text-sm sm:text-base">{description}</p>
-  <div class="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
     <time
       datetime={pubDate.toISOString()}
-      class="text-text-subtle text-xs md:text-sm"
+      class="text-text-subtle text-xs sm:text-sm"
     >
       {formattedDate}
     </time>

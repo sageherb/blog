@@ -24,7 +24,7 @@ function isActive(href: string): boolean {
   <a
     href="/"
     aria-label={SITE_TITLE}
-    class="text-text hover:text-link inline-flex h-9 w-9 items-center justify-center text-[24px] leading-none font-semibold transition-colors md:w-auto md:justify-start md:gap-2"
+    class="text-text hover:text-link inline-flex h-9 w-9 items-center justify-center text-2xl leading-none font-semibold transition-colors md:w-auto md:justify-start md:gap-2"
   >
     <span class="inline-flex items-center leading-none">{SITE_FAVICON}</span>
     <span class="hidden leading-none md:inline-block">{SITE_TITLE}</span>
@@ -39,7 +39,7 @@ function isActive(href: string): boolean {
               href={href}
               aria-current={isActive(href) ? "page" : undefined}
               class:list={[
-                "inline-flex h-9 items-center rounded px-3 text-sm leading-none transition-colors",
+                "inline-flex h-9 items-center rounded-sm px-3 text-sm leading-none transition-colors",
                 isActive(href)
                   ? "text-link font-medium"
                   : "text-text-muted hover:text-text",
