@@ -3,244 +3,140 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* =========================================================
-   1. Color Scales — Light / Dark
-   ========================================================= */
 :root,
 .light,
 .light-theme {
   color-scheme: light;
 
-  /* Accent scale */
+  --gray-1: #fcfcfc;
+  --gray-2: #f9f9f9;
+  --gray-3: #f0f0f0;
+  --gray-4: #e8e8e8;
+  --gray-5: #e0e0e0;
+  --gray-6: #d9d9d9;
+  --gray-7: #cecece;
+  --gray-8: #bbbbbb;
+  --gray-9: #8d8d8d;
+  --gray-10: #838383;
+  --gray-11: #646464;
+  --gray-12: #202020;
+
   --accent-1: #fafdfc;
-  --accent-2: #f5faf9;
-  --accent-3: #e7f4f0;
-  --accent-4: #daeee8;
-  --accent-5: #cce6df;
-  --accent-6: #bedcd4;
-  --accent-7: #abcfc5;
-  --accent-8: #8ebbaf;
+  --accent-2: #f3faf8;
+  --accent-3: #e6f4ef;
+  --accent-4: #d8ede5;
+  --accent-5: #cae4db;
+  --accent-6: #b9d8cc;
+  --accent-7: #a3c6b9;
+  --accent-8: #82af9f;
   --accent-9: #52796f;
-  --accent-10: #456b62;
-  --accent-11: #476e64;
-  --accent-12: #1d312c;
+  --accent-10: #486c63;
+  --accent-11: #3f635a;
+  --accent-12: #1d322c;
 
-  --accent-a1: #00996605;
-  --accent-a2: #0080660a;
-  --accent-a3: #008b6018;
-  --accent-a4: #008a6125;
-  --accent-a5: #00825f33;
-  --accent-a6: #00765741;
-  --accent-a7: #006e4f54;
-  --accent-a8: #00664b71;
-  --accent-a9: #003a2bad;
-  --accent-a10: #003428ba;
-  --accent-a11: #003628b8;
-  --accent-a12: #001711e2;
-
-  --accent-contrast: #fff;
-
-  /* Gray scale (zinc) */
-  --gray-1: #fafafa;
-  --gray-2: #f4f4f5;
-  --gray-3: #e4e4e7;
-  --gray-4: #d4d4d8;
-  --gray-5: #a1a1aa;
-  --gray-6: #71717a;
-  --gray-7: #52525b;
-  --gray-8: #3f3f46;
-  --gray-9: #27272a;
-  --gray-10: #18181b;
-  --gray-11: #111113;
-  --gray-12: #09090b;
-
-  /* Semantic tokens */
-  --background: var(--gray-1);
-  --foreground: var(--gray-12);
-  --panel: #fff;
-  --panel-solid: var(--gray-2);
-  --surface: var(--gray-2);
-  --surface-hover: var(--gray-3);
-  --border: var(--gray-4);
-  --border-strong: var(--gray-6);
-  --text: var(--gray-10);
-  --text-muted: var(--gray-7);
-  --text-subtle: var(--gray-6);
-  --accent-text: var(--accent-11);
-  --accent-solid: var(--accent-9);
-  --accent-solid-hover: var(--accent-10);
-  --accent-soft: var(--accent-a3);
-  --accent-soft-hover: var(--accent-a4);
-  --focus-ring: var(--accent-8);
-  --selection: var(--accent-a8);
-  --link: var(--accent-11);
-  --link-hover: var(--accent-12);
-  --code-bg: var(--gray-2);
-  --code-border: var(--gray-4);
-  --blockquote-border: var(--accent-8);
-  --blockquote-bg: var(--accent-a2);
-  --badge-neutral-bg: var(--gray-2);
-  --badge-neutral-text: var(--gray-8);
-  --badge-neutral-border: var(--gray-4);
-  --badge-accent-bg: var(--accent-a3);
-  --badge-accent-text: var(--accent-11);
-  --badge-accent-border: var(--accent-a6);
+  --accent-contrast: #ffffff;
 }
 
 .dark,
 .dark-theme {
   color-scheme: dark;
 
-  /* Accent scale */
-  --accent-1: #0d1211;
+  --gray-1: #111111;
+  --gray-2: #191919;
+  --gray-3: #222222;
+  --gray-4: #2a2a2a;
+  --gray-5: #313131;
+  --gray-6: #3a3a3a;
+  --gray-7: #484848;
+  --gray-8: #606060;
+  --gray-9: #6e6e6e;
+  --gray-10: #7b7b7b;
+  --gray-11: #b4b4b4;
+  --gray-12: #eeeeee;
+
+  --accent-1: #0e1413;
   --accent-2: #131a18;
-  --accent-3: #192723;
-  --accent-4: #1b312c;
-  --accent-5: #223b35;
-  --accent-6: #2b4740;
-  --accent-7: #37574f;
-  --accent-8: #486f65;
+  --accent-3: #182723;
+  --accent-4: #1b332d;
+  --accent-5: #1f3e36;
+  --accent-6: #264a40;
+  --accent-7: #305a4e;
+  --accent-8: #3e7263;
   --accent-9: #52796f;
-  --accent-10: #456b62;
-  --accent-11: #98c1b6;
-  --accent-12: #d8f2eb;
+  --accent-10: #5d877c;
+  --accent-11: #95c0b4;
+  --accent-12: #d6f1e9;
 
-  --accent-a1: #00911102;
-  --accent-a2: #45f7c40a;
-  --accent-a3: #66fbd118;
-  --accent-a4: #5afbd623;
-  --accent-a5: #72ffdd2d;
-  --accent-a6: #84ffe03a;
-  --accent-a7: #93ffe44b;
-  --accent-a8: #9cffe665;
-  --accent-a9: #a5fde770;
-  --accent-a10: #99fde661;
-  --accent-a11: #c8fff0bd;
-  --accent-a12: #e3fef7f2;
-
-  --accent-contrast: #fff;
-
-  /* Gray scale (zinc) */
-  --gray-1: #09090b;
-  --gray-2: #111113;
-  --gray-3: #18181b;
-  --gray-4: #27272a;
-  --gray-5: #3f3f46;
-  --gray-6: #52525b;
-  --gray-7: #71717a;
-  --gray-8: #a1a1aa;
-  --gray-9: #d4d4d8;
-  --gray-10: #e4e4e7;
-  --gray-11: #f4f4f5;
-  --gray-12: #fafafa;
-
-  /* Semantic tokens */
-  --background: var(--gray-1);
-  --foreground: var(--gray-12);
-  --panel: var(--gray-2);
-  --panel-solid: var(--gray-3);
-  --surface: var(--gray-3);
-  --surface-hover: var(--gray-4);
-  --border: var(--gray-5);
-  --border-strong: var(--gray-6);
-  --text: var(--gray-12);
-  --text-muted: var(--gray-9);
-  --text-subtle: var(--gray-8);
-  --accent-text: var(--accent-11);
-  --accent-solid: var(--accent-9);
-  --accent-solid-hover: var(--accent-8);
-  --accent-soft: var(--accent-a3);
-  --accent-soft-hover: var(--accent-a4);
-  --focus-ring: var(--accent-8);
-  --selection: var(--accent-a8);
-  --link: var(--accent-11);
-  --link-hover: var(--accent-12);
-  --code-bg: var(--gray-2);
-  --code-border: var(--gray-5);
-  --blockquote-border: var(--accent-8);
-  --blockquote-bg: var(--accent-a2);
-  --badge-neutral-bg: var(--gray-3);
-  --badge-neutral-text: var(--gray-10);
-  --badge-neutral-border: var(--gray-5);
-  --badge-accent-bg: var(--accent-a3);
-  --badge-accent-text: var(--accent-12);
-  --badge-accent-border: var(--accent-a6);
+  --accent-contrast: #ffffff;
 }
 
-/* =========================================================
-   2. Tailwind Theme
-   `@theme inline`: 폰트는 런타임 CSS 변수 불필요 → 유틸리티에 직접 인라인
-   `@theme`: 색상은 다크모드 런타임 교체를 위해 CSS 변수 유지
-   ========================================================= */
 @theme inline {
   --font-sans: "Pretendard Variable", system-ui, sans-serif;
+
+  --color-gray-1: var(--gray-1);
+  --color-gray-2: var(--gray-2);
+  --color-gray-3: var(--gray-3);
+  --color-gray-4: var(--gray-4);
+  --color-gray-5: var(--gray-5);
+  --color-gray-6: var(--gray-6);
+  --color-gray-7: var(--gray-7);
+  --color-gray-8: var(--gray-8);
+  --color-gray-9: var(--gray-9);
+  --color-gray-10: var(--gray-10);
+  --color-gray-11: var(--gray-11);
+  --color-gray-12: var(--gray-12);
+
+  --color-accent-1: var(--accent-1);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-4: var(--accent-4);
+  --color-accent-5: var(--accent-5);
+  --color-accent-6: var(--accent-6);
+  --color-accent-7: var(--accent-7);
+  --color-accent-8: var(--accent-8);
+  --color-accent-9: var(--accent-9);
+  --color-accent-10: var(--accent-10);
+  --color-accent-11: var(--accent-11);
+  --color-accent-12: var(--accent-12);
+
+  --color-text: var(--gray-12);
+  --color-text-muted: var(--gray-11);
+  --color-text-subtle: var(--gray-9);
+
+  --color-background: var(--gray-1);
+  --color-surface: var(--gray-3);
+  --color-panel: var(--gray-2);
+
+  --color-border: var(--gray-6);
+  --color-border-strong: var(--gray-7);
+  --color-focus-ring: var(--accent-8);
+
+  --color-link: var(--accent-11);
+  --color-link-hover: var(--accent-12);
+
+  --color-accent-solid: var(--accent-9);
+  --color-accent-solid-hover: var(--accent-10);
+  --color-accent-soft: var(--accent-3);
+  --color-accent-soft-hover: var(--accent-4);
+  --color-accent-contrast: var(--accent-contrast);
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
 }
 
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-panel: var(--panel);
-  --color-panel-solid: var(--panel-solid);
-  --color-surface: var(--surface);
-  --color-surface-hover: var(--surface-hover);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
-  --color-text-subtle: var(--text-subtle);
-  --color-accent-text: var(--accent-text);
-  --color-accent-solid: var(--accent-solid);
-  --color-accent-solid-hover: var(--accent-solid-hover);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-soft-hover: var(--accent-soft-hover);
-  --color-focus-ring: var(--focus-ring);
-  --color-selection: var(--selection);
-  --color-link: var(--link);
-  --color-link-hover: var(--link-hover);
-  --color-code-bg: var(--code-bg);
-  --color-code-border: var(--code-border);
-  --color-blockquote-border: var(--blockquote-border);
-  --color-blockquote-bg: var(--blockquote-bg);
-  --color-badge-neutral-bg: var(--badge-neutral-bg);
-  --color-badge-neutral-text: var(--badge-neutral-text);
-  --color-badge-neutral-border: var(--badge-neutral-border);
-  --color-badge-accent-bg: var(--badge-accent-bg);
-  --color-badge-accent-text: var(--badge-accent-text);
-  --color-badge-accent-border: var(--badge-accent-border);
-}
-
-/* =========================================================
-   3. Global font (unlayered)
-   Astro v6 <Font> 컴포넌트가 생성하는 :root CSS도 unlayered이므로
-   같은 레벨에서 폰트 및 자간 설정을 적용해야 윈도우에서도 동작함.
-   ========================================================= */
-html {
-  font-family: var(--font-sans);
-  letter-spacing: -0.15px;
-}
-
-*,
-*::before,
-*::after {
-  letter-spacing: inherit;
-}
-
-/* =========================================================
-   4. Base
-   ========================================================= */
 @layer base {
   html {
+    font-family: var(--font-sans);
     -webkit-text-size-adjust: 100%;
     scrollbar-gutter: stable;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--text);
+    background-color: var(--color-background);
+    color: var(--color-text);
   }
 
-  /* 한글 헤딩 타이포 정책: 단어 중간에서 줄바꿈 방지(word-break: keep-all)
-     + 줄바꿈 균형(text-wrap: balance). 영문에는 영향 없음, 한글에만 효과. */
   :where(h1, h2, h3, h4, h5, h6) {
     word-break: keep-all;
     text-wrap: balance;
@@ -250,79 +146,76 @@ html {
     font: inherit;
   }
 
-  :focus-visible {
-    outline: 2px solid var(--focus-ring);
-    outline-offset: 2px;
-    border-radius: 0.35rem;
-  }
-
   ::selection {
-    background-color: var(--selection);
-    color: var(--accent-contrast);
+    background-color: color-mix(
+      in oklab,
+      var(--color-accent-solid) 35%,
+      transparent
+    );
+    color: var(--color-text);
   }
 
   a {
-    color: var(--link);
-  }
-
-  a:hover {
-    color: var(--link-hover);
+    color: var(--color-link);
   }
 
   hr {
-    border-color: var(--border);
+    border-color: var(--color-border);
   }
 
   :where(input, textarea, select) {
-    background-color: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
   }
 
   :where(input, textarea, select)::placeholder {
-    color: var(--text-subtle);
+    color: var(--color-text-subtle);
   }
 
   :where(input, textarea, select):hover {
-    background-color: var(--surface-hover);
-  }
-
-  :where(input, textarea, select):focus-visible {
-    border-color: var(--focus-ring);
-    box-shadow: 0 0 0 3px
-      color-mix(in oklab, var(--focus-ring) 30%, transparent);
-    outline: none;
+    border-color: var(--color-focus-ring);
   }
 }
 
-/* =========================================================
-   5. Utility
-   ========================================================= */
+* {
+  outline-color: var(--color-focus-ring);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+:where(input, textarea, select):focus-visible {
+  border-color: var(--color-focus-ring);
+  box-shadow: 0 0 0 3px
+    color-mix(in oklab, var(--color-focus-ring) 30%, transparent);
+  outline: none;
+}
+
 @utility prose-article {
-  --tw-prose-body: var(--text-muted);
-  --tw-prose-headings: var(--text);
-  --tw-prose-lead: var(--text-muted);
-  --tw-prose-links: var(--link);
-  --tw-prose-bold: var(--text);
-  --tw-prose-counters: var(--text-muted);
-  --tw-prose-bullets: var(--text-subtle);
-  --tw-prose-hr: var(--border);
-  --tw-prose-quotes: var(--text);
-  --tw-prose-quote-borders: var(--blockquote-border);
-  --tw-prose-captions: var(--text-subtle);
-  --tw-prose-code: var(--link);
-  --tw-prose-pre-code: var(--text);
-  --tw-prose-pre-bg: var(--panel-solid);
-  --tw-prose-th-borders: var(--border-strong);
-  --tw-prose-td-borders: var(--border);
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--color-text-muted);
+  --tw-prose-links: var(--color-link);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-text-muted);
+  --tw-prose-bullets: var(--color-border-strong);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-accent-solid);
+  --tw-prose-captions: var(--color-text-subtle);
+  --tw-prose-code: var(--color-link);
+  --tw-prose-pre-code: var(--color-text);
+  --tw-prose-pre-bg: var(--color-panel);
+  --tw-prose-th-borders: var(--color-border-strong);
+  --tw-prose-td-borders: var(--color-border);
 }
 
-/* =========================================================
-   6. Components
-   ========================================================= */
 @layer components {
-  /* Navigation: active 상태 width 점프 방지 */
   .nav-item-label::after {
     content: attr(data-text);
     display: block;
@@ -333,23 +226,20 @@ html {
     pointer-events: none;
   }
 
-  /* Prose: inline code */
   .prose :where(:not(pre) > code)::before,
   .prose :where(:not(pre) > code)::after {
     content: "" !important;
   }
 
   .prose :not(pre) > code {
-    background-color: var(--surface);
+    background-color: var(--color-surface);
     border: none;
-    border-radius: 0.375rem;
-    padding: 4px 6px;
+    border-radius: var(--radius-md);
+    padding: 0.25rem 0.375rem;
     font-size: 0.875em;
     font-weight: 600;
   }
 
-  /* Prose: code block + copy button. Wrapper from rehype plugin and
-     CodeBlock.astro: <div class="code-block"><pre>…</pre><button class="copy-btn">…</button></div> */
   .prose .code-block {
     position: relative;
   }
@@ -364,14 +254,14 @@ html {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
     line-height: 1.5;
     font-family: inherit;
-    background: var(--badge-neutral-bg);
-    color: var(--badge-neutral-text);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
     border: 1px solid transparent;
-    border-radius: 0.375rem;
+    border-radius: var(--radius-md);
     cursor: pointer;
     opacity: 0;
     transition:
@@ -387,14 +277,11 @@ html {
   }
 
   .prose .code-block .copy-btn:hover {
-    background: var(--accent-solid);
-    color: var(--accent-contrast);
-    border-color: var(--accent-solid);
+    background: var(--color-accent-solid);
+    color: var(--color-accent-contrast);
+    border-color: var(--color-accent-solid);
   }
 
-  /* ThemeToggle: 아이콘 표시는 html.dark CSS selector 기반.
-     SSR HTML이 light 가정으로 직렬화되어도 인라인 FOUC 스크립트가 paint 전에
-     html.dark를 토글하므로 다크 사용자 첫 paint flicker 0회 보장. */
   .theme-toggle [data-icon="sun"] {
     display: none;
   }
@@ -409,29 +296,20 @@ html {
   }
 }
 
-/* =========================================================
-   7. Third-party Overrides (no @layer)
-   Pagefind와 Shiki는 런타임에 layer 없이 CSS를 주입하므로
-   오버라이드도 @layer 없이 유지해야 우선순위를 가짐.
-   ========================================================= */
-
-/* Pagefind Component UI
-   공식 1.5 Component UI를 그대로 두고, sage 토큰을 --pf-* 변수에
-   매핑해 시각 톤만 맞춘다. lifecycle·마크업은 web component 책임. */
 :root {
   --pf-font: var(--font-sans);
 
-  --pf-text: var(--text);
-  --pf-text-secondary: var(--text-muted);
-  --pf-text-muted: var(--text-subtle);
-  --pf-background: var(--surface);
-  --pf-hover: var(--surface-hover);
-  --pf-skeleton: var(--surface-hover);
-  --pf-skeleton-shine: var(--surface);
+  --pf-text: var(--color-text);
+  --pf-text-secondary: var(--color-text-muted);
+  --pf-text-muted: var(--color-text-subtle);
+  --pf-background: var(--color-surface);
+  --pf-hover: var(--color-accent-soft);
+  --pf-skeleton: var(--color-surface);
+  --pf-skeleton-shine: var(--color-panel);
 
   --pf-border: transparent;
-  --pf-border-focus: var(--focus-ring);
-  --pf-outline-focus: var(--focus-ring);
+  --pf-border-focus: var(--color-focus-ring);
+  --pf-outline-focus: var(--color-focus-ring);
   --pf-outline-width: 2px;
   --pf-outline-offset: 2px;
 
@@ -439,10 +317,10 @@ html {
   --pf-shadow-md: none;
   --pf-shadow-lg: none;
 
-  --pf-border-radius: 6px;
-  --pf-mark: var(--link);
+  --pf-border-radius: var(--radius-md);
+  --pf-mark: var(--color-link);
 
-  --pf-modal-backdrop: rgb(44 44 42 / 0.36);
+  --pf-modal-backdrop: rgb(29 34 34 / 0.36);
   --pf-modal-max-width: 40rem;
   --pf-modal-top: 12dvh;
 
@@ -457,26 +335,20 @@ html {
   --pf-modal-backdrop: rgb(0 0 0 / 0.5);
 }
 
-/* Header trigger — quiet icon-style button.
-   `compact` 속성이 visible label span을 제거하고, placeholder가 inner
-   button의 aria-label을 채운다. 시각 톤은 변수만으로 처리해 internal
-   class override 없이 유지한다. focus ring은 Pagefind의 기본 규칙이
-   --pf-outline-focus(=focus-ring)를 그대로 읽으므로 별도 처리 불필요. */
 pagefind-modal-trigger.pagefind-search-trigger {
   --pf-background: transparent;
   --pf-border: transparent;
   --pf-border-focus: transparent;
   --pf-shadow-sm: none;
   --pf-input-height: 36px;
-  --pf-text-muted: var(--text-muted);
+  --pf-text-muted: var(--color-text-muted);
   display: inline-flex;
 }
 
 pagefind-modal-trigger.pagefind-search-trigger:hover {
-  --pf-text-muted: var(--text);
+  --pf-text-muted: var(--color-text);
 }
 
-/* Shiki: dark mode color swap */
 .dark .astro-code,
 .dark .astro-code span {
   color: var(--shiki-dark) !important;
@@ -485,14 +357,6 @@ pagefind-modal-trigger.pagefind-search-trigger:hover {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* =========================================================
-   8. Reduced motion (WCAG 2.3.3)
-   사용자가 prefers-reduced-motion: reduce를 설정하면 모든
-   transition / animation / scroll-behavior를 거의 즉시 종료
-   시켜 motion에 민감한 사용자에게 안전한 경험 제공.
-   .copy-btn / .theme-toggle / 카드 hover 등 모든 transition을
-   포함해 global하게 무력화.
-   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
