@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import TechBadge from "@components/portfolio/TechBadge.astro";
+import Badge from "@components/ui/Badge.astro";
 import { formatPeriod } from "@utils/date";
 
 interface Props {
@@ -36,7 +36,7 @@ const periodText = formatPeriod(startDate, endDate);
   techStack.length > 0 && (
     <div class="flex flex-wrap gap-x-1.5 gap-y-1">
       {techStack.map((name) => (
-        <TechBadge name={name} size="sm" />
+        <Badge>{name}</Badge>
       ))}
     </div>
   )

@@ -1,6 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
-import TagBadge from "@components/ui/TagBadge.astro";
+import Badge from "@components/ui/Badge.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { formatDate } from "@utils/date";
 import { buildBlogPostingJsonLd, buildPersonJsonLd } from "@utils/jsonld";
@@ -64,7 +64,11 @@ const jsonLd = [
         >
           {formattedPubDate}
         </time>
-        {tags.map((tag) => <TagBadge tag={tag} size="sm" />)}
+        {
+          tags.map((tag) => (
+            <Badge href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Badge>
+          ))
+        }
       </div>
     </header>
 

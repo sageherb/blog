@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import TagBadge from "@components/ui/TagBadge.astro";
+import Badge from "@components/ui/Badge.astro";
 import { formatDate } from "@utils/date";
 
 interface Props {
@@ -29,6 +29,10 @@ const formattedDate = formatDate(pubDate);
     >
       {formattedDate}
     </time>
-    {tags.map((tag) => <TagBadge tag={tag} size="sm" />)}
+    {
+      tags.map((tag) => (
+        <Badge href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Badge>
+      ))
+    }
   </div>
 </article>
