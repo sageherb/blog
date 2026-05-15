@@ -1,30 +1,41 @@
 ---
-import type { JsonLdInput } from "@utils/jsonld";
+import type { JsonLdInput, JsonLdObject } from "@utils/jsonld";
 import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "@config";
 import { escapeJsonForHtml } from "@utils/jsonld";
 
 interface Props {
   title: string;
   description: string;
-  /** Root-relative path (e.g. "/og/post.png") or absolute URL. Falls back to DEFAULT_OG_IMAGE. */
   image?: string;
-  /**
-   * Page kind — controls og:type and article timestamps.
-   *   "post"      → og:type="article" + article:published_time
-   *   "portfolio" → og:type="website"
-   *   "page"      → og:type="website" (default)
-   */
   kind?: "page" | "post" | "portfolio";
-  /** Blog post publish date (post only) */
   pubDate?: Date;
-  /**
-   * Override the canonical URL. Accepts a path (resolved against Astro.site)
-   * or an absolute URL. Used when a route shares content with another
-   * canonical route (e.g. `/blog` → `/`).
-   */
   canonical?: string | URL;
-  /** Structured data — single object or array, emitted as <script type="application/ld+json">. */
   jsonLd?: JsonLdInput;
+}
+
+function normalizeJsonLd(input: JsonLdInput | undefined): JsonLdObject[] {
+  if (!input) return [];
+  return Array.isArray(input) ? input : [input];
+}
+
+function buildCanonicalURL(
+  canonical: string | URL | undefined,
+  site: URL | undefined,
+  url: URL,
+): URL {
+  if (!canonical) {
+    return site ? new URL(url.pathname, site) : url;
+  }
+  if (canonical instanceof URL) return canonical;
+  return site ? new URL(canonical, site) : new URL(canonical, url);
+}
+
+function resolveOgImage(
+  path: string,
+  site: URL | undefined,
+): string | undefined {
+  if (!site) return undefined;
+  return path.startsWith("http") ? path : new URL(path, site).toString();
 }
 
 const {
@@ -37,27 +48,11 @@ const {
   jsonLd,
 } = Astro.props;
 
-const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-
-const canonicalURL = canonical
-  ? canonical instanceof URL
-    ? canonical
-    : Astro.site
-      ? new URL(canonical, Astro.site)
-      : new URL(canonical, Astro.url)
-  : Astro.site
-    ? new URL(Astro.url.pathname, Astro.site)
-    : Astro.url;
-
+const jsonLdItems = normalizeJsonLd(jsonLd);
+const canonicalURL = buildCanonicalURL(canonical, Astro.site, Astro.url);
 const ogType = kind === "post" ? "article" : "website";
-
-// resolve OG image to absolute URL — fall back to default if not provided
-const ogImagePath = image ?? DEFAULT_OG_IMAGE;
-const ogImage = Astro.site
-  ? ogImagePath.startsWith("http")
-    ? ogImagePath
-    : new URL(ogImagePath, Astro.site).toString()
-  : undefined;
+const documentTitle = title === SITE_TITLE ? title : `${title} — ${SITE_TITLE}`;
+const ogImage = resolveOgImage(image ?? DEFAULT_OG_IMAGE, Astro.site);
 
 const faviconSvg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${SITE_FAVICON}</text></svg>`;
 const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
@@ -67,28 +62,20 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- font: Pretendard Variable (dynamic subset via CDN) -->
 <link
   rel="stylesheet"
   crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
 />
 
-<!-- favicon -->
 <link rel="icon" href={faviconHref} />
 
-<!--
-  Pagefind 1.5 Component UI stylesheet (bundled).
-  Asset is emitted by `pagefind --site dist` during build, so it only
-  exists in production builds. Skipped in dev to avoid 404 noise.
--->
 {
   import.meta.env.PROD && (
     <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
   )
 }
 
-<!-- canonical & discovery -->
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
@@ -98,11 +85,9 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
   href="/rss.xml"
 />
 
-<!-- primary meta -->
-<title>{title}</title>
+<title>{documentTitle}</title>
 <meta name="description" content={description} />
 
-<!-- Open Graph -->
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:site_name" content={SITE_TITLE} />
@@ -115,13 +100,11 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
     <meta property="article:published_time" content={pubDate.toISOString()} />
   )
 }
-<!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-<!-- JSON-LD structured data -->
 {
   jsonLdItems.map((ld) => (
     <script
