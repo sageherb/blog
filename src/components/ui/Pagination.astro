@@ -4,10 +4,9 @@ import type { CollectionEntry, CollectionKey } from "astro:content";
 
 interface Props {
   page: Page<CollectionEntry<CollectionKey>>;
-  firstPageHref?: string;
 }
 
-const { page, firstPageHref } = Astro.props;
+const { page } = Astro.props;
 
 const baseUrl =
   page.currentPage === 1
@@ -15,12 +14,11 @@ const baseUrl =
     : page.url.current.replace(/\/\d+\/?$/, "");
 
 function getPageUrl(p: number): string {
-  if (p === 1) return firstPageHref ?? baseUrl;
+  if (p === 1) return baseUrl;
   return `${baseUrl}/${p}`;
 }
 
-const prevHref =
-  firstPageHref && page.currentPage === 2 ? firstPageHref : page.url.prev;
+const prevHref = page.url.prev;
 
 function getPageItems(current: number, total: number): (number | "...")[] {
   if (total <= 7) {
