@@ -32,7 +32,7 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
           document.documentElement.classList.add("dark");
         }
       } catch {
-        /* private mode / SecurityError — fall through to default light */
+        // 시크릿 모드, SecurityError 발생 시 기본 라이트 테마로 처리
       }
     </script>
     <BaseHead
@@ -53,14 +53,7 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
       </main>
       <Footer />
     </div>
-    {
-      import.meta.env.PROD && (
-        <script
-          is:inline
-          type="module"
-          src="/pagefind/pagefind-component-ui.js"
-        />
-      )
-    }
+    <script is:inline type="module" src="/pagefind/pagefind-component-ui.js"
+    ></script>
   </body>
 </html>

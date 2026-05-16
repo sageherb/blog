@@ -6,7 +6,7 @@ import { Moon, Sun } from "@lucide/astro";
   type="button"
   class="theme-toggle text-text-muted hover:text-text inline-flex h-9 w-9 items-center justify-center rounded-sm transition-colors"
   data-theme-toggle
-  aria-label="Toggle color theme"
+  aria-label="테마 전환"
 >
   <Moon data-icon="moon" class="h-4 w-4" aria-hidden="true" />
   <Sun data-icon="sun" class="h-4 w-4" aria-hidden="true" />
@@ -23,7 +23,7 @@ import { Moon, Sun } from "@lucide/astro";
     try {
       localStorage.setItem("theme", isDark ? "dark" : "light");
     } catch {
-      /* private mode — session-only toggle */
+      // 시크릿 모드, SecurityError 발생 시 기본 라이트 테마로 처리
     }
   });
 </script>
