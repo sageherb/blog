@@ -71,7 +71,7 @@
 }
 
 @theme inline {
-  --font-sans: "Pretendard Variable", system-ui, sans-serif;
+  --font-sans: "Pretendard Variable", Arial, system-ui, sans-serif;
 
   --color-gray-1: var(--gray-1);
   --color-gray-2: var(--gray-2);
@@ -343,10 +343,21 @@ pagefind-modal-trigger.pagefind-search-trigger {
   --pf-input-height: 36px;
   --pf-text-muted: var(--color-text-muted);
   display: inline-flex;
+  min-width: 112px;
 }
 
 pagefind-modal-trigger.pagefind-search-trigger:hover {
   --pf-text-muted: var(--color-text);
+}
+
+@media (width < theme(--breakpoint-sm)) {
+  pagefind-modal-trigger.pagefind-search-trigger {
+    min-width: 44px;
+  }
+
+  .pagefind-search-trigger .pf-trigger-shortcut {
+    display: none !important;
+  }
 }
 
 .dark .astro-code,
