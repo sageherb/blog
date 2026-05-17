@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectCardCover from "@components/portfolio/ProjectCardCover.astro";
+import ProjectCardLinks from "@components/portfolio/ProjectCardLinks.astro";
+import ProjectCardMeta from "@components/portfolio/ProjectCardMeta.astro";
+
+interface Props {
+  entry: CollectionEntry<"portfolio">;
+}
+
+const { entry } = Astro.props;
+const { title, coverImage, links } = entry.data;
+const href = `/portfolio/${entry.id}`;
+---
+
+<article class="flex flex-col overflow-hidden">
+  <ProjectCardCover image={coverImage} alt={title} href={href} />
+  <div class="flex flex-1 flex-col gap-1.5 px-1.5 py-4">
+    <ProjectCardMeta entry={entry} href={href} />
+    <ProjectCardLinks links={links} class="mt-auto pt-2" />
+  </div>
+</article>

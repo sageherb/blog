@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
 import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
-import CardLinks from "@components/portfolio/CardLinks.astro";
+import ProjectCardLinks from "@components/portfolio/ProjectCardLinks.astro";
 import Badge from "@components/ui/Badge.astro";
 import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -81,7 +81,7 @@ const selectedOgImage = coverImage?.src ?? ogImagePath;
         )
       }
 
-      <CardLinks links={links} class="pt-1" />
+      <ProjectCardLinks links={links} class="pt-1" />
     </header>
 
     <Prose>
