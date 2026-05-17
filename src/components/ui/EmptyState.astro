@@ -1,13 +1,15 @@
 ---
+import { FolderOpen, Inbox, SearchX } from "@lucide/astro";
+
 interface Props {
   type: "blog" | "project" | "tag";
 }
 
-const labels: Record<Props["type"], string> = {
-  blog: "EMPTY",
-  project: "EMPTY",
-  tag: "NO MATCH",
-};
+const icons = {
+  blog: Inbox,
+  project: FolderOpen,
+  tag: SearchX,
+} as const;
 
 const messages: Record<Props["type"], string> = {
   blog: "아직 작성된 글이 없습니다.",
@@ -16,18 +18,15 @@ const messages: Record<Props["type"], string> = {
 };
 
 const { type } = Astro.props;
+const Icon = icons[type];
 ---
 
 <div
   data-pagefind-ignore
   class="flex flex-1 flex-col items-center justify-center gap-3 px-6 py-12 text-center"
 >
-  <span
-    class="text-accent-solid text-[10px] font-semibold tracking-[0.3em] uppercase"
-  >
-    {labels[type]}
-  </span>
-  <p class="text-text-muted max-w-[24ch] text-sm leading-relaxed">
+  <Icon class="text-accent-solid h-9 w-9" aria-hidden="true" />
+  <p class="text-text-muted max-w-xs text-base leading-relaxed">
     {messages[type]}
   </p>
 </div>
