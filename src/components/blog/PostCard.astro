@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import Badge from "@components/ui/Badge.astro";
 import { formatDate } from "@utils/date";
+import { blogPath, tagPath } from "@utils/routes";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -14,7 +15,7 @@ const formattedDate = formatDate(pubDate);
 ---
 
 <article class="flex flex-col gap-2">
-  <a href={`/blog/${post.id}`} class="group block">
+  <a href={blogPath(post.id)} class="group block">
     <h2
       class="text-text group-hover:text-link text-lg font-semibold transition-colors sm:text-xl"
     >
@@ -31,7 +32,7 @@ const formattedDate = formatDate(pubDate);
     </time>
     {
       tags.map((tag) => (
-        <Badge href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Badge>
+        <Badge href={tagPath(tag)}>#{tag}</Badge>
       ))
     }
   </div>

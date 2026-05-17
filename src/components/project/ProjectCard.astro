@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import ProjectCardCover from "@components/project/ProjectCardCover.astro";
 import ProjectCardLinks from "@components/project/ProjectCardLinks.astro";
 import ProjectCardMeta from "@components/project/ProjectCardMeta.astro";
+import { projectPath } from "@utils/routes";
 
 interface Props {
   entry: CollectionEntry<"project">;
@@ -10,7 +11,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, coverImage, links } = entry.data;
-const href = `/project/${entry.id}`;
+const href = projectPath(entry.id);
 ---
 
 <article class="flex flex-col overflow-hidden">

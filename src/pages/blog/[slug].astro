@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import PostLayout from "@layouts/PostLayout.astro";
 import { getBlogPosts } from "@utils/content";
+import { blogOgPath } from "@utils/routes";
 import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
@@ -27,7 +28,7 @@ const { Content } = await render(post);
   pubDate={post.data.pubDate}
   tags={post.data.tags}
   coverImage={post.data.coverImage}
-  ogImagePath={`/og/${post.id}.png`}
+  ogImagePath={blogOgPath(post.id)}
 >
   <Content />
 </PostLayout>

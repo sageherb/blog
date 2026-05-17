@@ -5,6 +5,7 @@ import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { formatDate } from "@utils/date";
 import { buildBlogPostingJsonLd, buildPersonJsonLd } from "@utils/jsonld";
+import { tagPath } from "@utils/routes";
 
 interface Props {
   title: string;
@@ -67,7 +68,7 @@ const jsonLd = [
         </time>
         {
           tags.map((tag) => (
-            <Badge href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Badge>
+            <Badge href={tagPath(tag)}>#{tag}</Badge>
           ))
         }
       </div>

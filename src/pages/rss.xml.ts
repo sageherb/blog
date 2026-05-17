@@ -2,6 +2,7 @@ import type { APIContext } from "astro";
 import rss from "@astrojs/rss";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@config";
 import { getBlogPosts } from "@utils/content";
+import { blogPath } from "@utils/routes";
 
 export const GET = async (context: APIContext) => {
   if (!context.site) {
@@ -16,7 +17,7 @@ export const GET = async (context: APIContext) => {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.pubDate,
-      link: `/blog/${post.id}/`,
+      link: blogPath(post.id),
     })),
   });
 };

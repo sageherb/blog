@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import ProjectLayout from "@layouts/ProjectLayout.astro";
 import { getProjectPosts } from "@utils/content";
+import { projectOgPath } from "@utils/routes";
 import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
@@ -30,7 +31,7 @@ const { Content } = await render(entry);
   techStack={entry.data.techStack}
   links={entry.data.links}
   coverImage={entry.data.coverImage}
-  ogImagePath={`/og/project/${entry.id}.png`}
+  ogImagePath={projectOgPath(entry.id)}
 >
   <Content />
 </ProjectLayout>
