@@ -6,9 +6,9 @@ import { SITE_FAVICON, SITE_TITLE } from "@config";
 const path = Astro.url.pathname;
 
 const navItems = [
-  { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
-  { href: "/portfolio", label: "Portfolio" },
+  { href: "/project", label: "Project" },
+  { href: "/about", label: "About" },
 ] as const;
 
 function isActive(href: string): boolean {

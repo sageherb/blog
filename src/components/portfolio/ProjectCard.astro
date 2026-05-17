@@ -10,7 +10,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, coverImage, links } = entry.data;
-const href = `/portfolio/${entry.id}`;
+const href = `/project/${entry.id}`;
 ---
 
 <article class="flex flex-col overflow-hidden">
