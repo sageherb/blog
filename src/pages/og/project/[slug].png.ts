@@ -1,6 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
 import { createOgImageResponse } from "@lib/og/render";
-import { getPortfolioPosts } from "@utils/content";
+import { getProjectPosts } from "@utils/content";
 import { formatDate } from "@utils/date";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const getStaticPaths = (async () => {
-  const entries = await getPortfolioPosts();
+  const entries = await getProjectPosts();
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: {

@@ -1,12 +1,12 @@
 ---
 import type { GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
-import PortfolioLayout from "@layouts/PortfolioLayout.astro";
-import { getPortfolioPosts } from "@utils/content";
+import ProjectLayout from "@layouts/ProjectLayout.astro";
+import { getProjectPosts } from "@utils/content";
 import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
-  const entries = await getPortfolioPosts();
+  const entries = await getProjectPosts();
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -14,14 +14,14 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 interface Props {
-  entry: CollectionEntry<"portfolio">;
+  entry: CollectionEntry<"project">;
 }
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<PortfolioLayout
+<ProjectLayout
   title={entry.data.title}
   description={entry.data.description}
   pubDate={entry.data.pubDate}
@@ -33,4 +33,4 @@ const { Content } = await render(entry);
   ogImagePath={`/og/project/${entry.id}.png`}
 >
   <Content />
-</PortfolioLayout>
+</ProjectLayout>

@@ -1,17 +1,17 @@
 ---
 interface Props {
-  type: "blog" | "portfolio" | "tag";
+  type: "blog" | "project" | "tag";
 }
 
 const labels: Record<Props["type"], string> = {
   blog: "EMPTY",
-  portfolio: "EMPTY",
+  project: "EMPTY",
   tag: "NO MATCH",
 };
 
 const messages: Record<Props["type"], string> = {
   blog: "아직 작성된 글이 없습니다.",
-  portfolio: "아직 등록된 프로젝트가 없습니다.",
+  project: "아직 등록된 프로젝트가 없습니다.",
   tag: "이 태그에 해당하는 글이 없습니다.",
 };
 

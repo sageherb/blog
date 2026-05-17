@@ -2,7 +2,7 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 export type BlogPost = CollectionEntry<"blog">;
-export type PortfolioEntry = CollectionEntry<"portfolio">;
+export type ProjectEntry = CollectionEntry<"project">;
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -11,8 +11,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   );
 }
 
-export async function getPortfolioPosts(): Promise<PortfolioEntry[]> {
-  const entries = await getCollection("portfolio", ({ data }) => !data.draft);
+export async function getProjectPosts(): Promise<ProjectEntry[]> {
+  const entries = await getCollection("project", ({ data }) => !data.draft);
   return entries.sort(
     (a, b) =>
       (b.data.startDate ?? b.data.pubDate).valueOf() -

@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import ProjectCardCover from "@components/portfolio/ProjectCardCover.astro";
-import ProjectCardLinks from "@components/portfolio/ProjectCardLinks.astro";
-import ProjectCardMeta from "@components/portfolio/ProjectCardMeta.astro";
+import ProjectCardCover from "@components/project/ProjectCardCover.astro";
+import ProjectCardLinks from "@components/project/ProjectCardLinks.astro";
+import ProjectCardMeta from "@components/project/ProjectCardMeta.astro";
 
 interface Props {
-  entry: CollectionEntry<"portfolio">;
+  entry: CollectionEntry<"project">;
 }
 
 const { entry } = Astro.props;

@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
-import placeholderCover from "@assets/portfolio/placeholder-cover.svg";
-import ProjectCardLinks from "@components/portfolio/ProjectCardLinks.astro";
+import placeholderCover from "@assets/project/placeholder-cover.svg";
+import ProjectCardLinks from "@components/project/ProjectCardLinks.astro";
 import Badge from "@components/ui/Badge.astro";
 import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -41,7 +41,7 @@ const selectedOgImage = coverImage?.src ?? ogImagePath;
 <BaseLayout
   title={title}
   description={description}
-  kind="portfolio"
+  kind="project"
   image={selectedOgImage}
   jsonLd={buildPersonJsonLd()}
 >
