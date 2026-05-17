@@ -35,3 +35,4 @@ pnpm-debug.log*
 agents.md
 .playwright-mcp
 docs
+.gstack/

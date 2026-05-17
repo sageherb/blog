@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
 import Badge from "@components/ui/Badge.astro";
+import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { formatDate } from "@utils/date";
 import { buildBlogPostingJsonLd, buildPersonJsonLd } from "@utils/jsonld";
@@ -72,9 +73,9 @@ const jsonLd = [
       </div>
     </header>
 
-    <div class="prose prose-sm md:prose-base prose-article max-w-none">
+    <Prose>
       <slot />
-    </div>
+    </Prose>
   </article>
   <script>
     import "@scripts/copy-code";
