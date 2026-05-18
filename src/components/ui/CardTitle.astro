@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+  inline?: boolean;
+}
+
+const { href, inline = false } = Astro.props;
+---
+
+<a href={href} class:list={["group", inline ? "" : "block"]}>
+  <h2
+    class="text-text group-hover:text-link text-lg leading-snug font-semibold transition-colors sm:text-xl"
+  >
+    <slot />
+  </h2>
+</a>

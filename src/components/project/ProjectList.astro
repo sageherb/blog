@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectCard from "@components/project/ProjectCard.astro";
+import EmptyState from "@components/ui/EmptyState.astro";
+import PageSection from "@components/ui/PageSection.astro";
+
+interface Props {
+  entries: CollectionEntry<"project">[];
+}
+
+const { entries } = Astro.props;
+---
+
+<PageSection>
+  {
+    entries.length === 0 ? (
+      <EmptyState type="project" />
+    ) : (
+      <ul class="flex flex-col gap-8">
+        {entries.map((entry) => (
+          <li>
+            <ProjectCard entry={entry} />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</PageSection>

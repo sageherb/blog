@@ -1,0 +1,24 @@
+---
+import Badge from "@components/ui/Badge.astro";
+
+interface Props {
+  tags: string[];
+  hrefFor?: (tag: string) => string;
+  prefix?: string;
+}
+
+const { tags, hrefFor, prefix = "" } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <div class="flex flex-wrap gap-x-2 gap-y-1">
+      {tags.map((tag) => (
+        <Badge href={hrefFor?.(tag)}>
+          {prefix}
+          {tag}
+        </Badge>
+      ))}
+    </div>
+  )
+}

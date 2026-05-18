@@ -66,11 +66,7 @@ const jsonLd = [
         >
           {formattedPubDate}
         </time>
-        {
-          tags.map((tag) => (
-            <Badge href={tagPath(tag)}>#{tag}</Badge>
-          ))
-        }
+        {tags.map((tag) => <Badge href={tagPath(tag)}>#{tag}</Badge>)}
       </div>
     </header>
 

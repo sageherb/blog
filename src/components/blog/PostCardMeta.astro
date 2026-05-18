@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CardDescription from "@components/ui/CardDescription.astro";
+import CardTitle from "@components/ui/CardTitle.astro";
+import TagList from "@components/ui/TagList.astro";
+import { formatDate } from "@utils/date";
+import { blogPath, tagPath } from "@utils/routes";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+
+const formattedDate = formatDate(pubDate);
+---
+
+<CardTitle href={blogPath(post.id)}>{title}</CardTitle>
+<CardDescription>{description}</CardDescription>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+  <time
+    datetime={pubDate.toISOString()}
+    class="text-text-subtle text-xs sm:text-sm"
+  >
+    {formattedDate}
+  </time>
+  <TagList tags={tags} hrefFor={tagPath} prefix="#" />
+</div>

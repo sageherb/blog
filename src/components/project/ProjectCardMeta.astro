@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Badge from "@components/ui/Badge.astro";
+import CardDescription from "@components/ui/CardDescription.astro";
+import CardTitle from "@components/ui/CardTitle.astro";
+import TagList from "@components/ui/TagList.astro";
 import { formatPeriod } from "@utils/date";
 
 interface Props {
@@ -14,13 +16,7 @@ const periodText = formatPeriod(startDate, endDate);
 ---
 
 <div class="flex flex-wrap items-baseline gap-3">
-  <a href={href} class="group">
-    <h2
-      class="text-text group-hover:text-link text-lg leading-snug font-semibold transition-colors sm:text-xl"
-    >
-      {title}
-    </h2>
-  </a>
+  <CardTitle href={href} inline>{title}</CardTitle>
   {
     periodText && (
       <span class="text-text-subtle text-xs sm:text-sm">{periodText}</span>
@@ -28,16 +24,6 @@ const periodText = formatPeriod(startDate, endDate);
   }
 </div>
 
-<p class="text-text-muted line-clamp-2 text-sm sm:text-base">
-  {description}
-</p>
+<CardDescription>{description}</CardDescription>
 
-{
-  techStack.length > 0 && (
-    <div class="flex flex-wrap gap-x-1.5 gap-y-1">
-      {techStack.map((name) => (
-        <Badge>{name}</Badge>
-      ))}
-    </div>
-  )
-}
+<TagList tags={techStack} />

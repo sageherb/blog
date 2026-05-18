@@ -1,39 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Badge from "@components/ui/Badge.astro";
-import { formatDate } from "@utils/date";
-import { blogPath, tagPath } from "@utils/routes";
+import PostCardMeta from "@components/blog/PostCardMeta.astro";
 
 interface Props {
   post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, tags } = post.data;
-
-const formattedDate = formatDate(pubDate);
 ---
 
 <article class="flex flex-col gap-2">
-  <a href={blogPath(post.id)} class="group block">
-    <h2
-      class="text-text group-hover:text-link text-lg font-semibold transition-colors sm:text-xl"
-    >
-      {title}
-    </h2>
-  </a>
-  <p class="text-text-muted line-clamp-2 text-sm sm:text-base">{description}</p>
-  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-    <time
-      datetime={pubDate.toISOString()}
-      class="text-text-subtle text-xs sm:text-sm"
-    >
-      {formattedDate}
-    </time>
-    {
-      tags.map((tag) => (
-        <Badge href={tagPath(tag)}>#{tag}</Badge>
-      ))
-    }
-  </div>
+  <PostCardMeta post={post} />
 </article>
