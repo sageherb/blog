@@ -240,48 +240,6 @@
     font-weight: 600;
   }
 
-  .prose .code-block {
-    position: relative;
-  }
-
-  .prose .code-block .code-filename + pre {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-top: none;
-  }
-
-  .prose .code-block .copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    line-height: 1.5;
-    font-family: inherit;
-    background: var(--color-surface);
-    color: var(--color-text-muted);
-    border: 1px solid transparent;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    opacity: 0;
-    transition:
-      opacity 0.15s,
-      background-color 0.15s,
-      color 0.15s,
-      border-color 0.15s;
-  }
-
-  .prose .code-block:hover .copy-btn,
-  .prose .code-block .copy-btn:focus-visible {
-    opacity: 1;
-  }
-
-  .prose .code-block .copy-btn:hover {
-    background: var(--color-accent-solid);
-    color: var(--color-accent-contrast);
-    border-color: var(--color-accent-solid);
-  }
-
   .theme-toggle [data-icon="sun"] {
     display: none;
   }
@@ -358,14 +316,6 @@ pagefind-modal-trigger.pagefind-search-trigger:hover {
   .pagefind-search-trigger .pf-trigger-shortcut {
     display: none !important;
   }
-}
-
-.dark .astro-code,
-.dark .astro-code span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
