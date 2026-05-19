@@ -14,7 +14,7 @@ techStack:
   - Supabase
 links:
   github: "https://github.com/prgrms-fe-devcourse/pomato"
-draft: false
+draft: true
 ---
 
 ## 개요
