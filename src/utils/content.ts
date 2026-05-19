@@ -19,9 +19,3 @@ export async function getProjectPosts(): Promise<ProjectEntry[]> {
       (a.data.startDate ?? a.data.pubDate).valueOf(),
   );
 }
-
-export async function getAllTags(): Promise<string[]> {
-  const posts = await getBlogPosts();
-  const tags = new Set(posts.flatMap((p) => p.data.tags));
-  return [...tags];
-}

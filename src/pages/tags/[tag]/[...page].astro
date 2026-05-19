@@ -4,35 +4,35 @@ import type { CollectionEntry } from "astro:content";
 import PostList from "@components/blog/PostList.astro";
 import { POSTS_PER_PAGE } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { getBlogPosts } from "@utils/content";
+import { getTagGroups } from "@utils/tags";
 
 export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
-  const posts = await getBlogPosts();
-  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
-
-  return tags.flatMap((tag) => {
-    const filtered = posts.filter((p) => p.data.tags.includes(tag));
-    return paginate(filtered, {
-      params: { tag },
-      props: { tag },
+  const groups = await getTagGroups();
+  return groups.flatMap(({ slug, display, posts }) =>
+    paginate(posts, {
+      params: { tag: slug },
+      props: { displayTag: display },
       pageSize: POSTS_PER_PAGE,
-    });
-  });
+    }),
+  );
 }) satisfies GetStaticPaths;
 
 interface Props {
   page: Page<CollectionEntry<"blog">>;
-  tag: string;
+  displayTag: string;
 }
 
-const { page, tag } = Astro.props;
+const { page, displayTag } = Astro.props;
 ---
 
-<BaseLayout title={`#${tag}`} description={`${tag} 태그가 붙은 글 목록`}>
+<BaseLayout
+  title={`#${displayTag}`}
+  description={`${displayTag} 태그가 붙은 글 목록`}
+>
   <PostList page={page} emptyType="tag">
     <header slot="header" class="mb-8">
       <h1 class="text-text text-xl font-bold sm:text-2xl">
-        <span class="text-link">#</span>{tag}
+        <span class="text-link">#</span>{displayTag}
       </h1>
       <p class="text-text-muted mt-1 text-sm">{page.total}개의 글</p>
     </header>

@@ -4,7 +4,8 @@ import CardDescription from "@components/ui/CardDescription.astro";
 import CardTitle from "@components/ui/CardTitle.astro";
 import TagList from "@components/ui/TagList.astro";
 import { formatDate } from "@utils/date";
-import { blogPath, tagPath } from "@utils/routes";
+import { blogPath } from "@utils/routes";
+import { tagPath } from "@utils/tags";
 
 interface Props {
   post: CollectionEntry<"blog">;
