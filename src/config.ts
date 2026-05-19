@@ -16,6 +16,8 @@ export const LICENSE = "All rights reserved.";
 
 export const POSTS_PER_PAGE = 10;
 
+export const PAGE_BLOCK_SIZE = 5;
+
 export const SOCIAL_LINKS = {
   github: "https://github.com/sageherb",
   email: "prestoferoce@gmail.com",

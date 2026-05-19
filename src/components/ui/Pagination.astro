@@ -1,6 +1,9 @@
 ---
 import type { Page } from "astro";
 import type { CollectionEntry, CollectionKey } from "astro:content";
+import { PAGE_BLOCK_SIZE } from "@config";
+import { ChevronLeft, ChevronRight } from "@lucide/astro";
+import { buildPageHref, getPageBlock } from "@utils/pagination";
 
 interface Props {
   page: Page<CollectionEntry<CollectionKey>>;
@@ -8,36 +11,12 @@ interface Props {
 
 const { page } = Astro.props;
 
-const baseUrl =
-  page.currentPage === 1
-    ? page.url.current
-    : page.url.current.replace(/\/\d+\/?$/, "");
-
-function getPageUrl(p: number): string {
-  if (p === 1) return baseUrl;
-  return `${baseUrl}/${p}`;
-}
-
-const prevHref = page.url.prev;
-
-function getPageItems(current: number, total: number): (number | "...")[] {
-  if (total <= 7) {
-    return Array.from({ length: total }, (_, i) => i + 1);
-  }
-
-  const result: (number | "...")[] = [1];
-  const rangeStart = Math.max(2, current - 1);
-  const rangeEnd = Math.min(total - 1, current + 1);
-
-  if (rangeStart > 2) result.push("...");
-  for (let i = rangeStart; i <= rangeEnd; i++) result.push(i);
-  if (rangeEnd < total - 1) result.push("...");
-
-  result.push(total);
-  return result;
-}
-
-const items = getPageItems(page.currentPage, page.lastPage);
+const base = page.url.first ?? page.url.current;
+const { pages, prevPage, nextPage } = getPageBlock(
+  page.currentPage,
+  page.lastPage,
+  PAGE_BLOCK_SIZE,
+);
 ---
 
 <nav
@@ -45,64 +24,55 @@ const items = getPageItems(page.currentPage, page.lastPage);
   class="mt-3 flex items-center justify-center gap-2 pt-3 text-sm sm:mt-6 sm:pt-6"
 >
   {
-    prevHref ? (
+    prevPage ? (
       <a
-        href={prevHref}
+        href={buildPageHref(base, prevPage)}
         aria-label="이전 페이지"
         class="text-text-muted hover:text-text px-1 transition-colors"
       >
-        ←
+        <ChevronLeft class="size-4" aria-hidden="true" />
       </a>
     ) : (
       <span aria-hidden="true" class="text-text-subtle/40 px-1 select-none">
-        ←
+        <ChevronLeft class="size-4" />
       </span>
     )
   }
 
   <ol class="mx-2 flex items-center gap-3 tabular-nums">
     {
-      items.map((item) =>
-        item === "..." ? (
-          <li
-            aria-hidden="true"
-            class="text-text-subtle leading-none select-none"
+      pages.map((item) => (
+        <li class="leading-none">
+          <a
+            href={buildPageHref(base, item)}
+            aria-label={`${item}페이지`}
+            aria-current={item === page.currentPage ? "page" : undefined}
+            class:list={[
+              "transition-colors",
+              item === page.currentPage
+                ? "text-link decoration-accent-solid font-semibold underline decoration-2 underline-offset-4"
+                : "text-text-muted hover:text-text font-normal",
+            ]}
           >
-            …
-          </li>
-        ) : (
-          <li class="leading-none">
-            <a
-              href={getPageUrl(item)}
-              aria-label={`${item}페이지`}
-              aria-current={item === page.currentPage ? "page" : undefined}
-              class:list={[
-                "transition-colors",
-                item === page.currentPage
-                  ? "text-link decoration-accent-solid font-semibold underline decoration-2 underline-offset-4"
-                  : "text-text-muted hover:text-text font-normal",
-              ]}
-            >
-              {item}
-            </a>
-          </li>
-        ),
-      )
+            {item}
+          </a>
+        </li>
+      ))
     }
   </ol>
 
   {
-    page.url.next ? (
+    nextPage ? (
       <a
-        href={page.url.next}
+        href={buildPageHref(base, nextPage)}
         aria-label="다음 페이지"
         class="text-text-muted hover:text-text px-1 transition-colors"
       >
-        →
+        <ChevronRight class="size-4" aria-hidden="true" />
       </a>
     ) : (
       <span aria-hidden="true" class="text-text-subtle/40 px-1 select-none">
-        →
+        <ChevronRight class="size-4" />
       </span>
     )
   }
