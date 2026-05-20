@@ -4,7 +4,7 @@ import Badge from "@components/ui/Badge.astro";
 import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { formatDate } from "@utils/date";
-import { buildBlogPostingJsonLd, buildPersonJsonLd } from "@utils/jsonld";
+import { buildPostPageJsonLd } from "@utils/jsonld";
 import { tagPath } from "@utils/tags";
 
 interface Props {
@@ -25,17 +25,14 @@ const seo = {
   ogType: "article",
   pubDate,
   image: ogImagePath,
-  jsonLd: [
-    buildBlogPostingJsonLd({
-      title,
-      description,
-      pubDate,
-      tags,
-      canonicalPath: Astro.url.pathname,
-      ogImagePath,
-    }),
-    buildPersonJsonLd(),
-  ],
+  jsonLd: buildPostPageJsonLd({
+    title,
+    description,
+    pubDate,
+    tags,
+    canonicalPath: Astro.url.pathname,
+    ogImagePath,
+  }),
   tags,
 } satisfies SeoProps;
 ---

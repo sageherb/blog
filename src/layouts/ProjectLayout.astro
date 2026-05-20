@@ -7,7 +7,6 @@ import Badge from "@components/ui/Badge.astro";
 import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { formatDate, formatPeriod } from "@utils/date";
-import { buildPersonJsonLd } from "@utils/jsonld";
 import { Image } from "astro:assets";
 
 interface Props {
@@ -43,7 +42,6 @@ const seo = {
   ogType: "article",
   pubDate: startDate ?? pubDate,
   image: ogImagePath,
-  jsonLd: buildPersonJsonLd(),
   tags: techStack,
 } satisfies SeoProps;
 ---

@@ -1,35 +1,38 @@
-import { AUTHOR, SITE_DESCRIPTION, SITE_TITLE, SOCIAL_LINKS } from "@config";
+import { AUTHOR, SOCIAL_LINKS } from "@config";
 import { siteUrl } from "@utils/url";
 
 export type JsonLdObject = Record<string, unknown>;
 export type JsonLdInput = JsonLdObject | JsonLdObject[];
 
+const OG_IMAGE_WIDTH = 1200;
+const OG_IMAGE_HEIGHT = 630;
+
+interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
 function absolute(pathOrUrl: string): string {
   return siteUrl(pathOrUrl).toString();
 }
 
-// potentialAction에 SearchAction을 의도적으로 누락 — 검색은 클라이언트 모달(Pagefind)이라
-// 엔드포인트 URL이 없어 검색 결과에 노출되면 깨진 경로가 된다.
-export function buildWebSiteJsonLd(): JsonLdObject {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    url: absolute("/"),
-    inLanguage: "ko-KR",
-  };
-}
-
-export function buildPersonJsonLd(): JsonLdObject {
+function personNode(): JsonLdObject {
   const sameAs: string[] = [];
   if (SOCIAL_LINKS.github) sameAs.push(SOCIAL_LINKS.github);
   return {
-    "@context": "https://schema.org",
     "@type": "Person",
     name: AUTHOR,
     url: absolute("/"),
     ...(sameAs.length > 0 ? { sameAs } : {}),
+  };
+}
+
+function imageObject(pathOrUrl: string): JsonLdObject {
+  return {
+    "@type": "ImageObject",
+    url: absolute(pathOrUrl),
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
   };
 }
 
@@ -42,7 +45,7 @@ interface BlogPostingInput {
   ogImagePath?: string;
 }
 
-export function buildBlogPostingJsonLd(input: BlogPostingInput): JsonLdObject {
+function buildBlogPostingJsonLd(input: BlogPostingInput): JsonLdObject {
   const canonicalUrl = absolute(input.canonicalPath);
   return {
     "@context": "https://schema.org",
@@ -51,13 +54,37 @@ export function buildBlogPostingJsonLd(input: BlogPostingInput): JsonLdObject {
     description: input.description,
     datePublished: input.pubDate.toISOString(),
     inLanguage: "ko-KR",
-    author: { "@type": "Person", name: AUTHOR, url: absolute("/") },
+    author: personNode(),
+    publisher: personNode(),
     ...(input.tags.length > 0 ? { keywords: input.tags.join(", ") } : {}),
     ...(input.ogImagePath != null && input.ogImagePath !== ""
-      ? { image: absolute(input.ogImagePath) }
+      ? { image: imageObject(input.ogImagePath) }
       : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   };
+}
+
+function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): JsonLdObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absolute(item.path),
+    })),
+  };
+}
+
+export function buildPostPageJsonLd(input: BlogPostingInput): JsonLdObject[] {
+  return [
+    buildBlogPostingJsonLd(input),
+    buildBreadcrumbJsonLd([
+      { name: "Blog", path: "/blog/" },
+      { name: input.title, path: input.canonicalPath },
+    ]),
+  ];
 }
 
 export function escapeJsonForHtml(json: string): string {
