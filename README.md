@@ -1,6 +1,8 @@
-# Blog
+# SageHerb
 
-Astro 기반으로 제작한 개인 블로그이자 프로젝트 아카이브입니다. 콘텐츠 중심의 구조를 유지하면서도, 검색성과 확장성을 함께 고려해 설계했습니다.
+Astro 기반 개인 블로그이자 프로젝트 아카이브 — [sageherb.dev](https://sageherb.dev)
+
+콘텐츠 중심의 구조를 유지하면서도, 검색성과 확장성을 함께 고려해 설계했습니다.
 
 ## 기술 스택
 
@@ -28,42 +30,26 @@ Astro 기반으로 제작한 개인 블로그이자 프로젝트 아카이브입
 
 ```text
 src/
-  assets/
+  assets/                                # 이미지·폰트 등 정적 에셋
   components/
-    blog/         # PostCard, PostList, PostCardMeta
-    project/     # ProjectCard, ProjectList, ProjectCardMeta 등
-    ui/          # Badge, CardTitle, CardDescription, Prose, Pagination 등 공통 프리미티브
-    BaseHead.astro, Header.astro, Footer.astro, ThemeToggle.astro, PagefindSearch.astro 등
-  content/
-    about/
-    blog/
-    project/
-  content.config.ts
-  config.ts
-  layouts/       # BaseLayout, PostLayout, ProjectLayout
-  lib/
-    og/          # Satori 템플릿, 폰트, 렌더러
-  pages/
+    blog/                                # PostCard, PostList, PostCardMeta
+    layout/                              # BaseHead, Header, Footer, ThemeToggle, PagefindSearch
+    project/                             # ProjectCard, ProjectList, ProjectCardMeta 등
+    ui/                                  # Badge, CardTitle, CardDescription, Prose, Pagination, IconGithub 등 공통 프리미티브
+  content/                               # 블로그·프로젝트·소개 콘텐츠 원본
+    about/, blog/, project/
+  content.config.ts                      # Content Collections 스키마 정의
+  config.ts                              # 사이트 전역 설정 상수
+  layouts/                               # BaseLayout, PostLayout, ProjectLayout
+  lib/og/                                # Satori 기반 OG 이미지 템플릿·폰트·렌더 로직
+  pages/                                 # 라우팅 엔트리
     blog/[...page].astro, blog/[slug].astro
     project/index.astro, project/[slug].astro
     tags/[tag]/...
     og/, about.astro, rss.xml.ts
-  styles/
-  utils/         # content.ts, date.ts, jsonld.ts, pagination.ts, routes.ts, tags.ts
+  styles/                                # 전역 스타일·Tailwind 토큰
+  utils/                                 # content, date, jsonld, pagination, routes, tags 헬퍼
 ```
-
-각 디렉터리의 역할은 다음과 같습니다.
-
-- `assets/`: 이미지, 폰트 등 정적 에셋
-- `components/`: 도메인별(`blog`, `project`) 컴포넌트와 공통 UI 프리미티브(`ui/`)
-- `content/`: 블로그, 프로젝트, 소개 콘텐츠 원본
-- `content.config.ts`: Content Collections 스키마 정의
-- `config.ts`: 사이트 전역 설정 상수
-- `layouts/`: 페이지 공통 레이아웃
-- `lib/og/`: Satori 기반 OG 이미지 템플릿 · 폰트 · 렌더 로직
-- `pages/`: 라우팅 엔트리
-- `styles/`: 전역 스타일 및 Tailwind 토큰
-- `utils/`: 콘텐츠 정렬/필터, 날짜 포맷, JSON-LD, 페이지네이션, 라우트 헬퍼, 태그 헬퍼
 
 경로 별칭은 `tsconfig.json`에 정의되어 있으며 `@components/*`, `@layouts/*`, `@utils/*`, `@lib/*`, `@content/*`, `@styles/*`, `@assets/*`, `@config`을 사용합니다.
 
@@ -85,42 +71,39 @@ Node.js 22.12 이상, pnpm 환경에서 프로젝트 루트에서 실행합니�
 
 ### Blog (`src/content/blog/*.md`, `*.mdx`)
 
-```yaml
-title: string
-description: string
-pubDate: date
-tags: string[] # 기본값 []
-coverImage: image # optional
-draft: boolean # 기본값 false
-```
+| 필드          | 타입       | 필수 | 기본값  | 비고           |
+| ------------- | ---------- | :--: | :-----: | -------------- |
+| `title`       | `string`   |  ✓   |    —    |                |
+| `description` | `string`   |  ✓   |    —    |                |
+| `pubDate`     | `date`     |  ✓   |    —    | 발행일         |
+| `tags`        | `string[]` |      |  `[]`   |                |
+| `coverImage`  | `image`    |      |    —    | optional       |
+| `draft`       | `boolean`  |      | `false` | 목록 노출 여부 |
 
 ### Project (`src/content/project/*.md`, `*.mdx`)
 
-```yaml
-title: string
-description: string
-pubDate: date
-startDate: date # optional
-endDate: date # optional
-techStack: string[] # 기본값 []
-coverImage: image # optional
-links: # optional
-  github: url # optional
-  live: url # optional
-draft: boolean # 기본값 false
-```
+| 필드          | 타입       | 필수 | 기본값  | 비고                                |
+| ------------- | ---------- | :--: | :-----: | ----------------------------------- |
+| `title`       | `string`   |  ✓   |    —    |                                     |
+| `description` | `string`   |  ✓   |    —    |                                     |
+| `pubDate`     | `date`     |  ✓   |    —    |                                     |
+| `startDate`   | `date`     |      |    —    | 프로젝트 시작일                     |
+| `endDate`     | `date`     |      |    —    | 생략 시 "진행 중"으로 표시          |
+| `techStack`   | `string[]` |      |  `[]`   |                                     |
+| `coverImage`  | `image`    |      |    —    |                                     |
+| `links`       | `object`   |      |    —    | `github`, `live` 각각 URL, optional |
+| `draft`       | `boolean`  |      | `false` |                                     |
 
 - `startDate`가 있으면 프로젝트 기간을 "2026년 3월 — 2026년 3월" 형태로 표시합니다.
-- `endDate`를 생략하면 "진행 중"으로 표시됩니다.
 - 프로젝트 목록은 `startDate` 기준 최신순으로 정렬됩니다 (`startDate` 없으면 `pubDate`).
 
 ### About (`src/content/about/index.md`)
 
-```yaml
-title: string
-description: string
-draft: boolean # 기본값 false
-```
+| 필드          | 타입      | 필수 | 기본값  |
+| ------------- | --------- | :--: | :-----: |
+| `title`       | `string`  |  ✓   |    —    |
+| `description` | `string`  |  ✓   |    —    |
+| `draft`       | `boolean` |      | `false` |
 
 ## 검색 (Pagefind)
 
@@ -137,7 +120,7 @@ draft: boolean # 기본값 false
 
 ## OG 이미지
 
-- `src/pages/og/` 라우트가 빌드 시 Satori + resvg로 PNG를 생성합니다.
+- `src/pages/og/` 라우트가 빌드 시 Satori + `resvg`로 PNG를 생성합니다.
 - 템플릿(`src/lib/og/template.tsx`)은 Preact JSX로 작성되며, `tsconfig`의 `jsxImportSource: "preact"` 설정을 따릅니다.
 - 사이트맵 생성 시 OG 경로는 제외됩니다 (`astro.config.mjs`의 `sitemap` 필터).
 
