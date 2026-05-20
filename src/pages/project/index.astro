@@ -6,6 +6,6 @@ import { getProjectPosts } from "@utils/content";
 const entries = await getProjectPosts();
 ---
 
-<BaseLayout title="Project" description="프로젝트 목록">
+<BaseLayout seo={{ title: "Project", description: "프로젝트 목록" }}>
   <ProjectList entries={entries} />
 </BaseLayout>

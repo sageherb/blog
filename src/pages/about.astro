@@ -11,7 +11,7 @@ const { Content } = await render(entry);
 const { description } = entry.data;
 ---
 
-<BaseLayout title="Sage" description={description}>
+<BaseLayout seo={{ title: "Sage", description, ogType: "profile" }}>
   <PageSection>
     <Prose>
       <Content />

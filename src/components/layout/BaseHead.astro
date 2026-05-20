@@ -13,15 +13,17 @@ import { siteUrl } from "@utils/url";
 
 const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg.replaceAll("currentColor", BRAND_COLOR))}`;
 
-interface Props {
+export interface SeoProps {
   title: string;
   description: string;
   image?: string;
-  kind?: "page" | "post" | "project";
+  ogType?: "website" | "article" | "profile";
   pubDate?: Date;
   jsonLd?: JsonLdInput;
   tags?: string[];
 }
+
+type Props = SeoProps;
 
 function normalizeJsonLd(input: JsonLdInput | undefined): JsonLdObject[] {
   if (!input) return [];
@@ -32,7 +34,7 @@ const {
   title,
   description,
   image,
-  kind = "page",
+  ogType = "website",
   pubDate,
   jsonLd,
   tags,
@@ -40,7 +42,6 @@ const {
 
 const jsonLdItems = normalizeJsonLd(jsonLd);
 const canonicalURL = siteUrl(Astro.url.pathname);
-const ogType = kind === "page" ? "website" : "article";
 const documentTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
 const ogImage = siteUrl(image ?? DEFAULT_OG_IMAGE).toString();
 const metaDescription = description.trim() || SITE_DESCRIPTION;
@@ -87,8 +88,8 @@ const metaDescription = description.trim() || SITE_DESCRIPTION;
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:alt" content={title} />
 {
-  kind !== "page" && (
-    <Fragment>
+  ogType === "article" && (
+    <>
       <meta name="author" content={AUTHOR} />
       <meta property="article:author" content={AUTHOR} />
       {pubDate && (
@@ -100,7 +101,7 @@ const metaDescription = description.trim() || SITE_DESCRIPTION;
       {tags?.map((tag) => (
         <meta property="article:tag" content={tag} />
       ))}
-    </Fragment>
+    </>
   )
 }
 <meta name="twitter:card" content="summary_large_image" />

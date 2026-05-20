@@ -1,5 +1,5 @@
 ---
-import type { ImageMetadata } from "astro";
+import type { SeoProps } from "@components/layout/BaseHead.astro";
 import Badge from "@components/ui/Badge.astro";
 import Prose from "@components/ui/Prose.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -12,43 +12,35 @@ interface Props {
   description: string;
   pubDate: Date;
   tags?: string[];
-  coverImage?: ImageMetadata;
   ogImagePath?: string;
 }
 
-const {
-  title,
-  description,
-  pubDate,
-  tags = [],
-  coverImage,
-  ogImagePath,
-} = Astro.props;
+const { title, description, pubDate, tags = [], ogImagePath } = Astro.props;
 
 const formattedPubDate = formatDate(pubDate);
 
-const jsonLd = [
-  buildBlogPostingJsonLd({
-    title,
-    description,
-    pubDate,
-    tags,
-    canonicalPath: Astro.url.pathname,
-    ogImagePath,
-  }),
-  buildPersonJsonLd(),
-];
+const seo = {
+  title,
+  description,
+  ogType: "article",
+  pubDate,
+  image: ogImagePath,
+  jsonLd: [
+    buildBlogPostingJsonLd({
+      title,
+      description,
+      pubDate,
+      tags,
+      canonicalPath: Astro.url.pathname,
+      ogImagePath,
+    }),
+    buildPersonJsonLd(),
+  ],
+  tags,
+} satisfies SeoProps;
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  kind="post"
-  pubDate={pubDate}
-  image={ogImagePath}
-  jsonLd={jsonLd}
-  tags={tags}
->
+<BaseLayout seo={seo}>
   <article
     class="py-4 sm:py-8"
     data-pagefind-body

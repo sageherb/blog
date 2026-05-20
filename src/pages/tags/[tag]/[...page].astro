@@ -26,8 +26,10 @@ const { page, displayTag } = Astro.props;
 ---
 
 <BaseLayout
-  title={`#${displayTag}`}
-  description={`${displayTag} 태그가 붙은 글 목록`}
+  seo={{
+    title: `#${displayTag}`,
+    description: `${displayTag} 태그가 붙은 글 목록`,
+  }}
 >
   <PostList page={page} emptyType="tag">
     <header slot="header" class="mb-8">

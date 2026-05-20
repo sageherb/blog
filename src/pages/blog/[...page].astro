@@ -23,6 +23,6 @@ const jsonLd =
     : undefined;
 ---
 
-<BaseLayout title="Blog" description={SITE_DESCRIPTION} jsonLd={jsonLd}>
+<BaseLayout seo={{ title: "Blog", description: SITE_DESCRIPTION, jsonLd }}>
   <PostList page={page} />
 </BaseLayout>

@@ -1,21 +1,15 @@
 ---
-import type { JsonLdInput } from "@utils/jsonld";
+import type { SeoProps } from "@components/layout/BaseHead.astro";
 import BaseHead from "@components/layout/BaseHead.astro";
 import Footer from "@components/layout/Footer.astro";
 import Header from "@components/layout/Header.astro";
 import "@styles/global.css";
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  kind?: "page" | "post" | "project";
-  pubDate?: Date;
-  jsonLd?: JsonLdInput;
-  tags?: string[];
+  seo: SeoProps;
 }
 
-const { title, description, image, kind, pubDate, jsonLd, tags } = Astro.props;
+const { seo } = Astro.props;
 ---
 
 <!doctype html>
@@ -34,15 +28,7 @@ const { title, description, image, kind, pubDate, jsonLd, tags } = Astro.props;
         // 시크릿 모드, SecurityError 발생 시 기본 라이트 테마로 처리
       }
     </script>
-    <BaseHead
-      title={title}
-      description={description}
-      image={image}
-      kind={kind}
-      pubDate={pubDate}
-      jsonLd={jsonLd}
-      tags={tags}
-    />
+    <BaseHead {...seo} />
   </head>
   <body class="bg-background text-text flex min-h-dvh flex-col">
     <div class="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 sm:px-6">
