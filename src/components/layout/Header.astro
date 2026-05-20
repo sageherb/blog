@@ -1,7 +1,8 @@
 ---
+import Logo from "@assets/logos/filled.svg";
 import PagefindSearch from "@components/layout/PagefindSearch.astro";
 import ThemeToggle from "@components/layout/ThemeToggle.astro";
-import { SITE_FAVICON, SITE_TITLE } from "@config";
+import { SITE_TITLE } from "@config";
 
 const path = Astro.url.pathname;
 
@@ -26,7 +27,7 @@ function isActive(href: string): boolean {
     aria-label={SITE_TITLE}
     class="text-text hover:text-link inline-flex h-9 w-9 items-center justify-center text-2xl leading-none font-semibold transition-colors md:w-auto md:justify-start md:gap-2"
   >
-    <span class="inline-flex items-center leading-none">{SITE_FAVICON}</span>
+    <Logo class="h-6 w-6 text-(--accent-9)" aria-hidden="true" />
     <span class="hidden leading-none md:inline-block">{SITE_TITLE}</span>
   </a>
 

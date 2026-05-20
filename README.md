@@ -127,7 +127,7 @@ Node.js 22.12 이상, pnpm 환경에서 프로젝트 루트에서 실행합니�
 ## 환경 설정
 
 - 사이트 기본 설정: `src/config.ts`
-- 주요 상수: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `AUTHOR`, `SITE_FAVICON`, `DEFAULT_OG_IMAGE`, `COPYRIGHT_NAME`, `LICENSE`, `POSTS_PER_PAGE`, `PAGE_BLOCK_SIZE`, `SOCIAL_LINKS`.
+- 주요 상수: `SITE_URL`, `SITE_TITLE`, `SITE_DESCRIPTION`, `AUTHOR`, `BRAND_COLOR`, `DEFAULT_OG_IMAGE`, `COPYRIGHT_NAME`, `LICENSE`, `POSTS_PER_PAGE`, `PAGE_BLOCK_SIZE`, `SOCIAL_LINKS`.
 - 배포 환경이 변경되더라도 한 곳만 수정하면 전체에 반영되도록 설계했습니다.
 
 ## 배포 · 릴리스

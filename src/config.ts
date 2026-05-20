@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION = "개발 기록 저장소";
 
 export const AUTHOR = "Sage";
 
-export const SITE_FAVICON = "🌿";
+export const BRAND_COLOR = "#52796f";
 
 export const DEFAULT_OG_IMAGE = "/og/default.png";
 

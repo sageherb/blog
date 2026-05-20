@@ -1,7 +1,10 @@
 ---
 import type { JsonLdInput, JsonLdObject } from "@utils/jsonld";
-import { DEFAULT_OG_IMAGE, SITE_FAVICON, SITE_TITLE } from "@config";
+import faviconSvg from "@assets/logos/filled.svg?raw";
+import { BRAND_COLOR, DEFAULT_OG_IMAGE, SITE_TITLE } from "@config";
 import { escapeJsonForHtml } from "@utils/jsonld";
+
+const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg.replaceAll("currentColor", BRAND_COLOR))}`;
 
 interface Props {
   title: string;
@@ -51,11 +54,8 @@ const {
 const jsonLdItems = normalizeJsonLd(jsonLd);
 const canonicalURL = buildCanonicalURL(canonical, Astro.site, Astro.url);
 const ogType = kind === "post" ? "article" : "website";
-const documentTitle = title === SITE_TITLE ? title : `${title} — ${SITE_TITLE}`;
+const documentTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
 const ogImage = resolveOgImage(image ?? DEFAULT_OG_IMAGE, Astro.site);
-
-const faviconSvg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${SITE_FAVICON}</text></svg>`;
-const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 ---
 
 <meta charset="utf-8" />
@@ -69,7 +69,8 @@ const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
 />
 
-<link rel="icon" href={faviconHref} />
+<link rel="icon" type="image/svg+xml" href={faviconHref} />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
 
