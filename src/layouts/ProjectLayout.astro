@@ -35,15 +35,16 @@ const {
 
 const periodText = formatPeriod(startDate, endDate) ?? formatDate(pubDate);
 const cover = coverImage ?? placeholderCover;
-const selectedOgImage = coverImage?.src ?? ogImagePath;
 ---
 
 <BaseLayout
   title={title}
   description={description}
   kind="project"
-  image={selectedOgImage}
+  pubDate={startDate ?? pubDate}
+  image={ogImagePath}
   jsonLd={buildPersonJsonLd()}
+  tags={techStack}
 >
   <article
     class="py-4 sm:py-8"

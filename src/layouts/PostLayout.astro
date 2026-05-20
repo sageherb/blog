@@ -27,8 +27,6 @@ const {
 
 const formattedPubDate = formatDate(pubDate);
 
-const selectedOgImage = coverImage?.src ?? ogImagePath;
-
 const jsonLd = [
   buildBlogPostingJsonLd({
     title,
@@ -36,7 +34,7 @@ const jsonLd = [
     pubDate,
     tags,
     canonicalPath: Astro.url.pathname,
-    ogImagePath: selectedOgImage,
+    ogImagePath,
   }),
   buildPersonJsonLd(),
 ];
@@ -47,8 +45,9 @@ const jsonLd = [
   description={description}
   kind="post"
   pubDate={pubDate}
-  image={selectedOgImage}
+  image={ogImagePath}
   jsonLd={jsonLd}
+  tags={tags}
 >
   <article
     class="py-4 sm:py-8"

@@ -11,12 +11,11 @@ interface Props {
   image?: string;
   kind?: "page" | "post" | "project";
   pubDate?: Date;
-  canonical?: string | URL;
   jsonLd?: JsonLdInput;
+  tags?: string[];
 }
 
-const { title, description, image, kind, pubDate, canonical, jsonLd } =
-  Astro.props;
+const { title, description, image, kind, pubDate, jsonLd, tags } = Astro.props;
 ---
 
 <!doctype html>
@@ -41,8 +40,8 @@ const { title, description, image, kind, pubDate, canonical, jsonLd } =
       image={image}
       kind={kind}
       pubDate={pubDate}
-      canonical={canonical}
       jsonLd={jsonLd}
+      tags={tags}
     />
   </head>
   <body class="bg-background text-text flex min-h-dvh flex-col">

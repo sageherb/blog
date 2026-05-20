@@ -1,8 +1,15 @@
 ---
 import type { JsonLdInput, JsonLdObject } from "@utils/jsonld";
 import faviconSvg from "@assets/logos/filled.svg?raw";
-import { BRAND_COLOR, DEFAULT_OG_IMAGE, SITE_TITLE } from "@config";
+import {
+  AUTHOR,
+  BRAND_COLOR,
+  DEFAULT_OG_IMAGE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+} from "@config";
 import { escapeJsonForHtml } from "@utils/jsonld";
+import { siteUrl } from "@utils/url";
 
 const faviconHref = `data:image/svg+xml,${encodeURIComponent(faviconSvg.replaceAll("currentColor", BRAND_COLOR))}`;
 
@@ -12,33 +19,13 @@ interface Props {
   image?: string;
   kind?: "page" | "post" | "project";
   pubDate?: Date;
-  canonical?: string | URL;
   jsonLd?: JsonLdInput;
+  tags?: string[];
 }
 
 function normalizeJsonLd(input: JsonLdInput | undefined): JsonLdObject[] {
   if (!input) return [];
   return Array.isArray(input) ? input : [input];
-}
-
-function buildCanonicalURL(
-  canonical: string | URL | undefined,
-  site: URL | undefined,
-  url: URL,
-): URL {
-  if (!canonical) {
-    return site ? new URL(url.pathname, site) : url;
-  }
-  if (canonical instanceof URL) return canonical;
-  return site ? new URL(canonical, site) : new URL(canonical, url);
-}
-
-function resolveOgImage(
-  path: string,
-  site: URL | undefined,
-): string | undefined {
-  if (!site) return undefined;
-  return path.startsWith("http") ? path : new URL(path, site).toString();
 }
 
 const {
@@ -47,21 +34,23 @@ const {
   image,
   kind = "page",
   pubDate,
-  canonical,
   jsonLd,
+  tags,
 } = Astro.props;
 
 const jsonLdItems = normalizeJsonLd(jsonLd);
-const canonicalURL = buildCanonicalURL(canonical, Astro.site, Astro.url);
-const ogType = kind === "post" ? "article" : "website";
+const canonicalURL = siteUrl(Astro.url.pathname);
+const ogType = kind === "page" ? "website" : "article";
 const documentTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
-const ogImage = resolveOgImage(image ?? DEFAULT_OG_IMAGE, Astro.site);
+const ogImage = siteUrl(image ?? DEFAULT_OG_IMAGE).toString();
+const metaDescription = description.trim() || SITE_DESCRIPTION;
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link
   rel="stylesheet"
   as="style"
@@ -84,24 +73,41 @@ const ogImage = resolveOgImage(image ?? DEFAULT_OG_IMAGE, Astro.site);
 />
 
 <title>{documentTitle}</title>
-<meta name="description" content={description} />
+<meta name="description" content={metaDescription} />
 
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:site_name" content={SITE_TITLE} />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:description" content={metaDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content={title} />
 {
-  kind === "post" && pubDate && (
-    <meta property="article:published_time" content={pubDate.toISOString()} />
+  kind !== "page" && (
+    <Fragment>
+      <meta name="author" content={AUTHOR} />
+      <meta property="article:author" content={AUTHOR} />
+      {pubDate && (
+        <meta
+          property="article:published_time"
+          content={pubDate.toISOString()}
+        />
+      )}
+      {tags?.map((tag) => (
+        <meta property="article:tag" content={tag} />
+      ))}
+    </Fragment>
   )
 }
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-{ogImage && <meta name="twitter:image" content={ogImage} />}
+<meta name="twitter:description" content={metaDescription} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={title} />
 
 {
   jsonLdItems.map((ld) => (

@@ -3,27 +3,10 @@ import { getTitleFontSize, OG_SIZE, OG_THEME } from "./theme";
 
 interface OgTemplateProps {
   title: string;
-  /** Pre-formatted date string (e.g. "2026년 5월 4일"). Optional. */
   date?: string;
-  /** Tag list. Capped at 4 to avoid overflowing the bottom row. */
   tags?: string[];
 }
 
-/**
- * Minimum-typography OG template (1200x630).
- *
- *   ┌─────────────────────────────────────────────┐
- *   │ sageherb.dev                                │
- *   │                                             │
- *   │   <Title>                                   │
- *   │   ────                                      │
- *   │                                             │
- *   │ 2026년 5월 4일              #astro #blog    │
- *   └─────────────────────────────────────────────┘
- *
- * Satori requires `display: flex` on every element with children, so
- * the styles look more verbose than they would in regular CSS.
- */
 export function OgTemplate({ title, date, tags = [] }: OgTemplateProps) {
   const visibleTags = tags.slice(0, 4);
 
@@ -40,7 +23,6 @@ export function OgTemplate({ title, date, tags = [] }: OgTemplateProps) {
         fontFamily: "Pretendard",
       }}
     >
-      {/* Top: wordmark */}
       <div
         style={{
           display: "flex",
@@ -52,7 +34,6 @@ export function OgTemplate({ title, date, tags = [] }: OgTemplateProps) {
         sageherb.dev
       </div>
 
-      {/* Center: title + accent line */}
       <div
         style={{
           flex: 1,
@@ -83,7 +64,6 @@ export function OgTemplate({ title, date, tags = [] }: OgTemplateProps) {
         />
       </div>
 
-      {/* Bottom: date | tags */}
       <div
         style={{
           display: "flex",

@@ -10,16 +10,6 @@ interface RenderOgOptions {
   tags?: string[];
 }
 
-/**
- * Render an OG card to a PNG ArrayBuffer.
- *
- * Pipeline: JSX → satori (SVG) → resvg (PNG).
- * `OgTemplate` is invoked as a function rather than via JSX so this file
- * can stay `.ts` (no JSX runtime needed here).
- *
- * Returning an `ArrayBuffer` (rather than the `Buffer`/`Uint8Array<ArrayBufferLike>`
- * that resvg yields) keeps `Response` typing clean across runtimes.
- */
 export async function renderOgImage(
   options: RenderOgOptions,
 ): Promise<ArrayBuffer> {
@@ -34,13 +24,14 @@ export async function renderOgImage(
   })
     .render()
     .asPng();
+  // PNG 렌더러가 반환하는 Buffer/Uint8Array<ArrayBufferLike>를 그대로 쓰면
+  // Response 타입이 런타임별로 어긋난다. slice로 ArrayBuffer를 잘라 호환성 확보.
   return buf.buffer.slice(
     buf.byteOffset,
     buf.byteOffset + buf.byteLength,
   ) as ArrayBuffer;
 }
 
-/** Convenience wrapper that returns a cached PNG `Response`. */
 export async function createOgImageResponse(
   options: RenderOgOptions,
 ): Promise<Response> {

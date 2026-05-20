@@ -10,12 +10,7 @@ const FONT_PATHS = {
 
 let fontCache: Promise<Font[]> | undefined;
 
-/**
- * Load Pretendard OTFs for satori. Cached for the lifetime of the build
- * process so each subsequent OG endpoint reuses the in-memory buffers.
- *
- * Satori does not support WOFF2, so OG fonts must stay in OTF/TTF/WOFF.
- */
+// Satori는 WOFF2를 지원하지 않으므로 OG용 폰트는 OTF/TTF/WOFF 형식만 사용한다.
 export async function loadOgFonts(): Promise<Font[]> {
   if (!fontCache) {
     fontCache = Promise.all([
