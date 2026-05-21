@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/sageherb/blog/compare/v1.2.0...v1.3.0) (2026-05-21)
+
+
+### Features
+
+* **brand:** SVG favicon과 touch icon 추가 ([0da97d1](https://github.com/sageherb/blog/commit/0da97d11e5e270d1445f8e05fdf33371f77df55e))
+* **seo:** 404 noindex와 RSS atom link 추가 ([d6e1b38](https://github.com/sageherb/blog/commit/d6e1b389f06f789dfeb4234e9d0255963c44acd6))
+
 ## [1.2.0](https://github.com/sageherb/blog/compare/v1.1.1...v1.2.0) (2026-05-16)
 
 ### Features
