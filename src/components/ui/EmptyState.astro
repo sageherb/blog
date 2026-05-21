@@ -1,20 +1,22 @@
 ---
-import { FolderOpen, Inbox, SearchX } from "@lucide/astro";
+import { FileQuestionMark, FolderOpen, Inbox, SearchX } from "@lucide/astro";
 
 interface Props {
-  type: "blog" | "project" | "tag";
+  type: "blog" | "project" | "tag" | "notFound";
 }
 
 const icons = {
   blog: Inbox,
   project: FolderOpen,
   tag: SearchX,
+  notFound: FileQuestionMark,
 } as const;
 
 const messages: Record<Props["type"], string> = {
   blog: "아직 작성된 글이 없습니다.",
   project: "아직 등록된 프로젝트가 없습니다.",
   tag: "이 태그에 해당하는 글이 없습니다.",
+  notFound: "존재하지 않는 페이지입니다.",
 };
 
 const { type } = Astro.props;

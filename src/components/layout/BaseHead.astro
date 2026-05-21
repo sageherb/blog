@@ -22,6 +22,7 @@ export interface SeoProps {
   pubDate?: Date;
   jsonLd?: JsonLdInput;
   tags?: string[];
+  noindex?: boolean;
 }
 
 type Props = SeoProps;
@@ -39,6 +40,7 @@ const {
   pubDate,
   jsonLd,
   tags,
+  noindex,
 } = Astro.props;
 
 const jsonLdItems = normalizeJsonLd(jsonLd);
@@ -78,6 +80,7 @@ const isArticle = ogType === "article";
   titleTemplate={`%s | ${SITE_TITLE}`}
   description={metaDescription}
   canonical={canonicalURL}
+  noindex={noindex}
   openGraph={{
     basic: {
       type: ogType,
