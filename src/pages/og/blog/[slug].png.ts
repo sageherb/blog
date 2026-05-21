@@ -1,12 +1,10 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { createOgImageResponse } from "@lib/og/render";
 import { getBlogPosts } from "@utils/content";
-import { formatDate } from "@utils/date";
+import { createOgImageResponse } from "@utils/og/render";
 
 interface Props {
   title: string;
-  date: string;
-  tags: string[];
+  description: string;
 }
 
 export const getStaticPaths = (async () => {
@@ -15,13 +13,10 @@ export const getStaticPaths = (async () => {
     params: { slug: post.id },
     props: {
       title: post.data.title,
-      date: formatDate(post.data.pubDate),
-      tags: post.data.tags,
+      description: post.data.description,
     } satisfies Props,
   }));
 }) satisfies GetStaticPaths;
 
-export const GET = (async ({ props }) => {
-  const { title, date, tags } = props;
-  return createOgImageResponse({ title, date, tags });
-}) satisfies APIRoute<Props>;
+export const GET = (async ({ props }) =>
+  createOgImageResponse(props)) satisfies APIRoute<Props>;

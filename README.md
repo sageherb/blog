@@ -41,17 +41,16 @@ src/
   content.config.ts                      # Content Collections 스키마 정의
   config.ts                              # 사이트 전역 설정 상수
   layouts/                               # BaseLayout, PostLayout, ProjectLayout
-  lib/og/                                # Satori 기반 OG 이미지 템플릿·폰트·렌더 로직
   pages/                                 # 라우팅 엔트리
     blog/[...page].astro, blog/[slug].astro
     project/index.astro, project/[slug].astro
     tags/[tag]/...
     og/, about.astro, rss.xml.ts
   styles/                                # 전역 스타일·Tailwind 토큰
-  utils/                                 # content, date, jsonld, pagination, routes, tags 헬퍼
+  utils/                                 # content, date, jsonld, pagination, routes, tags 헬퍼 + og/ (Satori 템플릿·폰트·렌더)
 ```
 
-경로 별칭은 `tsconfig.json`에 정의되어 있으며 `@components/*`, `@layouts/*`, `@utils/*`, `@lib/*`, `@content/*`, `@styles/*`, `@assets/*`, `@config`을 사용합니다.
+경로 별칭은 `tsconfig.json`에 정의되어 있으며 `@components/*`, `@layouts/*`, `@utils/*`, `@content/*`, `@styles/*`, `@assets/*`, `@config`을 사용합니다.
 
 ## 실행 명령어
 
@@ -121,7 +120,7 @@ Node.js 22.12 이상, pnpm 환경에서 프로젝트 루트에서 실행합니�
 ## OG 이미지
 
 - `src/pages/og/` 라우트가 빌드 시 Satori + `resvg`로 PNG를 생성합니다.
-- 템플릿(`src/lib/og/template.tsx`)은 Preact JSX로 작성되며, `tsconfig`의 `jsxImportSource: "preact"` 설정을 따릅니다.
+- 템플릿(`src/utils/og/template.tsx`)은 Preact JSX로 작성되며, `tsconfig`의 `jsxImportSource: "preact"` 설정을 따릅니다.
 - 사이트맵 생성 시 OG 경로는 제외됩니다 (`astro.config.mjs`의 `sitemap` 필터).
 
 ## 환경 설정
