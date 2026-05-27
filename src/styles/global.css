@@ -216,16 +216,6 @@
 }
 
 @layer components {
-  .nav-item-label::after {
-    content: attr(data-text);
-    display: block;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    font-weight: 500;
-    pointer-events: none;
-  }
-
   .prose :where(:not(pre) > code)::before,
   .prose :where(:not(pre) > code)::after {
     content: "" !important;
