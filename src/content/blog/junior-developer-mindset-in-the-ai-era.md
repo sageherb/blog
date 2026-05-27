@@ -3,6 +3,7 @@ title: "AI 시대에 대처하는 신입의 자세"
 description: "프로그래머로서 이렇게 뒤처진 느낌은 처음이다"
 pubDate: 2026-05-19
 tags:
+  - Essay
   - 취업
 draft: false
 ---
