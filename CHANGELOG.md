@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/sageherb/blog/compare/v1.3.0...v1.4.0) (2026-06-17)
+
+
+### Features
+
+* **analytics:** Vercel Analytics 추가 ([2a607ec](https://github.com/sageherb/blog/commit/2a607ec5014b66b3f382b3d71a9505faac8a5b8a))
+
 ## [1.3.0](https://github.com/sageherb/blog/compare/v1.2.0...v1.3.0) (2026-05-21)
 
 
