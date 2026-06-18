@@ -242,6 +242,10 @@
   html.dark .theme-toggle [data-icon="sun"] {
     display: block;
   }
+
+  small {
+    color: var(--color-text-subtle);
+  }
 }
 
 :root {
