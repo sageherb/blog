@@ -8,3 +8,6 @@ trustPolicyExclude:
 allowBuilds:
   esbuild: true
   sharp: true
+
+minimumReleaseAgeExclude:
+  - astro@6.4.8
