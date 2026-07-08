@@ -1,3 +1,7 @@
+minimumReleaseAgeExclude:
+  - astro@6.4.8 || 7.0.7
+  - "@astrojs/telemetry@3.3.3"
+
 shellEmulator: true
 trustPolicy: no-downgrade
 
@@ -8,6 +12,3 @@ trustPolicyExclude:
 allowBuilds:
   esbuild: true
   sharp: true
-
-minimumReleaseAgeExclude:
-  - astro@6.4.8
