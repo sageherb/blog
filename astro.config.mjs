@@ -1,15 +1,20 @@
+import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import astroExpressiveCode from "astro-expressive-code";
+import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
+import { imageCaptionsPlugin } from "./src/utils/markdown.ts";
 
 export default defineConfig({
   site: "https://sageherb.dev",
   output: "static",
+  markdown: {
+    processor: satteri({ hastPlugins: [imageCaptionsPlugin()] }),
+  },
   integrations: [
-    astroExpressiveCode({
+    expressiveCode({
       themes: ["catppuccin-latte", "catppuccin-frappe"],
       useDarkModeMediaQuery: false,
       themeCssSelector: (theme) =>
