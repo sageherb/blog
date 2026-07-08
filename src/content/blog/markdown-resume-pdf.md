@@ -1,10 +1,11 @@
 ---
-title: Markdown으로 관리하는 PDF 이력서 생성기
+title: 마크다운 문서 기반 PDF 이력서 만들기
 description: 반복되는 이력서 수정과 PDF 변환 과정을 줄이기 위한 프로젝트
 pubDate: 2026-07-09
 tags:
-  - 회고
   - 자동화
+  - Markdown
+  - PDF
 draft: false
 ---
 
