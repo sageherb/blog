@@ -10,11 +10,12 @@ export default defineConfig({
   output: "static",
   integrations: [
     astroExpressiveCode({
-      themes: ["github-light", "github-dark"],
+      themes: ["catppuccin-latte", "catppuccin-frappe"],
       useDarkModeMediaQuery: false,
       themeCssSelector: (theme) =>
-        theme.name === "github-dark" ? ".dark" : false,
+        theme.name === "catppuccin-frappe" ? ".dark" : false,
       styleOverrides: {
+        borderWidth: "0",
         frames: {
           shadowColor: "transparent",
         },
