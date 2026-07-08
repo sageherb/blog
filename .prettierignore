@@ -3,3 +3,4 @@ dist/
 .astro/
 public/pagefind/
 .eslintcache
+CHANGELOG.md
