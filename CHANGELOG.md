@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/sageherb/blog/compare/v1.4.0...v1.5.0) (2026-07-08)
+
+
+### Features
+
+* **ui:** Note component 추가 ([9f5f3f2](https://github.com/sageherb/blog/commit/9f5f3f2a2ac040a14461adf773bf65bff4a6fcc1))
+
 ## [1.4.0](https://github.com/sageherb/blog/compare/v1.3.0...v1.4.0) (2026-06-17)
 
 
