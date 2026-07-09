@@ -5,13 +5,17 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
-import { imageCaptionsPlugin } from "./src/utils/markdown.ts";
+import { directivesPlugin, imageCaptionsPlugin } from "./src/utils/markdown.ts";
 
 export default defineConfig({
   site: "https://sageherb.dev",
   output: "static",
   markdown: {
-    processor: satteri({ hastPlugins: [imageCaptionsPlugin()] }),
+    processor: satteri({
+      features: { directive: true },
+      mdastPlugins: [directivesPlugin()],
+      hastPlugins: [imageCaptionsPlugin()],
+    }),
   },
   integrations: [
     expressiveCode({
