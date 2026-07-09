@@ -56,7 +56,9 @@ draft: false
 
 ## 결과: 이력서 수정 방식 개선
 
+:::center
 ![PDF 출력 로그](../../assets/blog/markdown-resume-pdf/pdf-generation-log.png)
+:::
 
 예전에는 이력서를 한 번 수정할 때마다 레이아웃이나 줄바꿈을 일일이 확인하고 다시 PDF로 저장해야 했다.
 
