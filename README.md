@@ -1,12 +1,12 @@
 # SageHerb
 
-Astro 기반 개인 블로그이자 프로젝트 아카이브 — [sageherb.dev](https://sageherb.dev)
+Astro 기반 개인 블로그
 
 콘텐츠 중심의 구조를 유지하면서도, 검색성과 확장성을 함께 고려해 설계했습니다.
 
 ## 기술 스택
 
-- Astro 6
+- Astro 7 (Sätteri 마크다운 프로세서)
 - Tailwind CSS 4
 - Astro Expressive Code (코드 블록 렌더링)
 - Pagefind (클라이언트 검색)
@@ -22,6 +22,8 @@ Astro 기반 개인 블로그이자 프로젝트 아카이브 — [sageherb.dev]
 - Pagefind 모달 트리거(`pagefind-modal-trigger`) 기반 정적 검색 (한국어 인덱스)
 - Satori 기반 동적 OG 이미지 생성 (`/og/*.png`)
 - JSON-LD 구조화 데이터, 사이트맵, RSS 자동 생성
+- Sätteri 플러그인 기반 마크다운 확장 — 이미지 캡션, `:::note`/`:::center`/`:::row` directive (`src/utils/markdown.ts`)
+- 본문 외부 링크에 아이콘 자동 표시 (텍스트 없는 아이콘·이미지 링크는 제외)
 - `.dark` 클래스 토글 다크 모드 (서버 사이드 Astro 컴포넌트)
 - `/` → `/blog` 영구 리다이렉트로 단일 네임스페이스 유지 (Vercel)
 - 사이트 설정, 콘텐츠 스키마, UI 레이어를 분리해 유지보수성과 확장성 강화
@@ -47,14 +49,14 @@ src/
     tags/[tag]/...
     og/, about.astro, rss.xml.ts
   styles/                                # 전역 스타일·Tailwind 토큰
-  utils/                                 # content, date, jsonld, pagination, routes, tags 헬퍼 + og/ (Satori 템플릿·폰트·렌더)
+  utils/                                 # content, date, jsonld, markdown(Sätteri 플러그인), pagination, routes, tags 헬퍼 + og/ (Satori 템플릿·폰트·렌더)
 ```
 
 경로 별칭은 `tsconfig.json`에 정의되어 있으며 `@components/*`, `@layouts/*`, `@utils/*`, `@content/*`, `@styles/*`, `@assets/*`, `@config`을 사용합니다.
 
 ## 실행 명령어
 
-Node.js 22.12 이상, pnpm 환경에서 프로젝트 루트에서 실행합니다.
+Node.js 24, pnpm 환경에서 프로젝트 루트에서 실행합니다.
 
 - `pnpm install`: 의존성 설치
 - `pnpm dev`: 개발 서버 실행
@@ -104,6 +106,32 @@ Node.js 22.12 이상, pnpm 환경에서 프로젝트 루트에서 실행합니�
 | `description` | `string`  |  ✓   |    —    |
 | `draft`       | `boolean` |      | `false` |
 
+### 마크다운 확장 문법
+
+`src/utils/markdown.ts`의 Sätteri 플러그인이 처리합니다.
+
+- **이미지 캡션**: 이미지 title이 `<figure>` + `<figcaption>`으로 변환됩니다. 캡션 안에 `[텍스트](url)` 링크도 쓸 수 있습니다.
+
+  ```markdown
+  ![대체 텍스트](../../assets/example.png "캡션 — [출처](https://example.com)")
+  ```
+
+- **directive**: `:::note`(제목은 `{title="..."}` 옵션), `:::center`(이미지·캡션 중앙 정렬), `:::row`(이미지 2개 좌우 배치, 모바일에서는 1열).
+
+  ```markdown
+  :::note{title="참고"}
+  노트 본문
+  :::
+
+  :::row
+  ![왼쪽](a.png "왼쪽 캡션")
+
+  ![오른쪽](b.png)
+  :::
+  ```
+
+- 플러그인(`src/utils/markdown.ts`)을 수정한 뒤에는 콘텐츠 캐시 때문에 `pnpm dev --force` 또는 `pnpm build --force`로 실행해야 반영됩니다.
+
 ## 검색 (Pagefind)
 
 - 검색 UI는 `PagefindSearch.astro` 컴포넌트가 `pagefind-modal-trigger`, `pagefind-modal` 웹 컴포넌트를 통해 lazy-load 합니다.
@@ -114,7 +142,7 @@ Node.js 22.12 이상, pnpm 환경에서 프로젝트 루트에서 실행합니�
 ## 코드 블록
 
 - `astro-expressive-code`가 모든 Markdown/MDX 코드 블록을 처리합니다.
-- 라이트/다크 테마는 각각 `github-light`/`github-dark`이며, `.dark` 클래스 셀렉터로 매핑됩니다.
+- 라이트/다크 테마는 각각 `catppuccin-latte`/`catppuccin-frappe`이며, `.dark` 클래스 셀렉터로 매핑됩니다.
 - 복사 버튼은 Expressive Code 기본 기능을 사용하므로 별도 클라이언트 스크립트가 필요하지 않습니다.
 
 ## OG 이미지
