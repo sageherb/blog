@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.0](https://github.com/sageherb/blog/compare/v1.5.0...v1.6.0) (2026-07-09)
+
+
+### Features
+
+* **markdown:** image caption plugin 추가 ([a1b4ede](https://github.com/sageherb/blog/commit/a1b4edea776b1b624a03ad8e9f3d06df31ad64c3))
+* **markdown:** note용 container directive 추가 ([2a1c104](https://github.com/sageherb/blog/commit/2a1c104aa16db66182016e21ed1bde9aaa8cd198))
+* **prose:** external link icon 추가 ([9fd546f](https://github.com/sageherb/blog/commit/9fd546fff90f09b7f06b77d2e2d5372701048941))
+
 ## [1.5.0](https://github.com/sageherb/blog/compare/v1.4.0...v1.5.0) (2026-07-08)
 
 
