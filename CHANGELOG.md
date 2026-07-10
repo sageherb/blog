@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/sageherb/blog/compare/v1.6.0...v1.6.1) (2026-07-10)
+
+
+### Bug Fixes
+
+* **markdown:** note title markup 수정 ([c0e229d](https://github.com/sageherb/blog/commit/c0e229d22936a14010aae7f4020c2f4070a4464b))
+
 ## [1.6.0](https://github.com/sageherb/blog/compare/v1.5.0...v1.6.0) (2026-07-09)
 
 
