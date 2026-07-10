@@ -19,7 +19,7 @@ type FigureNode = Parameters<HastContext["replaceNode"]>[1];
 
 const NOTE_CLASSES =
   "bg-surface my-6 rounded-lg px-5 py-4 [&_:not(pre)>code]:bg-gray-5 [&>:last-child]:mb-0";
-const NOTE_TITLE_CLASSES = "text-accent-11 mt-0 mb-1.5 text-sm font-bold";
+const NOTE_TITLE_CLASSES = "text-accent-11 mt-0! mb-1.5! text-sm font-bold";
 
 const WRAPPER_CLASSES: Record<string, string> = {
   center:
