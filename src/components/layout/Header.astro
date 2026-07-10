@@ -8,8 +8,8 @@ const path = Astro.url.pathname;
 
 const navItems = [
   { href: "/blog", label: "Blog" },
-  { href: "/project", label: "Project" },
-  { href: "/about", label: "About" },
+  // { href: "/project", label: "Project" },
+  // { href: "/about", label: "About" },
 ] as const;
 
 function isActive(href: string): boolean {
@@ -47,7 +47,7 @@ function isActive(href: string): boolean {
                     active ? "text-link" : "text-text-muted hover:text-text",
                   ]}
                 >
-                  <span class="relative top-px">{label}</span>
+                  {label}
                 </a>
               </li>
             );
