@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
+import { codeCaptionsPlugin } from "./src/utils/code-caption.ts";
 import { directivesPlugin, imageCaptionsPlugin } from "./src/utils/markdown.ts";
 
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
   },
   integrations: [
     expressiveCode({
+      plugins: [codeCaptionsPlugin()],
       themes: ["catppuccin-latte", "catppuccin-frappe"],
       useDarkModeMediaQuery: false,
       themeCssSelector: (theme) =>

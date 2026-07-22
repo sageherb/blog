@@ -96,7 +96,7 @@ type CaptionNode =
 
 const CAPTION_LINK_PATTERN = /\[([^\]]+)\]\(([^)\s]+)\)/g;
 
-function parseCaption(caption: string): CaptionNode[] {
+export function parseCaption(caption: string): CaptionNode[] {
   const nodes: CaptionNode[] = [];
   let lastIndex = 0;
   for (const match of caption.matchAll(CAPTION_LINK_PATTERN)) {

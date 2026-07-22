@@ -142,6 +142,15 @@ Node.js 24, pnpm 환경에서 프로젝트 루트에서 실행합니다.
 ## 코드 블록
 
 - `astro-expressive-code`가 모든 Markdown/MDX 코드 블록을 처리합니다.
+- `title`은 코드 블록 상단에 표시되는 파일 이름입니다.
+- `caption`은 선택 사항이며 코드 블록 하단에 캡션을 표시합니다. 캡션 안에 `[텍스트](url)` 링크도 쓸 수 있습니다.
+
+  ````markdown
+  ```ts title="src/utils/markdown.ts" caption="캡션 — [출처](https://example.com)"
+  export function imageCaptionsPlugin() {}
+  ```
+  ````
+
 - 라이트/다크 테마는 각각 `catppuccin-latte`/`catppuccin-frappe`이며, `.dark` 클래스 셀렉터로 매핑됩니다.
 - 복사 버튼은 Expressive Code 기본 기능을 사용하므로 별도 클라이언트 스크립트가 필요하지 않습니다.
 
