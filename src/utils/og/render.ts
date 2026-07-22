@@ -1,9 +1,9 @@
 import type { Buffer } from "node:buffer";
 import { Resvg } from "@resvg/resvg-js";
+import { loadOgFonts } from "@utils/og/fonts";
+import { OgTemplate } from "@utils/og/template";
+import { OG_SIZE } from "@utils/og/theme";
 import satori from "satori";
-import { loadOgFonts } from "./fonts";
-import { OgTemplate } from "./template";
-import { OG_SIZE } from "./theme";
 
 interface RenderOgOptions {
   title: string;

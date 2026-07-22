@@ -1,5 +1,5 @@
 /** @jsxImportSource preact */
-import { OG_COLORS, OG_PADDING, OG_SIZE } from "./theme";
+import { OG_COLORS, OG_PADDING, OG_SIZE } from "@utils/og/theme";
 
 type OgVariant = "post" | "default";
 

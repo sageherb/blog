@@ -4,7 +4,7 @@ import type { Element, ElementContent } from "astro-expressive-code/hast";
 import { AttachedPluginData } from "astro-expressive-code";
 import { getClassNames } from "astro-expressive-code/hast";
 
-import { parseCaption } from "./markdown.ts";
+import { parseCaption } from "./captions.ts";
 
 const CODE_FIGURE_CLASS = "code-figure";
 const CODE_CAPTION_CLASS = "code-caption";

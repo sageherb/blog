@@ -5,12 +5,12 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
-import { codeCaptionsPlugin } from "./src/utils/code-caption.ts";
 import {
+  codeCaptionsPlugin,
   directivesPlugin,
   imageCaptionsPlugin,
   koreanPostpositionStrongPlugin,
-} from "./src/utils/markdown.ts";
+} from "./src/utils/markdown/index.ts";
 
 export default defineConfig({
   site: "https://sageherb.dev",

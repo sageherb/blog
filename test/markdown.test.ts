@@ -5,7 +5,7 @@ import test from "node:test";
 
 import { createSatteriMarkdownProcessor } from "@astrojs/markdown-satteri";
 
-import { koreanPostpositionStrongPlugin } from "../src/utils/markdown.ts";
+import { koreanPostpositionStrongPlugin } from "../src/utils/markdown/index.ts";
 
 async function render(markdown: string): Promise<string> {
   const processor = await createSatteriMarkdownProcessor({
