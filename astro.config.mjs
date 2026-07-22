@@ -6,7 +6,11 @@ import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import { codeCaptionsPlugin } from "./src/utils/code-caption.ts";
-import { directivesPlugin, imageCaptionsPlugin } from "./src/utils/markdown.ts";
+import {
+  directivesPlugin,
+  imageCaptionsPlugin,
+  koreanPostpositionStrongPlugin,
+} from "./src/utils/markdown.ts";
 
 export default defineConfig({
   site: "https://sageherb.dev",
@@ -14,7 +18,7 @@ export default defineConfig({
   markdown: {
     processor: satteri({
       features: { directive: true },
-      mdastPlugins: [directivesPlugin()],
+      mdastPlugins: [koreanPostpositionStrongPlugin(), directivesPlugin()],
       hastPlugins: [imageCaptionsPlugin()],
     }),
   },

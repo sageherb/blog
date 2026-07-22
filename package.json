@@ -10,11 +10,12 @@
     "build": "astro build --force && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "node --test test/*.test.ts",
     "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:inspect": "eslint --inspect-config",
-    "verify": "pnpm lint && pnpm prettier --check . && pnpm check && pnpm build"
+    "verify": "pnpm test && pnpm lint && pnpm prettier --check . && pnpm check && pnpm build"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.3.3",
