@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.0](https://github.com/sageherb/blog/compare/v1.6.1...v1.7.0) (2026-07-22)
+
+
+### Features
+
+* **markdown:** 코드 블록 캡션 지원 추가 ([b0f926a](https://github.com/sageherb/blog/commit/b0f926a16905f712a11bbc38fb3de0e0d9d01185))
+* **markdown:** 한글 조사 결합 시 strong 파싱 보정 ([88a8a67](https://github.com/sageherb/blog/commit/88a8a6730707c837cc2598df6cf3a3026c30e8f5))
+
 ## [1.6.1](https://github.com/sageherb/blog/compare/v1.6.0...v1.6.1) (2026-07-10)
 
 
