@@ -15,7 +15,7 @@ coverImage: "../../assets/project/blog.png"
 links:
   github: "https://github.com/sageherb/blog"
   live: "https://sageherb.dev/"
-draft: false
+draft: true
 ---
 
 ## 개요
