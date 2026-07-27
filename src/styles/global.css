@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -71,7 +72,10 @@
 }
 
 @theme inline {
-  --font-sans: "Pretendard Variable", Arial, system-ui, sans-serif;
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    sans-serif;
 
   --color-gray-1: var(--gray-1);
   --color-gray-2: var(--gray-2);
