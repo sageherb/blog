@@ -77,7 +77,7 @@ const isArticle = ogType === "article";
 
 <SEO
   title={title}
-  titleTemplate={`%s | ${SITE_TITLE}`}
+  titleTemplate={title === SITE_TITLE ? undefined : `%s | ${SITE_TITLE}`}
   description={metaDescription}
   canonical={canonicalURL}
   noindex={noindex}

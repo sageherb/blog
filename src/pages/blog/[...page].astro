@@ -2,7 +2,7 @@
 import type { GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 import PostList from "@components/blog/PostList.astro";
-import { POSTS_PER_PAGE, SITE_DESCRIPTION } from "@config";
+import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "@config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getBlogPosts } from "@utils/content";
 
@@ -16,8 +16,9 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const title = page.currentPage === 1 ? SITE_TITLE : "Blog";
 ---
 
-<BaseLayout seo={{ title: "Blog", description: SITE_DESCRIPTION }}>
+<BaseLayout seo={{ title, description: SITE_DESCRIPTION }}>
   <PostList page={page} />
 </BaseLayout>
