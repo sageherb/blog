@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.0](https://github.com/sageherb/blog/compare/v1.7.0...v1.8.0) (2026-07-27)
+
+
+### Features
+
+* **font:** Pretendard local bundle 및 delivery test 추가 ([07759b9](https://github.com/sageherb/blog/commit/07759b9cbc1801ee7b23608f9df374f5ddaf3eb8))
+
+
+### Bug Fixes
+
+* **seo:** SITE_TITLE 중복 방지 ([8a126df](https://github.com/sageherb/blog/commit/8a126df049a9f21e580bb2ad58e272183c7d060c))
+
 ## [1.7.0](https://github.com/sageherb/blog/compare/v1.6.1...v1.7.0) (2026-07-22)
 
 
